@@ -44,7 +44,7 @@
                         <input type="password" placeholder="Enter Password" name="psw" required>
                         <button type="submit" class="loginbtn">Login</button>
                         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel </button>
-                        <span class="psw"> Créer un compte <a href="/pageHTML/inscription.html">ici</a></span>
+                        <span class="psw"> Créer un compte <a href="/pageHTML/inscription.php">ici</a></span>
                     </div>
                 </form>
             </div>
