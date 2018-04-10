@@ -46,11 +46,10 @@ letter-spacing: 2px;
 }
 
 .bouton{
-    justify-content: center;
     padding: 1%;
     text-decoration: none;
     color: #ECECEC;
-    font-size:30px;
+    font-size:20px;
     letter-spacing: 2px;
 }
 
@@ -65,9 +64,9 @@ letter-spacing: 2px;
     background-color: #F2F1EF;
     border-radius: 10px;
     float: left;
-    width: 6%;
+    width: 8%;
 }
-#cc {
+#authentificationBtn {
     background-color: #CF000F;
     border: none;
 }

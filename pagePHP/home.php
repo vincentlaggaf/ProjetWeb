@@ -7,58 +7,98 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<!--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
--->
-
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="/feuilleCSS/style.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
     </head>
 
     <body>
         <!--        <header> </header> -->
-        <img id="exia" src="/imagePNG/exia.png" alt="logo exia">
+        <img id="exia" src="/projetWeb/imagePNG/exia.png" alt="logo exia">
+
+
+
+
+
         <nav class="table">
             <a href="#" class="bouton"> <li> Boutique </li> </a>
             <a href="#" class="bouton"> <li> Boite à idées </li> </a>
             <a href="#" class="bouton"> <li> Évènement du mois </li> </a>
-            <a href="#" class="bouton"> <li> Évènement passé </li> </a>
-            <button id ="cc" onclick="document.getElementById('id01').style.display='block'">
-                <img src="/imagePNG/signIn.png" alt="signIn ">
+            <a href="#" class="bouton"> <li> Évènements passés </li> </a>
+
+            <button id ="authentificationBtn" onclick="document.getElementById('id02').style.display='block'">
+                <img src="/projetWeb/imagePNG/logIn.png" alt="logIn ">
+            </button>
+
+            <button id ="authentificationBtn" onclick="document.getElementById('id01').style.display='block'">
+                <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
             </button>
         </nav>
+
+
+
+
+
         <section id="corps">
 
             <div id="id01" class="modal">
-                <form class="modal-content animate" action="/action_page.php">
+                <form class="modal-content animate">
                     <div class="container">
-                        <label for="uname"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="uname" required>
-                        <label for="psw"><b>Password</b></label>
-                        <input type="password" placeholder="Enter Password" name="psw" required>
-                        <button type="submit" class="loginbtn">Login</button>
-                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel </button>
-                        <span class="psw"> Créer un compte <a href="/pageHTML/inscription.php">ici</a></span>
+
+                        <label for="name"><b>Nom</b></label>
+                        <input type="text">
+                        <label for="firstname"><b>Prénom</b></label>
+                        <input type="text">
+                        <label for="uname"><b>Nom d'utilisateur</b></label>
+                        <input type="text">
+                        <label for="psw"><b>Mot de passe</b></label>
+                        <input type="text">
+
+                        <button type="submit" class="loginbtn"> S'inscrire </button>
+                        <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'"> Annuler </button>
+
+                        <!--                        <span class="psw"> Déjà un compte ? <a href="#id02"> Go </a></span>-->
+
                     </div>
                 </form>
             </div>
 
-            <!-- Slideshow container -->
+            <div id="id02" class="modal">
+                <form class="modal-content animate" action="/action_page.php">
+                    <div class="container">
+
+                        <label for="uname"><b>Nom d'utilisateur</b></label>
+                        <input type="text">
+                        <label for="psw"><b>Mot de passe</b></label>
+                        <input type="text">
+
+
+                        <button type="submit" class="loginbtn"> Se connecter</button>
+
+
+                        <button type="button" class="cancelbtn" onclick="document.getElementById('id02').style.display='none'"> Annuler </button>
+
+
+                        <!--
+<span class="psw"> Créer un compte
+<a href="#id02">ici</a>
+</span>
+-->
+                    </div>
+                </form>
+            </div>
+
+
+
+
             <div class="theCarousel">
-                <!-- Full-width images with number and caption text -->
                 <div class="mySlides fade">
-                    <img src="/imagePNG/BOUTIQUE.png" style="width:100%">
-                    <!--                    <div class="text">Caption 1</div>-->
+                    <img src="/projetWeb/imagePNG/BOUTIQUE.png" style="width:100%">
                 </div>
                 <div class="mySlides fade">
-                    <img src="/imagePNG/even.png" style="width:100%">
-                    <!--                    <div class="text">Caption 2</div>-->
+                    <img src="/projetWeb/imagePNG/even.png" style="width:100%">
                 </div>
                 <div class="mySlides fade">
-                    <img src="/imagePNG/boite.png" style="width:100%">
-                    <!--                    <div class="text">Caption 3</div>-->
+                    <img src="/projetWeb/imagePNG/boite.png" style="width:100%">
                 </div>
             </div>
 
@@ -72,24 +112,35 @@
 
         </section>
 
-        <!--
-<aside id="side">
-<a href="#top" id="top"> <img src="/imagePNG/top.png" alt="goTop"> </a>
-</aside>
--->
         <footer id="bas">
             <div id="logoContact">
-                <img src="/imagePNG/www.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/mail.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/facebook.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/github.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/twitter.png" alt="logo réseaux sociaux">
+
+                <a href=mailto:bde.pau@viacesi.fr>
+                    <img src="/projetWeb/imagePNG/mail.png" alt="logo réseaux sociaux">
+                </a>
+
+                <a href="https://exia.cesi.fr/ecole-informatique-pau">
+                    <img src="/projetWeb/imagePNG/www.png" alt="logo réseaux sociaux">
+                </a>
+
+
+
+
+                <img src="/projetWeb/imagePNG/facebook.png" alt="logo réseaux sociaux">
+                <img src="/projetWeb/imagePNG/github.png" alt="logo réseaux sociaux">
+                <img src="/projetWeb/imagePNG/twitter.png" alt="logo réseaux sociaux">
+
+
+
+
             </div>
             <p> © BDE Pau - 2018</p>
             <p> Created and maintained by
                 <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
             </p>
         </footer>
+
+
 
         <script>
             var slideIndex = 1;
