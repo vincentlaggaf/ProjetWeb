@@ -16,7 +16,7 @@
         <title> Boite à Idées </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style-Squelette.css">
+        <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style-shop.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
@@ -52,7 +52,7 @@
         ?>
 
                <p>
-                   <img src="<?php echo $donnees['URL']; ?>" alt="<?php echo $donnees['NameGoodies']; ?>" title="<?php echo $donnees['NameGoodies']; ?>" />
+                   <img src="<?php echo $donnees['URL']; ?>" alt="<?php echo $donnees['NameGoodies']; ?>" title="<?php echo $donnees['NameGoodies']; ?>" class="shop-picture"/>
                </p>
 
         <?php
