@@ -12,11 +12,8 @@
     </head>
 
     <body>
-        <!--        <header> </header> -->
+
         <img id="exia" src="/projetWeb/imagePNG/exia.png" alt="logo exia">
-
-
-
 
 
         <nav class="table">
@@ -35,54 +32,54 @@
         </nav>
 
 
-
-
-
         <section id="corps">
 
+
+
+
+            <!--   CRÉATION D'UN COMPTE         -->
             <div id="id01" class="modal">
-                <form class="modal-content animate">
+                <form class="modal-content animate" action="signIn.php" method="post">
                     <div class="container">
 
                         <label for="name"><b>Nom</b></label>
-                        <input type="text">
+                        <input type="text" name="LastName">
+
                         <label for="firstname"><b>Prénom</b></label>
-                        <input type="text">
+                        <input type="text" name="FirstName">
+
+                         <label for="mail"><b>Adresse email</b></label>
+                        <input type="text" name="Mail">
+
                         <label for="uname"><b>Nom d'utilisateur</b></label>
-                        <input type="text">
+                        <input type="text" name="Login">
+
                         <label for="psw"><b>Mot de passe</b></label>
-                        <input type="text">
+                        <input type="text" name="UserPassword">
 
                         <button type="submit" class="loginbtn"> S'inscrire </button>
+
                         <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'"> Annuler </button>
-
-                        <!--                        <span class="psw"> Déjà un compte ? <a href="#id02"> Go </a></span>-->
-
                     </div>
                 </form>
             </div>
 
+
+
+            <!-- AUTHENTIFICATION  -->
             <div id="id02" class="modal">
-                <form class="modal-content animate" action="/action_page.php">
+                <form class="modal-content animate" action="logIn.php" method="post">
                     <div class="container">
 
                         <label for="uname"><b>Nom d'utilisateur</b></label>
-                        <input type="text">
+                        <input type="text" name="Login">
+
                         <label for="psw"><b>Mot de passe</b></label>
-                        <input type="text">
+                        <input type="text" name="UserPassword">
 
-
-                        <button type="submit" class="loginbtn"> Se connecter</button>
-
+                        <button type="submit" class="loginbtn"> Se connecter </button>
 
                         <button type="button" class="cancelbtn" onclick="document.getElementById('id02').style.display='none'"> Annuler </button>
-
-
-                        <!--
-<span class="psw"> Créer un compte
-<a href="#id02">ici</a>
-</span>
--->
                     </div>
                 </form>
             </div>
@@ -92,7 +89,7 @@
 
             <div class="theCarousel">
                 <div class="mySlides fade">
-                    <img src="/projetWeb/imagePNG/BOUTIQUE.png" style="width:100%">
+                    <img src="/projetWeb/imagePNG/boutique.png" style="width:100%">
                 </div>
                 <div class="mySlides fade">
                     <img src="/projetWeb/imagePNG/even.png" style="width:100%">
@@ -112,6 +109,10 @@
 
         </section>
 
+
+
+
+
         <footer id="bas">
             <div id="logoContact">
 
@@ -122,9 +123,6 @@
                 <a href="https://exia.cesi.fr/ecole-informatique-pau">
                     <img src="/projetWeb/imagePNG/www.png" alt="logo réseaux sociaux">
                 </a>
-
-
-
 
                 <img src="/projetWeb/imagePNG/facebook.png" alt="logo réseaux sociaux">
                 <img src="/projetWeb/imagePNG/github.png" alt="logo réseaux sociaux">

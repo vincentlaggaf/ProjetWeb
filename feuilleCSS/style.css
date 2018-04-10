@@ -13,25 +13,6 @@ section {
     justify-content: center;
 }
 
-/*
-
-h1 {
-font-family: 'Devonshire', cursive;
-font-size:70px;
-font-weight: normal;
-text-align: center;
-color: #22313F;
-line-height: 80%;
-}
-
-h2 {
-font-size: 30px;
-font-weight: normal;
-text-align: center;
-letter-spacing: 2px;
-}
-*/
-
 .table {
     background-color: #CF000F;
     display: flex ;
@@ -139,11 +120,6 @@ button:hover {
     padding: 16px;
 }
 
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
 /* The Modal (background) */
 .modal {
     display: none; /* Hidden by default */
@@ -181,15 +157,6 @@ width: 100%;
 
 
 
-
-
-
-
-
-
-
-
-
 /*CSS du caroussel*/
 
 #pass, .text {
@@ -207,8 +174,6 @@ width: 100%;
     letter-spacing: 20px;
 }
 
-
-
 .prev, .next {
     cursor: pointer;
     padding: 10px;
@@ -221,9 +186,6 @@ width: 100%;
     background-color: rgba(0,0,0,0.8);
     color: aliceblue;
 }
-
-
-
 
 .dot {
     cursor: pointer;
