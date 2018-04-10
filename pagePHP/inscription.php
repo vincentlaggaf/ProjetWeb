@@ -40,7 +40,7 @@
     <title> Inscription </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/feuilleCSS/inscriptionCSS.css">
+        <link rel="stylesheet" href="/feuilleCSS/registerCSS.css">
       <link rel="stylesheet" href="/feuilleCSS/style.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     </head>
