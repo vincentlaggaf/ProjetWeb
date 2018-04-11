@@ -47,22 +47,18 @@
             <?php
 
                 $reponse = $bdd->query('SELECT NameGoodies, URL FROM Goodies') or die(print_r($bdd->errorInfo()));
-                $nb_goodies = 0;
                 while ($donnees = $reponse->fetch())
                 {
             ?>
-
-
                    <img src="<?php echo $donnees['URL']; ?>" alt="<?php echo $donnees['NameGoodies']; ?>" title="<?php echo $donnees['NameGoodies']; ?>" class="shop-picture"/>
 
 
             <?php
-                    $nb_goodies++;
                 }
                 $reponse->closeCursor(); // Termine le traitement de la requête
             ?>
             </p>
-            <div class="goodies_information">
+            <div class="goodies_information" id="test">
                 <div class="goodies_information_part">
                     <img src="\projetWeb\imagePNG\boutique\t-shirt.jpg" alt="t-shirt" title="t-shirt" class="goodies-picture"/>
                     <div class="info_goodies info_goodies_margin">nom</div>
@@ -77,20 +73,7 @@
                     <div class="info_goodies">supprimer</div>
                 </div>
             </div>
-            <script>
-
-
-
-
-            </script>
-
-
-
-
-
-
         </section>
-
 
         <footer id="bas">
              <div id="logoContact">
@@ -102,9 +85,9 @@
             </div>
             <p> © BDE Pau - 2018</p>
             <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-
+            <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
         </footer>
 
+        <script src="\projetWeb\scriptsJS\script-shop.js"></script>
     </body>
 </html>
