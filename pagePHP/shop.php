@@ -43,22 +43,40 @@
 
 
         <section id="corps">
+            <p id="p_picture">
             <?php
 
                 $reponse = $bdd->query('SELECT NameGoodies, URL FROM Goodies') or die(print_r($bdd->errorInfo()));
+                $nb_goodies = 0;
                 while ($donnees = $reponse->fetch())
                 {
-
             ?>
 
-               <p>
+
                    <img src="<?php echo $donnees['URL']; ?>" alt="<?php echo $donnees['NameGoodies']; ?>" title="<?php echo $donnees['NameGoodies']; ?>" class="shop-picture"/>
-               </p>
+
 
             <?php
+                    $nb_goodies++;
                 }
                 $reponse->closeCursor(); // Termine le traitement de la requête
             ?>
+            </p>
+            <div class="goodies_information">
+                <div class="goodies_information_part">
+                    <img src="\projetWeb\imagePNG\boutique\t-shirt.jpg" alt="t-shirt" title="t-shirt" class="goodies-picture"/>
+                    <div class="info_goodies info_goodies_margin">nom</div>
+                    <div class="info_goodies info_goodies_margin">catégorie</div>
+                    <div class="info_goodies info_goodies_margin">prix</div>
+                </div>
+                <div class="goodies_information_part">
+                    <div class="info_goodies info_goodie_description info_goodies_margin">St Graal du développeur web, le centrage vertical et horizontal peut d'ailleurs être obtenu encore plus facilement. Dites que votre conteneur est une flexbox et établissez des marges automatiques sur les éléments à l'intérieur. C'est tout ! Essayez !</div>
+                </div>
+                <div class="goodies_information_part goodies_information_part_position">
+                    <div class="info_goodies">acheter</div>
+                    <div class="info_goodies">supprimer</div>
+                </div>
+            </div>
             <script>
 
 
