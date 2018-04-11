@@ -13,29 +13,9 @@
 
     <body>
 
-        <img id="exia" src="/projetWeb/imagePNG/exia.png" alt="logo exia">
+        <?php include ('nav.php'); ?>
 
-
-        <nav class="table">
-            <a href="#" class="bouton"> <li> Boutique </li> </a>
-            <a href="#" class="bouton"> <li> Boite à idées </li> </a>
-            <a href="#" class="bouton"> <li> Évènement du mois </li> </a>
-            <a href="#" class="bouton"> <li> Évènements passés </li> </a>
-
-            <button id ="authentificationBtn" onclick="document.getElementById('id02').style.display='block'">
-                <img src="/projetWeb/imagePNG/logIn.png" alt="logIn ">
-            </button>
-
-            <button id ="authentificationBtn" onclick="document.getElementById('id01').style.display='block'">
-                <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
-            </button>
-        </nav>
-
-
-        <section id="corps">
-
-
-
+        <section>
 
             <!--   CRÉATION D'UN COMPTE         -->
             <div id="id01" class="modal">
@@ -48,7 +28,7 @@
                         <label for="firstname"><b>Prénom</b></label>
                         <input type="text" name="FirstName">
 
-                         <label for="mail"><b>Adresse email</b></label>
+                        <label for="mail"><b>Adresse email</b></label>
                         <input type="text" name="Mail">
 
                         <label for="uname"><b>Nom d'utilisateur</b></label>
@@ -109,35 +89,7 @@
 
         </section>
 
-
-
-
-
-        <footer id="bas">
-            <div id="logoContact">
-
-                <a href=mailto:bde.pau@viacesi.fr>
-                    <img src="/projetWeb/imagePNG/mail.png" alt="logo réseaux sociaux">
-                </a>
-
-                <a href="https://exia.cesi.fr/ecole-informatique-pau">
-                    <img src="/projetWeb/imagePNG/www.png" alt="logo réseaux sociaux">
-                </a>
-
-                <img src="/projetWeb/imagePNG/facebook.png" alt="logo réseaux sociaux">
-                <img src="/projetWeb/imagePNG/github.png" alt="logo réseaux sociaux">
-                <img src="/projetWeb/imagePNG/twitter.png" alt="logo réseaux sociaux">
-
-
-
-
-            </div>
-            <p> © BDE Pau - 2018</p>
-            <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-            </p>
-        </footer>
-
+        <?php include ('footer.php'); ?>
 
 
         <script>
@@ -167,5 +119,6 @@
                 dots[slideIndex-1].className += " active";
             }
         </script>
+
     </body>
 </html>
