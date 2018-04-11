@@ -47,7 +47,6 @@
             <?php
 
                 $reponse = $bdd->query('SELECT NameGoodies, URL FROM Goodies') or die(print_r($bdd->errorInfo()));
-                $nb_goodies = 0;
                 while ($donnees = $reponse->fetch())
                 {
             ?>
@@ -57,7 +56,6 @@
 
 
             <?php
-                    $nb_goodies++;
                 }
                 $reponse->closeCursor(); // Termine le traitement de la requête
             ?>

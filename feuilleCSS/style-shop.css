@@ -204,6 +204,7 @@ span.psw {
     border: 2px black groove;
     margin: 3%;
     padding: 1%;
+    display: none;
 }
 
 .goodies_information_part
