@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=eventofthemonth;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        }
+        catch (Exception $e)
+        {
+            die ('Erreur : ' . $e->getMessage());
+        }
+?>
+
+
 <!DOCTYPE html>
 <html id="top">
 
@@ -32,6 +45,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <section id="corps">
 
 
@@ -39,19 +68,56 @@
 <div class="filter">ezaezae</div>
 
 <form class="addNewEvent" action="scriptNewEvent.php" method="post">
-<fieldset class="event">
+<?php
+     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description FROM Happenings');
+    $numberOfEvent=0;
+    $currentMonth=date("m");
+    // Events passés $currentDate=date("y-m-d");
+    //echo ($currentDate);
+
+                       while( $happening=$getHappening->fetch() AND $numberOfEvent<2 ){
+                           //echo strtotime($title['EventDate']);
+                          $monthOfTheEvent=explode("-",$happening['EventDate']);
+                          // echo $monthOfTheEvent[1];
+                           //if (strtotime($title['EventDate])<strtotime($currentDate))
+                           if ($currentMonth==$monthOfTheEvent[1]){
+
+
+
+    ?>
+
+    <fieldset class="event">
         <legend class="eventNumber">Event 1</legend>
             <div class="eventBloc">
 
                 <div class="titleAndPhoto">
                     <div class="title">
-                       <input   type="text" name="titre" class="titre" maxlength="20"  placeholder="Titre"/>
+
+                        <?php
+
+
+
+
+
+
+
+
+                        echo $happening['EventDate'];
+
+                        ?>
+
+
+
                     </div>
                     <div class="photo">
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
-                    <textarea  rows="15" cols="50" placeholder="Description" class="descriptionBox" style="resize:none" r></textarea>
+                    <?php
+
+                    echo $happening['Description'];
+
+                    ?>
                 </div>
  <div class="inscriptionButton">
     <input type="submit" value="Je m'inscris !" />
@@ -60,7 +126,27 @@
 
             </div>
     </fieldset>
+
+
     </form>
+
+
+               <?php }
+                           $numberOfEvent++;}
+    $getHappening->closeCursor();
+    ?>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
