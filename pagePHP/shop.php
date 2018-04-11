@@ -75,12 +75,6 @@
                     <div class="info_goodies">supprimer</div>
                 </div>
             </div>
-            <script>
-
-
-
-
-            </script>
 
 
 
@@ -104,5 +98,6 @@
 
         </footer>
 
+        <script scr="/projetWeb/scriptsJS/script-shop.js"></script>
     </body>
 </html>
