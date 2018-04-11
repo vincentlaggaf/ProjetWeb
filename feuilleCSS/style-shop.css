@@ -58,8 +58,12 @@ section {
     padding: 1%;
     margin: auto;
     margin-top: 3%;
-    justify-content: center;
     width: 60%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 #side {
@@ -165,10 +169,6 @@ span.psw {
 
 #p_picture
 {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 .goodies-picture
@@ -196,7 +196,7 @@ span.psw {
     max-width: 70%;
 }
 
-.goodies_information
+#goodies_information
 {
     display: flex;
     flex-direction: column;
@@ -223,4 +223,9 @@ span.psw {
     justify-content: space-between;
     margin: 2%;
     padding: 1%;
+}
+
+.invisible
+{
+    display: none;
 }

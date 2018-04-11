@@ -1,13 +1,5 @@
 <?php
-    session_start();
-    try
-        {
-            $bdd = new PDO('mysql:host=178.62.4.64;dbname=test_boutique_lav;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        }
-        catch (Exception $e)
-        {
-            die ('Erreur : ' . $e->getMessage());
-        }
+    require 'shop\BDDInteraction.php';
 ?>
 <!DOCTYPE html>
 <html id="top">
@@ -19,45 +11,32 @@
         <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style-shop.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
-
-
-
-
     </head>
 
     <body>
-        <!--        <header> </header> -->
-
         <img id="exia" src="\ProjetWeb\imagePNG\exia.png" alt="logo exia">
 
         <div id="menu">
             <nav class="table">
-
-
                 <button id ="cc" onclick="document.getElementById('id01').style.display='block'">
                     <img src="\ProjetWeb\imagePNG\Menu_icon.png" alt="signIn ">
                 </button>
             </nav>
         </div>
 
-
-
         <section id="corps">
-            <p id="p_picture">
             <?php
-
-                $reponse = $bdd->query('SELECT NameGoodies, URL FROM Goodies') or die(print_r($bdd->errorInfo()));
-                while ($donnees = $reponse->fetch())
+                $answer = getGoodiesQuery();
+                while ($data = $answer->fetch())
                 {
             ?>
-                   <img src="<?php echo $donnees['URL']; ?>" alt="<?php echo $donnees['NameGoodies']; ?>" title="<?php echo $donnees['NameGoodies']; ?>" class="shop-picture"/>
-
+                   <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="shop-picture"/>
+                    <span class="invisible"><?php echo $data['description']; ?></span>
 
             <?php
                 }
-                $reponse->closeCursor(); // Termine le traitement de la requête
             ?>
-            </p>
+<!--
             <div class="goodies_information" id="test">
                 <div class="goodies_information_part">
                     <img src="\projetWeb\imagePNG\boutique\t-shirt.jpg" alt="t-shirt" title="t-shirt" class="goodies-picture"/>
@@ -73,6 +52,7 @@
                     <div class="info_goodies">supprimer</div>
                 </div>
             </div>
+-->
         </section>
 
         <footer id="bas">
