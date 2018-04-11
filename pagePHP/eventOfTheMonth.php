@@ -1,3 +1,16 @@
+<?php
+    session_start();
+    try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=eventofthemonth;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        }
+        catch (Exception $e)
+        {
+            die ('Erreur : ' . $e->getMessage());
+        }
+?>
+
+
 <!DOCTYPE html>
 <html id="top">
 
@@ -6,6 +19,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
+
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
@@ -31,51 +45,109 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <section id="corps">
 
 
 
 <div class="filter">ezaezae</div>
 
-<fieldset class="event">
+<form class="addNewEvent" action="scriptNewEvent.php" method="post">
+<?php
+     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description FROM Happenings');
+    $numberOfEvent=0;
+    $currentMonth=date("m");
+    // Events passés $currentDate=date("y-m-d");
+    //echo ($currentDate);
+
+                       while( $happening=$getHappening->fetch() AND $numberOfEvent<2 ){
+                           //echo strtotime($title['EventDate']);
+                          $monthOfTheEvent=explode("-",$happening['EventDate']);
+                          // echo $monthOfTheEvent[1];
+                           //if (strtotime($title['EventDate])<strtotime($currentDate))
+                           if ($currentMonth==$monthOfTheEvent[1]){
+
+
+
+    ?>
+
+    <fieldset class="event">
         <legend class="eventNumber">Event 1</legend>
             <div class="eventBloc">
 
                 <div class="titleAndPhoto">
                     <div class="title">
-                       <input   type="text" name="titre" class="titre" maxlength="20"  placeholder="Titre"/>
+
+                        <?php
+
+
+
+
+
+
+
+
+                        echo $happening['EventDate'];
+
+                        ?>
+
+
+
                     </div>
                     <div class="photo">
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
-                    <textarea  rows="15" cols="50" placeholder="Description" class="descriptionBox"></textarea>
-                </div>
+                    <?php
 
+                    echo $happening['Description'];
+
+                    ?>
+                </div>
+ <div class="inscriptionButton">
+    <input type="submit" value="Je m'inscris !" />
+</div>
 
 
             </div>
     </fieldset>
-    <fieldset class="event">
-        <legend class="eventNumber">Event 2</legend>
-    <div class="eventBloc">
 
-                <div class="titleAndPhoto">
-                    <div class="title">
-                        title
-                    </div>
-                    <div class="photo">
-                    </div>
-                </div>
-                <div class="eventDescription">
-                    Description
-                </div>
+
+    </form>
+
+
+               <?php }
+                           $numberOfEvent++;}
+    $getHappening->closeCursor();
+    ?>
 
 
 
-            </div>
 
-        </fieldset>
+
+
+
+
+
+
+
+
+
 
 
 
