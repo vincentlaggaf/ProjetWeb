@@ -46,7 +46,7 @@
                        <input   type="text" name="titre" class="titre" maxlength="20"  placeholder="Titre"/>
                     </div>
                     <div class="photo">
-                    photo</div>
+                    <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
                     <textarea  rows="15" cols="50" placeholder="Description" class="descriptionBox"></textarea>
@@ -65,7 +65,7 @@
                         title
                     </div>
                     <div class="photo">
-                    photo</div>
+                    </div>
                 </div>
                 <div class="eventDescription">
                     Description

@@ -291,6 +291,10 @@ span.psw {
     margin: 2px;
 }
 
+.thumbnail{
+    height: 100%;
+    width: 100%;
+}
 /*
 
 @-webkit-keyframes fade {
