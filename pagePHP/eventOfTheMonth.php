@@ -35,20 +35,50 @@
 
 
 
+<div class="filter">ezaezae</div>
 
+<fieldset class="event">
+        <legend class="eventNumber">Event 1</legend>
             <div class="eventBloc">
 
                 <div class="titleAndPhoto">
                     <div class="title">
+                       <input   type="text" name="titre" class="titre" maxlength="20"  placeholder="Titre"/>
                     </div>
-                    <div class="photo"></div>
+                    <div class="photo">
+                    <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
+                    <textarea  rows="15" cols="50" placeholder="Description" class="descriptionBox"></textarea>
                 </div>
 
 
 
             </div>
+    </fieldset>
+    <fieldset class="event">
+        <legend class="eventNumber">Event 2</legend>
+    <div class="eventBloc">
+
+                <div class="titleAndPhoto">
+                    <div class="title">
+                        title
+                    </div>
+                    <div class="photo">
+                    </div>
+                </div>
+                <div class="eventDescription">
+                    Description
+                </div>
+
+
+
+            </div>
+
+        </fieldset>
+
+
+
 
             <script>
 
