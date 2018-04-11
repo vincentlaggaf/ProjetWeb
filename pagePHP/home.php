@@ -19,7 +19,7 @@
         <nav class="table">
             <a href="#" class="bouton"> <li> Boutique </li> </a>
             <a href="#" class="bouton"> <li> Boite à idées </li> </a>
-            <a href="#" class="bouton"> <li> Évènement du mois </li> </a>
+            <a href="eventOfTheMonth.php" class="bouton"> <li> Évènement du mois </li> </a>
             <a href="#" class="bouton"> <li> Évènements passés </li> </a>
 
             <button id ="authentificationBtn" onclick="document.getElementById('id02').style.display='block'">
