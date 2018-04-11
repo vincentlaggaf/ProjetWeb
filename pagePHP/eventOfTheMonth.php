@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
+
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
@@ -37,6 +38,7 @@
 
 <div class="filter">ezaezae</div>
 
+<form class="addNewEvent" action="scriptNewEvent.php" method="post">
 <fieldset class="event">
         <legend class="eventNumber">Event 1</legend>
             <div class="eventBloc">
@@ -49,33 +51,17 @@
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
-                    <textarea  rows="15" cols="50" placeholder="Description" class="descriptionBox"></textarea>
+                    <textarea  rows="15" cols="50" placeholder="Description" class="descriptionBox" style="resize:none" r></textarea>
                 </div>
-
+ <div class="inscriptionButton">
+    <input type="submit" value="Je m'inscris !" />
+</div>
 
 
             </div>
     </fieldset>
-    <fieldset class="event">
-        <legend class="eventNumber">Event 2</legend>
-    <div class="eventBloc">
+    </form>
 
-                <div class="titleAndPhoto">
-                    <div class="title">
-                        title
-                    </div>
-                    <div class="photo">
-                    </div>
-                </div>
-                <div class="eventDescription">
-                    Description
-                </div>
-
-
-
-            </div>
-
-        </fieldset>
 
 
 
