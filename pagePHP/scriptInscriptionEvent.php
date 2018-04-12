@@ -23,7 +23,7 @@ $IDUserFromBDD=$check->fetch();
     if($IDUser=$IDUserFromBDD['IDUser'])
     {
         echo "<script>alert('Vous êtes déjà inscrit à l\'évènement !');
-        window.location.replace('home.php');</script>";
+        window.location.replace('eventOfTheMonth.php');</script>";
 
     }
 else {
@@ -40,7 +40,7 @@ else {
 else{
 
         echo "<script>alert('Vous n\'êtes pas connectés !');
-        window.location.replace('home.php');</script>";
+        window.location.replace('eventOfTheMonth.php');</script>";
 
 
 
