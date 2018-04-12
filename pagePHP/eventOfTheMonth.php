@@ -15,7 +15,7 @@
 <html id="top">
 
     <head>
-        <title> Boite à Idées </title>
+        <title> Evènement du mois </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
@@ -65,13 +65,29 @@
 
 
 
-<div class="filter">ezaezae</div>
+<div class="filter">
 
-<form class="addNewEvent" action="scriptNewEvent.php" method="post">
+    <form id="lookForEvent" action="scriptLookForEvent.php" method="post">
+        <textarea style="resize:none" rows="2" cols="16.5" placeholder="Rechercher un évènement"></textarea>
+    </form>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
 <?php
-     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description FROM Happenings');
+     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description,IDEvent FROM Happenings');
     $numberOfEvent=0;
     $currentMonth=date("m");
+    $eventNumber=1;
     // Events passés $currentDate=date("y-m-d");
     //echo ($currentDate);
 
@@ -85,9 +101,9 @@
 
 
     ?>
-
+<form class="addNewEvent" action="scriptInscriptionEvent.php" method="post">
     <fieldset class="event">
-        <legend class="eventNumber">Event 1</legend>
+        <legend class="eventNumber">Event <?php echo $eventNumber;?></legend>
             <div class="eventBloc">
 
                 <div class="titleAndPhoto">
@@ -110,6 +126,7 @@
 
                     </div>
                     <div class="photo">
+
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
@@ -117,10 +134,13 @@
 
                     echo $happening['Description'];
 
+
+
                     ?>
                 </div>
  <div class="inscriptionButton">
-    <input type="submit" value="Je m'inscris !" />
+     <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
+    <input type="submit" value="Je m'inscris !" name="test"/>
 </div>
 
 
@@ -132,6 +152,7 @@
 
 
                <?php }
+                           $eventNumber++;
                            $numberOfEvent++;}
     $getHappening->closeCursor();
     ?>
