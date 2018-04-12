@@ -35,17 +35,30 @@
 
         <section id="corps">
 
+            <form id="conteneur">
+                <fieldset class="Boite">
+                    <legend>Proposez votre idée</legend>
+
+                    <div class="Element 2">
+                        <input   type="text" name="Titre" id="Titre" maxlength="20"  placeholder="Titre"/>
+                    </div>
+
+                    <div class="Element 3">
+                        <textarea style="resize:none" rows="5" cols="50" placeholder="Description"></textarea>
+                    </div>
+
+
+                    <button>Publier</button>
+
+            </fieldset>
+            </form>
+
+            <div><p class="bar">Dernières Idées</p>
+            </div>
+
             <script>
 
-
-
-
             </script>
-
-
-
-
-
 
         </section>
 

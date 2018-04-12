@@ -1,13 +1,5 @@
 <?php
-    session_start();
-    try
-        {
-            $bdd = new PDO('mysql:host=178.62.4.64;dbname=test_boutique_lav;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-        }
-        catch (Exception $e)
-        {
-            die ('Erreur : ' . $e->getMessage());
-        }
+    require 'shop\BDDInteraction.php';
 ?>
 <!DOCTYPE html>
 <html id="top">
@@ -19,60 +11,56 @@
         <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style-shop.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
-
-
-
-
     </head>
 
     <body>
-        <!--        <header> </header> -->
-
         <img id="exia" src="\ProjetWeb\imagePNG\exia.png" alt="logo exia">
 
         <div id="menu">
             <nav class="table">
-
-
                 <button id ="cc" onclick="document.getElementById('id01').style.display='block'">
                     <img src="\ProjetWeb\imagePNG\Menu_icon.png" alt="signIn ">
                 </button>
             </nav>
         </div>
 
-
-
-        <section id="corps">
+        <section>
             <?php
-
-                $reponse = $bdd->query('SELECT NameGoodies, URL FROM Goodies') or die(print_r($bdd->errorInfo()));
-                while ($donnees = $reponse->fetch())
+                $answer = getGoodiesQuery();
+                while ($data = $answer->fetch())
                 {
-
             ?>
+                    <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="shop-picture"/>
 
-               <p>
-                   <img src="<?php echo $donnees['URL']; ?>" alt="<?php echo $donnees['NameGoodies']; ?>" title="<?php echo $donnees['NameGoodies']; ?>" class="shop-picture"/>
-               </p>
+                    <div class="goodies_information invisible">
+                        <div class="goodies_information_part">
+
+                            <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="goodies-picture"/>
+
+                            <div class="info_goodies info_goodies_margin">Nom :<br/><?php echo $data['NameGoodies']; ?></div>
+
+                            <div class="info_goodies info_goodies_margin">Catégorie :<br/><?php echo $data['NameGoodiesCategory']; ?></div>
+
+                            <div class="info_goodies info_goodies_margin">Prix :<br/><?php echo $data['Price']; ?>€</div>
+
+                        </div>
+                        <div class="goodies_information_part">
+
+                            <div class="info_goodies info_goodie_description info_goodies_margin">Description :<br/><?php echo $data['Description']; ?></div>
+
+                        </div>
+                        <div class="goodies_information_part goodies_information_part_position">
+
+                            <div class="info_goodies">acheter</div>
+                            <div class="info_goodies">supprimer</div>
+
+                        </div>
+                    </div>
 
             <?php
                 }
-                $reponse->closeCursor(); // Termine le traitement de la requête
             ?>
-            <script>
-
-
-
-
-            </script>
-
-
-
-
-
-
         </section>
-
 
         <footer id="bas">
              <div id="logoContact">
@@ -84,9 +72,9 @@
             </div>
             <p> © BDE Pau - 2018</p>
             <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-
+            <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
         </footer>
 
+        <script src="\projetWeb\scriptsJS\script-shop.js"></script>
     </body>
 </html>
