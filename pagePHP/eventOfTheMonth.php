@@ -67,7 +67,7 @@
 
 <div class="filter">ezaezae</div>
 
-<form class="addNewEvent" action="scriptNewEvent.php" method="post">
+<form class="addNewEvent" action="scriptInscriptionEvent.php" method="post">
 <?php
      $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description FROM Happenings');
     $numberOfEvent=0;
