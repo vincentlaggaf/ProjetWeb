@@ -23,7 +23,7 @@ if(isset($IDUser)){
     if($IDUser=$IDUserFromBDD['IDUser'])
     {
         echo "<script>alert('Vous êtes déjà inscrit à l\'évènement !');
-        window.location.replace('home.php');</script>";
+        window.location.replace('eventOfTheMonth.php');</script>";
 
     }
     else {
@@ -35,11 +35,16 @@ if(isset($IDUser)){
         echo "Inscription réussie";
     }
 
+<<<<<<< HEAD
 }
 else{
 //
 //    include ('modalInscription.php');
 //    document.getElementById('id01').style.display='block';
+=======
+        echo "<script>alert('Vous n\'êtes pas connectés !');
+        window.location.replace('eventOfTheMonth.php');</script>";
+>>>>>>> origin/master
 
 
 
