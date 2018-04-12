@@ -4,13 +4,13 @@ html {
 }
 
 body {
+    background-color: #CF000F;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-}
+    margin: 0;
+    padding: 0;
+    color: #22313F;
 
-section {
-    margin: 3%;
-    justify-content: center;
 }
 
 .table {
@@ -21,16 +21,18 @@ section {
     align-items: center;
     color: #ECF0F1;
     margin: 1%;
+    margin: 1%;
 }
 
 .bouton li{ list-style-type: none;
 }
 
 .bouton{
+    justify-content: center;
     padding: 1%;
     text-decoration: none;
     color: #ECECEC;
-    font-size:20px;
+    font-size:30px;
     letter-spacing: 2px;
 }
 
@@ -38,20 +40,31 @@ section {
     text-decoration-line: underline;
 }
 
-
 #exia {
     margin-left: 3%;
     padding: 0.8%;
     background-color: #F2F1EF;
-    border-radius: 10px;
+    border-radius: 15px;
     float: left;
-    width: 8%;
 }
-#authentificationBtn {
+
+#cc {
     background-color: #CF000F;
     border: none;
 }
 
+section {
+    background-color: #FFF;
+    padding: 1%;
+    margin: auto;
+    margin-top: 3%;
+    width: 60%;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
 #side {
     width: 3.5%;
@@ -79,12 +92,8 @@ footer a {
 }
 
 footer img {
-    width: 5%;
+    width: 3%;
 }
-
-
-
-/* CSS du form de connection */
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -102,6 +111,7 @@ button:hover {
     opacity: 0.8;
 }
 
+
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
@@ -118,6 +128,11 @@ button:hover {
 
 .container {
     padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
 }
 
 /* The Modal (background) */
@@ -140,64 +155,77 @@ button:hover {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
+    width: 50%; /* Could be more or less, depending on screen size */
 }
 
-/* Change styles for span and cancel button on extra small screens */
-/*
-@media screen and (max-width: 300px) {
-span.psw {
-display: block;
-float: none;
-}
-.cancelbtn {
-width: 100%;
-}
-*/
-
-
-
-/*CSS du caroussel*/
-
-#pass, .text {
-    text-align: center;
-}
-.text {
-    color: #f2f2f2;
-    font-size: 15px;
-    padding: 8px 12px;
-    font-size: 20px;
-    bottom: 8px;
-}
-#pass {
-    margin-top: 0.7%;
-    letter-spacing: 20px;
+.shop-picture
+{
+    width: 200px;
+    height: 200px;
+    margin: 3%;
+    padding: 4px;
+    border: 1px black groove;
 }
 
-.prev, .next {
-    cursor: pointer;
+#p_picture
+{
+}
+
+.goodies-picture
+{
+    width: 150px;
+    height: 150px;
+    border: 1px black groove;
     padding: 10px;
-    color: black;
-    font-size: 30px;
-    border-radius: 10px;
+    margin: auto;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-    color: aliceblue;
+.info_goodies
+{
+    padding: 2px;
+    border: 1px black groove;
 }
 
-.dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
+.info_goodies_margin
+{
+    margin: auto;
 }
 
-.active, .dot:hover {
-    background-color: #717171;
+.info_goodie_description
+{
+    max-width: 70%;
 }
 
+#goodies_information
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 2px black groove;
+    margin: 3%;
+    padding: 1%;
+}
+
+.goodies_information_part
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 2%;
+    padding: 1%;
+}
+
+.goodies_information_part_position
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2%;
+    padding: 1%;
+}
+
+.invisible
+{
+    display: none;
+}

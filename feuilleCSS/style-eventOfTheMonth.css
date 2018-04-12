@@ -1,3 +1,6 @@
+
+
+
 html {
     margin: 0;
     background-color: #CF000F;
@@ -11,44 +14,6 @@ body {
     padding: 0;
     color: #22313F;
 }
-
-#conteneur{
-
-    display: flex;
-    justify-content: center;
-}
-
-.Boite{
-
-  margin-top: 2%;
-}
-#Titre{
-
-    height: 7px;
-    width: 265px;
-    font-size: 15px;
-
-}
-.textarea{
-    resize: none;
-}
-
-
-.bar{
-
-    border: 1px solid #eee;
-    box-shadow: 0 5px 5px #ccc;
-    padding : 15px;
-    margin: auto;
-    border-color: dimgray;
-    background-color: dimgray;
-    border-radius: 10px;
-    width: 60%;
-    text-align: center;
-    margin-top: 6%;
-}
-
-
 
 .table {
     background-color: #CF000F;
@@ -88,11 +53,6 @@ body {
     border: none;
 }
 
-section {
-    background-color: #F2F1EF;
-    margin: 3%;
-    justify-content: center;
-}
 
 
 /*
@@ -199,41 +159,6 @@ span.psw {
     width: 50%; /* Could be more or less, depending on screen size */
 }
 
-/* Change styles for span and cancel button on extra small screens */
-/*
-@media screen and (max-width: 300px) {
-span.psw {
-display: block;
-float: none;
-}
-.cancelbtn {
-width: 100%;
-}
-*/
-
-/*
-
-h1 {
-font-family: 'Devonshire', cursive;
-font-size:70px;
-font-weight: normal;
-text-align: center;
-color: #22313F;
-line-height: 80%;
-}
-
-h2 {
-font-size: 30px;
-font-weight: normal;
-text-align: center;
-letter-spacing: 2px;
-}
-*/
-
-
-
-
-
 
 
 /* Slideshow container */
@@ -244,12 +169,6 @@ letter-spacing: 2px;
 /*  margin: auto;*/
 }
 
-/*
-Hide the images by default
-.mySlides {
-display: none;
-}
-*/
 
 /* Next & previous buttons */
 .prev, .next {
@@ -312,33 +231,124 @@ display: none;
     background-color: #717171;
 }
 
-/*
-Fading animation
-.fade {
--webkit-animation-name: fade;
--webkit-animation-duration: 1.5s;
-animation-name: fade;
-animation-duration: 1.5s;
+.eventBloc{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
 }
+.event{
+    margin-bottom: 1%;
+    width: 70%;
+    background-color: #F2F1EF;
+    margin: auto;
+
+}
+section {
+    margin: 3%;
+    margin-left: 20%;
+    margin-right: 10%;
+    padding: 1%;
+    justify-content: center;
+    background-color: #F2F1EF;
+}
+
+.descriptionBox
+{
+width: 100%;
+
+}
+.addNewEvent
+{
+    margin: 1%;
+}
+.titre
+{
+    height: 25%;
+}
+
+.titleAndPhoto{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    width: 30%;
+    background-color: #F2F1EF;
+}
+
+
+.eventDescription{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    background-color: white;
+
+    margin-top: 1.1%;
+    margin-bottom: 0.2%;
+    margin-left: 1%;
+    margin-right: 2%;
+    flex:1;
+}
+
+
+.title{
+    border: black 1px solid;
+    text-align: justify;
+    margin: 2px;
+    margin-top: 4%;
+    background-color: white;
+}
+
+.photo
+{
+    border: double 2px black;
+    height: 100%;
+    margin: 2px;
+}
+
+.thumbnail{
+    height: 100%;
+    width: 100%;
+}
+
+
+/*
 
 @-webkit-keyframes fade {
 from {opacity: .4}
 to {opacity: 1}
-}
-
-@keyframes fade {
-from {opacity: .4}
-to {opacity: 1}
-}
-
+*\
 */
 
+.filter
+{
+
+    border: 1px black double;
+    position: fixed;
+    height: 60%;
+    left: 3%;
+    width: 10%;
+    margin-top: -1%;
+    background-color: #F2F1EF;
+
+}
+
+.inscriptionButton
+{
+    align-self: flex-end;
+}
 
 
 
+@media screen and (max-width:720px){
+
+    .eventBloc{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
 
+}
 
 
-
-
+}
