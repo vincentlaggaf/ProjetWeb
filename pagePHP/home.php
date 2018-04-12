@@ -17,7 +17,7 @@
 
         <section id="corps">
 
-            <section>
+
 
                 <?php include ('modalInscription.php'); ?>
                 <?php include ('modalLogin.php'); ?>
