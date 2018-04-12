@@ -94,16 +94,16 @@ window.onclick = function(event) {
 
 
     <aside id="side" >
-            <a href="#top" id="top"> <img src="/imagePNG/top.png" alt="goTop"> </a>
+            <a href="#top" id="top"> <img src="/projetWeb/imagePNG/top.png" alt="goTop"> </a>
         </aside>
 
         <footer id="bas">
             <div id="logoContact">
-                <img src="/imagePNG/www.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/mail.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/facebook.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/github.png" alt="logo réseaux sociaux">
-                <img src="/imagePNG/twitter.png" alt="logo réseaux sociaux">
+                <img src="/projetWeb/imagePNG/www.png" alt="logo réseaux sociaux">
+                <img src="/projetWeb/imagePNG/mail.png" alt="logo réseaux sociaux">
+                <img src="/projetWeb/imagePNG/facebook.png" alt="logo réseaux sociaux">
+                <img src="/projetWeb/imagePNG/github.png" alt="logo réseaux sociaux">
+                <img src="/projetWeb/imagePNG/twitter.png" alt="logo réseaux sociaux">
             </div>
             <p> © BDE Pau - 2018</p>
             <p> Created and maintained by
