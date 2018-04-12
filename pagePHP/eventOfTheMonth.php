@@ -67,9 +67,9 @@
 
 <div class="filter">ezaezae</div>
 
-<form class="addNewEvent" action="scriptNewEvent.php" method="post">
+
 <?php
-     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description FROM Happenings');
+     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description,IDEvent FROM Happenings');
     $numberOfEvent=0;
     $currentMonth=date("m");
     // Events passés $currentDate=date("y-m-d");
@@ -85,7 +85,7 @@
 
 
     ?>
-
+<form class="addNewEvent" action="scriptInscriptionEvent.php" method="post">
     <fieldset class="event">
         <legend class="eventNumber">Event 1</legend>
             <div class="eventBloc">
@@ -110,6 +110,7 @@
 
                     </div>
                     <div class="photo">
+
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
@@ -117,10 +118,13 @@
 
                     echo $happening['Description'];
 
+
+
                     ?>
                 </div>
  <div class="inscriptionButton">
-    <input type="submit" value="Je m'inscris !" />
+     <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
+    <input type="submit" value="Je m'inscris !" name="test"/>
 </div>
 
 
