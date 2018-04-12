@@ -159,33 +159,9 @@
     $getHappening->closeCursor();
     ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <script>
 
-
-
-
             </script>
-
-
-
-
-
 
         </section>
 

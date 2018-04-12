@@ -32,7 +32,10 @@ if(($Login != $pseudo['Login'])||($UserPassword != $password['UserPassword'])){
 else {
     $requete = $bdd->prepare("SELECT * FROM Users WHERE Login= :Login;");
     $requete->execute();
-    echo '<script> alert ("ok")</script>';
+//    echo '<script> alert ("ok")</script>';
 }
+
+$url = '/projetWeb/pagePHP/home.php';
+header( "Location: $url" );
 
 ?>
