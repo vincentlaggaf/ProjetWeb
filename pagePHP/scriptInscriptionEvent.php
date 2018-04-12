@@ -11,10 +11,21 @@
 
     $IDEvent= $_POST['IDEvent'];
     //$IDUser=$_SESSION['IDUser'];
+    //$IDUser=4;
+    $reloadPage=0;
 
 
-$check=$bdd
+$check=$bdd->prepare("SELECT IDUser FROM interest WHERE IDEvent= :IDEvent");
+$check->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
+$check->execute();
+$IDUserFromBDD=$check->fetch();
+    if(isset($IDUser)){
+    if($IDUser=$IDUserFromBDD['IDUser'])
+    {
+        echo "<script>alert('Vous êtes déjà inscrit à l\'évènement !');
+        window.location.replace('home.php');</script>";
 
+    }
 else {
     $addUserToEvent=$bdd->prepare("INSERT INTO interest (IDUser,Participate,IDEvent) VALUES(4,1,:IDEvent)");
 
@@ -25,5 +36,15 @@ else {
 }
     //$
     //$
+    }
+else{
+
+        echo "<script>alert('Vous n\'êtes pas connectés !');
+        window.location.replace('home.php');</script>";
+
+
+
+   // header('Location:http://localhost/projetWeb/pagePHP/eventOfTheMonth.php');
+}
 
 ?>
