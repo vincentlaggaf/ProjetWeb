@@ -167,10 +167,6 @@ span.psw {
     border: 1px black groove;
 }
 
-#p_picture
-{
-}
-
 .goodies-picture
 {
     width: 150px;
@@ -184,6 +180,7 @@ span.psw {
 {
     padding: 2px;
     border: 1px black groove;
+    overflow: auto;
 }
 
 .info_goodies_margin
@@ -196,7 +193,7 @@ span.psw {
     max-width: 70%;
 }
 
-#goodies_information
+.goodies_information
 {
     display: flex;
     flex-direction: column;
@@ -204,6 +201,7 @@ span.psw {
     border: 2px black groove;
     margin: 3%;
     padding: 1%;
+    width: 55%;
 }
 
 .goodies_information_part
@@ -227,5 +225,5 @@ span.psw {
 
 .invisible
 {
-    display: none;
+   display: none;
 }
