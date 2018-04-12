@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    try
+        {
+            $bdd = new PDO('mysql:host=localhost;dbname=ProjetWeb;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+        }
+        catch (Exception $e)
+        {
+            die ('Erreur : ' . $e->getMessage());
+        }
+?>
+
 <!DOCTYPE html>
 <html id="top">
 
@@ -32,6 +44,19 @@
 
 
         <section id="corps">
+
+            <?php
+                $getIdea=$bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate="NULL"');
+                while( $donnees=$getIdea->fetch())
+                    {
+
+                    }
+
+
+                ?>
+
+
+
 
             <form class="addNewEvent" action="scriptNewEvent.php" method="post">
             <fieldset class="event">
