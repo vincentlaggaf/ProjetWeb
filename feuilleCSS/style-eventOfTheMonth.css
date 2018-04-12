@@ -4,15 +4,12 @@ html {
 }
 
 body {
+    background-color: #CF000F;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-}
-
-section {
-    margin: 3%;
-    margin-top: 4%;
-    margin-left: 2%;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color: #22313F;
 }
 
 .table {
@@ -29,10 +26,11 @@ section {
 }
 
 .bouton{
+    justify-content: center;
     padding: 1%;
     text-decoration: none;
     color: #ECECEC;
-    font-size:20px;
+    font-size:30px;
     letter-spacing: 2px;
 }
 
@@ -40,20 +38,32 @@ section {
     text-decoration-line: underline;
 }
 
-
-#exia{
-    margin-left: 4%;
+#exia {
+    margin-left: 3%;
     padding: 0.8%;
     background-color: #F2F1EF;
-    border-radius: 10px;
+    border-radius: 15px;
     float: left;
-    width: 8%;
 }
-#authentificationBtn {
+#cc {
     background-color: #CF000F;
     border: none;
 }
 
+section {
+    background-color: #F2F1EF;
+    margin: 3%;
+    justify-content: center;
+}
+
+
+/*
+#corps {
+margin: 2%;
+padding: 2%;
+background-color: #ECF0F1;
+}
+*/
 
 #side {
     width: 3.5%;
@@ -81,12 +91,12 @@ footer a {
 }
 
 footer img {
-    width: 5%;
+    width: 3%;
 }
 
 
 
-/* CSS du form de connection */
+
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -104,6 +114,7 @@ button:hover {
     opacity: 0.8;
 }
 
+
 .cancelbtn {
     width: auto;
     padding: 10px 18px;
@@ -120,6 +131,11 @@ button:hover {
 
 .container {
     padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
 }
 
 /* The Modal (background) */
@@ -142,7 +158,7 @@ button:hover {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
-    width: 40%; /* Could be more or less, depending on screen size */
+    width: 50%; /* Could be more or less, depending on screen size */
 }
 
 /* Change styles for span and cancel button on extra small screens */
@@ -157,38 +173,93 @@ width: 100%;
 }
 */
 
+/*
 
-
-/*CSS du caroussel*/
-
-#pass, .text {
-    text-align: center;
+h1 {
+font-family: 'Devonshire', cursive;
+font-size:70px;
+font-weight: normal;
+text-align: center;
+color: #22313F;
+line-height: 80%;
 }
+
+h2 {
+font-size: 30px;
+font-weight: normal;
+text-align: center;
+letter-spacing: 2px;
+}
+*/
+
+
+
+
+
+
+
+/* Slideshow container */
+.theCarousel {
+    max-width: 99%;
+    max-height: 99%;
+/*    position: relative;*/
+/*  margin: auto;*/
+}
+
+/*
+Hide the images by default
+.mySlides {
+display: none;
+}
+*/
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+/*    position: absolute;*/
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    /*  transition: 0.6s ease;*/
+    border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
 .text {
     color: #f2f2f2;
     font-size: 15px;
     padding: 8px 12px;
-    font-size: 20px;
+    position: absolute;
     bottom: 8px;
-}
-#pass {
-    margin-top: 0.7%;
-    letter-spacing: 20px;
+    width: 100%;
+    text-align: center;
 }
 
-.prev, .next {
-    cursor: pointer;
-    padding: 10px;
-    color: black;
-    font-size: 30px;
-    border-radius: 10px;
+/* Number text (1/3 etc) */
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
 }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-    color: aliceblue;
-}
-
+/* The dots/bullets/indicators */
 .dot {
     cursor: pointer;
     height: 15px;
@@ -202,4 +273,68 @@ width: 100%;
 .active, .dot:hover {
     background-color: #717171;
 }
+
+.eventBloc{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: double 2px purple;
+    height: 250px;
+}
+
+.titleAndPhoto{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    border: double 2px yellow;
+    width: 150px;
+}
+
+.eventDescription{
+        display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    border: double 2px green;
+    width: 450px;
+}
+
+.title{
+    border: double 2px black;
+    height: 50px;
+}
+
+.photo
+{
+ border: double 2px black;
+height: 150px;
+}
+/*
+Fading animation
+.fade {
+-webkit-animation-name: fade;
+-webkit-animation-duration: 1.5s;
+animation-name: fade;
+animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+from {opacity: .4}
+to {opacity: 1}
+}
+
+@keyframes fade {
+from {opacity: .4}
+to {opacity: 1}
+}
+
+*/
+
+
+
+
+
+
+
+
+
 

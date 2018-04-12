@@ -43,22 +43,22 @@
 
 
         <section id="corps">
-<?php
+            <?php
 
-            $reponse = $bdd->query('SELECT NameGoodies, URL FROM Goodies') or die(print_r($bdd->errorInfo()));
-            while ($donnees = $reponse->fetch())
-            {
+                $reponse = $bdd->query('SELECT NameGoodies, URL FROM Goodies') or die(print_r($bdd->errorInfo()));
+                while ($donnees = $reponse->fetch())
+                {
 
-        ?>
+            ?>
 
                <p>
                    <img src="<?php echo $donnees['URL']; ?>" alt="<?php echo $donnees['NameGoodies']; ?>" title="<?php echo $donnees['NameGoodies']; ?>" class="shop-picture"/>
                </p>
 
-        <?php
-            }
-            $reponse->closeCursor(); // Termine le traitement de la requête
-        ?>
+            <?php
+                }
+                $reponse->closeCursor(); // Termine le traitement de la requête
+            ?>
             <script>
 
 

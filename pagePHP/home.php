@@ -7,118 +7,120 @@
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
+<!--        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">-->
+<!--        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">-->
     </head>
 
     <body>
 
         <?php include ('nav.php'); ?>
 
-        <section>
+        <section id="corps">
 
-            <!--   CRÉATION D'UN COMPTE         -->
-            <div id="id01" class="modal">
-                <form class="modal-content animate" action="signIn.php" method="post">
-                    <div class="container">
+            <section>
 
-                        <label for="name"><b>Nom</b></label>
-                        <input type="text" name="LastName">
+                <!--   CRÉATION D'UN COMPTE         -->
+                <div id="id01" class="modal">
+                    <form class="modal-content animate" action="signIn.php" method="post">
+                        <div class="container">
 
-                        <label for="firstname"><b>Prénom</b></label>
-                        <input type="text" name="FirstName">
+                            <label for="name"><b>Nom</b></label>
+                            <input type="text" name="LastName">
 
-                        <label for="mail"><b>Adresse email</b></label>
-                        <input type="text" name="Mail">
+                            <label for="firstname"><b>Prénom</b></label>
+                            <input type="text" name="FirstName">
 
-                        <label for="uname"><b>Nom d'utilisateur</b></label>
-                        <input type="text" name="Login">
+                            <label for="mail"><b>Adresse email</b></label>
+                            <input type="text" name="Mail">
 
-                        <label for="psw"><b>Mot de passe</b></label>
-                        <input type="text" name="UserPassword">
+                            <label for="uname"><b>Nom d'utilisateur</b></label>
+                            <input type="text" name="Login">
 
-                        <button type="submit" class="loginbtn"> S'inscrire </button>
+                            <label for="psw"><b>Mot de passe</b></label>
+                            <input type="text" name="UserPassword">
 
-                        <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'"> Annuler </button>
+                            <button type="submit" class="loginbtn"> S'inscrire </button>
+
+                            <button type="button" class="cancelbtn" onclick="document.getElementById('id01').style.display='none'"
+                        </div>
+                    </form>
+                </div>
+
+
+
+                <!-- AUTHENTIFICATION  -->
+                <div id="id02" class="modal">
+                    <form class="modal-content animate" action="logIn.php" method="post">
+                        <div class="container">
+
+                            <label for="uname"><b>Nom d'utilisateur</b></label>
+                            <input type="text" name="Login">
+
+                            <label for="psw"><b>Mot de passe</b></label>
+                            <input type="text" name="UserPassword">
+
+                            <button type="submit" class="loginbtn"> Se connecter </button>
+
+                            <button type="button" class="cancelbtn" onclick="document.getElementById('id02').style.display='none'"> Annuler </button>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+                <div class="theCarousel">
+                    <div class="mySlides fade">
+                        <img src="/projetWeb/imagePNG/boutique.png" style="width:100%">
                     </div>
-                </form>
-            </div>
-
-
-
-            <!-- AUTHENTIFICATION  -->
-            <div id="id02" class="modal">
-                <form class="modal-content animate" action="logIn.php" method="post">
-                    <div class="container">
-
-                        <label for="uname"><b>Nom d'utilisateur</b></label>
-                        <input type="text" name="Login">
-
-                        <label for="psw"><b>Mot de passe</b></label>
-                        <input type="text" name="UserPassword">
-
-                        <button type="submit" class="loginbtn"> Se connecter </button>
-
-                        <button type="button" class="cancelbtn" onclick="document.getElementById('id02').style.display='none'"> Annuler </button>
+                    <div class="mySlides fade">
+                        <img src="/projetWeb/imagePNG/even.png" style="width:100%">
                     </div>
-                </form>
-            </div>
-
-
-
-
-            <div class="theCarousel">
-                <div class="mySlides fade">
-                    <img src="/projetWeb/imagePNG/boutique.png" style="width:100%">
+                    <div class="mySlides fade">
+                        <img src="/projetWeb/imagePNG/boite.png" style="width:100%">
+                    </div>
                 </div>
-                <div class="mySlides fade">
-                    <img src="/projetWeb/imagePNG/even.png" style="width:100%">
+
+                <div id="pass">
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 </div>
-                <div class="mySlides fade">
-                    <img src="/projetWeb/imagePNG/boite.png" style="width:100%">
-                </div>
-            </div>
 
-            <div id="pass">
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-            </div>
+            </section>
 
-        </section>
-
-        <?php include ('footer.php'); ?>
+            <?php include ('footer.php'); ?>
 
 
-        <script>
-            var slideIndex = 1;
-            showSlides(slideIndex);
-            // Next/previous controls
-            function plusSlides(n) {
-                showSlides(slideIndex += n);
-            }
-            // Thumbnail image controls
-            function currentSlide(n) {
-                showSlides(slideIndex = n);
-            }
-            function showSlides(n) {
-                var i;
-                var slides = document.getElementsByClassName("mySlides");
-                var dots = document.getElementsByClassName("dot");
-                if (n > slides.length) {slideIndex = 1}
-                if (n < 1) {slideIndex = slides.length}
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
+            <script>
+                var slideIndex = 1;
+                showSlides(slideIndex);
+                // Next/previous controls
+                function plusSlides(n) {
+                    showSlides(slideIndex += n);
                 }
-                for (i = 0; i < dots.length; i++) {
-                    dots[i].className = dots[i].className.replace(" active", "");
+                // Thumbnail image controls
+                function currentSlide(n) {
+                    showSlides(slideIndex = n);
                 }
-                slides[slideIndex-1].style.display = "block";
-                dots[slideIndex-1].className += " active";
-            }
-        </script>
+                function showSlides(n) {
+                    var i;
+                    var slides = document.getElementsByClassName("mySlides");
+                    var dots = document.getElementsByClassName("dot");
+                    if (n > slides.length) {slideIndex = 1}
+                    if (n < 1) {slideIndex = slides.length}
+                    for (i = 0; i < slides.length; i++) {
+                        slides[i].style.display = "none";
+                    }
+                    for (i = 0; i < dots.length; i++) {
+                        dots[i].className = dots[i].className.replace(" active", "");
+                    }
+                    slides[slideIndex-1].style.display = "block";
+                    dots[slideIndex-1].className += " active";
+                }
+            </script>
 
-    </body>
-</html>
+            </body>
+        </html>

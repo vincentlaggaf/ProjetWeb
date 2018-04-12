@@ -5,9 +5,7 @@
         <title> Boite à Idées </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-Squelette.css">
-
+<!--        <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
@@ -34,6 +32,23 @@
 
 
         <section id="corps">
+
+
+
+
+            <div class="eventBloc">
+
+                <div class="titleAndPhoto">
+                    <div class="title">
+                    </div>
+                    <div class="photo"></div>
+                </div>
+                <div class="eventDescription">
+                </div>
+
+
+
+            </div>
 
             <script>
 
