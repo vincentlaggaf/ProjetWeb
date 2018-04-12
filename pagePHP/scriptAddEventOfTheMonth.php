@@ -11,14 +11,7 @@
 
 
     $IDEvent= $_POST['IDEvent'];
-    $addUserToEvent=$bdd->prepare("INSERT INTO interest (IDUser,Participate,IDEvent) VALUES(4,1,:IDEvent)");
 
-
-
-
-    $addUserToEvent->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
-    $addUserToEvent->execute();
-    echo "Inscription réussie";
 
     //$
     //$
