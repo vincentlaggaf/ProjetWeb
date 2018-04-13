@@ -24,11 +24,25 @@
             </form>
         </div>
         <script>
-            document.getElementById('id02').style.display='block';
+
+            <?php
+            $homepage = "/projetWeb/pagePHP/home.php";
+            $currentpage = $_SERVER['REQUEST_URI'];
+            if($homepage==$currentpage) {
+            ?>
+
+            document.getElementById('id01').style.display='none';
+            <?php
+            }
+            else {
+            ?>
+            document.getElementById('id01').style.display='block';
+            <?php
+            }
+            ?>
 
             function test() {
-                  document.getElementById('id02').style.display='none';
-
+                //   document.getElementById('id02').style.display='none';
                 var backPage = document.referrer;
                 switch(backPage) {
                     case "":
