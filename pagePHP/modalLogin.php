@@ -27,7 +27,7 @@
             document.getElementById('id02').style.display='block';
 
             function test() {
-                //  document.getElementById('id02').style.display='none';
+                  document.getElementById('id02').style.display='none';
 
                 var backPage = document.referrer;
                 switch(backPage) {

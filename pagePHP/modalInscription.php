@@ -55,7 +55,7 @@
             document.getElementById('id01').style.display='block';
 
             function test2() {
-                //document.getElementById('id01').style.display='none';
+                document.getElementById('id01').style.display='none';
                 var backPage = document.referrer;
                 switch(backPage) {
 
