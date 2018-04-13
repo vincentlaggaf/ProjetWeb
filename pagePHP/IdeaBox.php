@@ -2,16 +2,19 @@
     session_start();
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=ProjetWeb;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
         }
         catch (Exception $e)
         {
             die ('Erreur : ' . $e->getMessage());
         }
+
 ?>
 
+
 <!DOCTYPE html>
-<html id="top">
+<html>
 
     <head>
         <title> Boite à Idées </title>
@@ -45,20 +48,12 @@
 
         <section id="corps">
 
-            <?php
-                $getIdea=$bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate="NULL"');
-                while( $donnees=$getIdea->fetch())
-                    {
-
-                    }
-
-
-                ?>
 
 
 
 
-            <form class="addNewEvent" action="scriptNewEvent.php" method="post">
+
+            <form class="addNewEvent" action="IdeaBox.php" method="post">
             <fieldset class="event">
                 <legend class="eventNumber">Proposez votre idée</legend>
 
@@ -77,69 +72,106 @@
                     </div>
 
                     <div class="eventDescription">
-                        <textarea style="resize:none" rows="12" cols="50" placeholder="Description"></textarea>
+                        <textarea style="resize:none" name="description" rows="12" cols="50" placeholder="Description"></textarea>
                     </div>
 
                     <div class="inscriptionButton">
-                        <input type="submit" value="Publier !" />
+                        <input type="submit" name="go" value="Publier" />
                     </div>
 
 
-            </div>
+                    </div>
 
-    </fieldset>
+            </fieldset>
+            </form>
 
 
-    </form>
+            <?php
+
+
+            $requete = $bdd->prepare('INSERT INTO happenings(NameEvent, Description, Validate) VALUES(?,?,?)');
+
+                if(isset($_POST['go'])){
+
+                    $requete->execute(array($_POST['title'],$_POST['description'],0));
+                                        }
+
+                ?>
+
+
 
             <div><p class="bar">Dernières Idées</p>
             </div>
 
 
+            <?php
+            $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM happenings WHERE Validate=0');
+                while( $happenings = $gethappenings->fetch()){
 
-             <form class="addNewEvent" action="scriptNewEvent.php" method="post">
-            <fieldset class="event">
-                <legend class="eventNumber">Idée</legend>
+                ?>
+
+             <form class="addNewEvent" >
+                <fieldset class="event">
+                <legend class="eventNumber">Idée <?php
+                    echo $happenings['IDEvent'];
+                    ?>
+                    </legend>
 
                     <div class="eventBloc">
 
                     <div class="titleAndPhoto">
 
-                    <div class="title">
-                        <input   type="text" name="title"  maxlength="20"  placeholder="Titre"/>
+                    <div class="title"><?php
+                    echo $happenings['NameEvent'];?>
                     </div>
 
                     <div class="photo">
+
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail">
                     </div>
 
+                    <div><p>Nombre de vote:<!--<?php
+                                    echo $happenings['Vote'];?>-->
+                        </p>
                     </div>
 
-                    <div class="eventDescription">
-                        <textarea style="resize:none" rows="12" cols="50" placeholder="Description"></textarea>
                     </div>
 
-                    <div class="inscriptionButton">
-                        <input type="submit" value="Voter !" />
+                    <div class="eventDescription"><?php
+                    echo $happenings['Description'];?>
                     </div>
 
 
-            </div>
+                    <div class="voteButton">
+                        <input type="submit" name="vote" value="Voter !" />
+                    </div>
 
-    </fieldset>
+                    </div>
+                </fieldset>
+            </form>
 
 
-    </form>
 
 
+                <?php   } $gethappenings->closeCursor();?>
 
+                  <?php
+                        echo '123';
+
+                            if(isset($_POST['vote'])){
+
+                               echo '456';
+
+                                $bdd->exec('UPDATE interest SET Vote = 1 WHERE IDEvent = 3 AND IDUser = 2 ');
+
+
+                                }
+
+                            ?>
 
 
 
          </section>
-
-
-
 
         <footer id="bas">
              <div id="logoContact">

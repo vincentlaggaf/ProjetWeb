@@ -99,7 +99,7 @@ footer img {
 /* Full-width input fields */
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 20px;
+
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -292,7 +292,7 @@ width: 100%;
 
 
 .title{
-    font-size: 5px;
+    font-size: 20px;
     border: black 1px solid;
     margin: 2px;
     margin-top: 4%;
@@ -323,6 +323,7 @@ width: 100%;
     width: 60%;
     text-align: center;
     margin-top: 6%;
+    margin-bottom: 6%;
 }
 
 
@@ -348,7 +349,7 @@ to {opacity: 1}
 
 }
 
-.inscriptionButton
+.voteButton
 {
     align-self: flex-end;
 }
