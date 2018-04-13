@@ -59,7 +59,6 @@
             $currentpage = $_SERVER['REQUEST_URI'];
             if($homepage==$currentpage) {
             ?>
-
             document.getElementById('id01').style.display='none';
             <?php
             }

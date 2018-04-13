@@ -30,13 +30,12 @@
             $currentpage = $_SERVER['REQUEST_URI'];
             if($homepage==$currentpage) {
             ?>
-
-            document.getElementById('id01').style.display='none';
+            document.getElementById('id02').style.display='none';
             <?php
             }
             else {
             ?>
-            document.getElementById('id01').style.display='block';
+            document.getElementById('id02').style.display='block';
             <?php
             }
             ?>
