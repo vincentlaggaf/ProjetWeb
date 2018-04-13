@@ -41,7 +41,7 @@ section {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
 
     background-color: #FFF;
     padding: 2%;
@@ -94,12 +94,36 @@ button:hover {
     border: 1px black groove;
 }
 
+.goodies_information
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 2px black groove;
+    padding: 1%;
+    width: 14%;
+    position: fixed;
+    right: 1%;
+    top: 20%;
+    background: white;
+    display: none;
+}
+
+.goodies_information_part
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 2%;
+    padding: 1%;
+}
+
 .goodies-picture
 {
-    width: 150px;
-    height: 150px;
+    width: 50%;
+    height: 50%;
     border: 1px black groove;
-    padding: 10px;
+    padding: 3%;
     margin: auto;
     margin-bottom: 2%;
 }
@@ -112,72 +136,139 @@ button:hover {
     overflow: auto;
 }
 
-.info_goodie_description
-{
-    max-width: 70%;
-}
-
-.goodies_information
-{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    border: 2px black groove;
-    padding: 1%;
-    width: 14%;
-    position: fixed;
-    right: 1%;
-    top: 16.5%;
-    background: white;
-    opacity:
-}
-
-.goodies_information_part
-{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    margin: 2%;
-    padding: 1%;
-}
-
-.goodies_information_part_position
-{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin: 2%;
-    padding: 1%;
-}
-
-.invisible
-{
-   display: none;
-}
-
 #sidebar
 {
     display: flex;
     flex-direction: column;
+    position: fixed;
+    left: 2%;
+    top: 20%;
+    width: 14%;
+}
+
+#filter
+{
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     border: 2px black groove;
-    padding: 1%;
-    width: 14%;
-    position: fixed;
-    left: 1%;
-    top: 16.5%;
+    padding: 3%;
     background: white;
+    display: block;
 }
 
 #basket
 {
-    position: fixed;
-    left: 8.8%;
-    top: 34%;
     border: 2px black groove;
-    width: 5%;
-    padding: 1%;
+    height: 50%;
+    width: 50%;
+    padding: 3%;
+    margin-bottom: 10%;
     background: #FFF;
-    z-index: 2;
+}
+
+#filterButton
+{
+    display: none;
+}
+
+@media screen and (max-width: 750px)
+{
+    section
+    {
+        justify-content: center;
+    }
+
+    .shop
+    {
+        text-align: center;
+        width: 100%;
+    }
+
+    .shop-picture
+    {
+        width: 100px;
+        height: 100px;
+        border: 1px black groove;
+    }
+
+    .goodies_information
+    {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        border: 2px black groove;
+        padding: 1%;
+        width: 95%;
+        position: inherit;
+        background: white;
+        display: none;
+
+    }
+
+    .goodies_information div
+    {
+        font-size: 0.9em;
+    }
+
+    .goodies_information_part
+    {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        margin: 2%;
+        padding: 1%;
+    }
+
+    .goodies-picture
+    {
+        display: none;
+    }
+
+    .info_goodies
+    {
+        padding: 1%;
+        margin: 2%;
+        border: 1px black groove;
+        overflow: auto;
+        align-self: center;
+        width: 100%;
+    }
+
+    #sidebar
+    {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        left: 2%;
+        top: 30%;
+    }
+
+    #filter
+    {
+        width: 150px;
+        position: static;
+        display: none;
+        font-size: 0.7em;
+    }
+
+    #basket
+    {
+        position: static;
+        border: 2px black groove;
+        width: 10%;
+        min-width: 42px;
+        padding: 3%;
+        background: #FFF;
+        z-index: 1;
+    }
+
+    #filterButton
+    {
+        position: static;
+        display: block;
+        z-index: 1;
+        width: 50px;
+        margin-bottom: 10%;
+    }
 }
