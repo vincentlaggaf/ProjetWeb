@@ -18,13 +18,12 @@ $check->bindValue(':eventName',$eventName, PDO::PARAM_STR);
 $check->execute();
 $create=$check->fetch();
 
-echo $eventDate;
 
 
 
 // Requête préparée pour empêcher les injections SQL
 
-    if($eventName==$create['eventName'])
+    if($eventName==$create['NameEvent'])
     {
         echo "Cet évènement existe déjà";
     }
@@ -40,10 +39,8 @@ echo $eventDate;
     $requete->execute();
       echo "Création d'évènement réussie !";
 
-      }
 
-
-if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
+       if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
         {
             if($_FILES['photoOfTheEvent']['size']<=1000000)
             {
@@ -76,6 +73,11 @@ if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
 
 
             }
+
+      }
+
+
+
 
         }
 

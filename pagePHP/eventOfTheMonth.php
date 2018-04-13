@@ -90,17 +90,21 @@
     $numberOfEvent=0;
     $currentMonth=date("m");
     $eventNumber=1;
+
     // Events passés $currentDate=date("y-m-d");
     //echo ($currentDate);
 
-                       while( $happening=$getHappening->fetch() AND $numberOfEvent<2 ){
+                       while( $happening=$getHappening->fetch() AND $numberOfEvent<35 ){
                            //echo strtotime($title['EventDate']);
                           $monthOfTheEvent=explode("-",$happening['EventDate']);
                           // echo $monthOfTheEvent[1];
                            //if (strtotime($title['EventDate])<strtotime($currentDate))
                            if ($currentMonth==$monthOfTheEvent[1]){
-
-
+                            $idToLookFor=$happening['IDEvent'];
+                            $getPhoto=$bdd->prepare("SELECT Url FROM photo WHERE IDEvent =:IDEvent");
+                            $getPhoto->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_STR);
+                            $getPhoto->execute();
+                            $urlPhoto=$getPhoto->fetch();
 
     ?>
 <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
@@ -129,7 +133,7 @@
                     </div>
                     <div class="photo">
 
-                    <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
+                    <img src="<?php echo $urlPhoto['Url'] ;?>"alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
                     <?php
