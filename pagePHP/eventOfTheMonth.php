@@ -67,15 +67,26 @@
 
 
 
-<div class="filter">
-
-    <form id="lookForEvent" action="scriptLookForEvent.php" method="post">
-        <textarea style="resize:none" rows="2" cols="16.5" placeholder="Rechercher un évènement"></textarea>
-    </form>
-
-
+            <div id="sidebar">
+                <form action="\projetWeb\pagePHP\shop.php" method="post">
+                    <input type="text" name="research" placeholder="Recherche"/>
+                    <input type="submit" value="Valider" />
+                </form>
+                <p>Filtres :</p>
+                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                    <input type="hidden" name="category" value="1">
+                    <input type="submit" value="Catégorie">
+                    </form>
+                <form action="\projetWeb\pagePHP\shop.php" method="post">
+                    <input type="hidden" name="price" value="1">
+                    <input type="submit" value="Prix">
+                    </form>
+                <form action="\projetWeb\pagePHP\shop.php" method="post">
+                    <input type="hidden" name="popularity" value="1">
+                    <input type="submit" value="Popularité">
+                </form>
+                <p>Ajouter</p>
             </div>
-
 
 
 
@@ -94,7 +105,7 @@
     // Events passés $currentDate=date("y-m-d");
     //echo ($currentDate);
 
-                       while( $happening=$getHappening->fetch() AND $numberOfEvent<35 ){
+                       while( $happening=$getHappening->fetch() AND $numberOfEvent<6 ){
                            //echo strtotime($title['EventDate']);
                           $monthOfTheEvent=explode("-",$happening['EventDate']);
                           // echo $monthOfTheEvent[1];
@@ -114,14 +125,14 @@
 
                 <div class="titleAndPhoto">
                     <div class="title">
-
+                        <strong>
                         <?php
 
 
                         echo $happening['NameEvent'];
 
                         ?>
-
+                        </strong>
 
 
                     </div>
