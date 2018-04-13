@@ -32,17 +32,17 @@
                     researchedShop($_POST['research']);
                     $_POST['research'] = '';
                 }
-                else if (isset($_POST['category']) AND $_POST['category'] != 0)
+                else if (isset($_POST['category']) AND $_POST['category'] == 1)
                 {
                     categorisedShop();
                     $_POST['category'] = 0;
                 }
-                else if (isset($_POST['price']) AND $_POST['price'] != 0)
+                else if (isset($_POST['price']) AND $_POST['price'] == 1)
                 {
                     priceShop();
                     $_POST['price']= 0;
                 }
-//                else if (isset($_POST['popularity']))
+//                else if (isset($_POST['popularity'])AND $_POST['popularity'] == 1)
 //                {
 //                    getGoodiesByCategory();
 //                }
@@ -51,6 +51,9 @@
                     normalShop();
                 }
             ?>
+
+            <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+
             <div id="sidebar">
                 <form action="\projetWeb\pagePHP\shop.php" method="post">
                     <input type="text" name="research" placeholder="Recherche"/>
