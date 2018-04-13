@@ -76,6 +76,8 @@
             </div>
         </section>
 
+        <button type="button" id="filterButton">Filtrer</button>
+
         <footer id="bas">
              <div id="logoContact">
                 <img src="\ProjetWeb\imagePNG\www.png" alt="logo réseaux sociaux">

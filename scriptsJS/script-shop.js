@@ -3,7 +3,7 @@ var shopPictures = document.getElementsByClassName('shop-picture');
 for(i=0; i<shopPictures.length; i++)
 {
     shopPictures[i].addEventListener('click', function(e) {
-        var displayedInformations = document.getElementsByClassName('invisible');
+        var displayedInformations = document.getElementsByClassName('goodies_information');
         for(j=0; j<displayedInformations.length; j++)
         {
             displayedInformations[j].style.display = 'none';
@@ -13,14 +13,19 @@ for(i=0; i<shopPictures.length; i++)
     });
 }
 
-//var categoryButton = document.getElementById('categoryButton');
-//categoryButton.addEventListener('click', function(){
-//
-//    var xhr = new XMLHttpRequest();
-//    xhr.open('POST', '\projetWeb\pagePHP\shop.php');
-//    xhr.send('category=1');
-//    alert("test");
-//})
+var filterButton = document.getElementById('filterButton');
+
+filterButton.addEventListener('click', function(){
+    var sidebarFilter = document.getElementById('sidebar');
+    if(sidebarFilter.style.display == 'block')
+    {
+        sidebarFilter.style.display = 'none';
+    }
+    else
+    {
+     sidebarFilter.style.display = 'block';
+    }
+});
 
 function insertAfter(newElement, afterElement) {
     var parent = afterElement.parentNode;
