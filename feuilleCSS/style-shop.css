@@ -24,22 +24,6 @@ body {
     margin: 1%;
 }
 
-.bouton li{ list-style-type: none;
-}
-
-.bouton{
-    justify-content: center;
-    padding: 1%;
-    text-decoration: none;
-    color: #ECECEC;
-    font-size:30px;
-    letter-spacing: 2px;
-}
-
-.bouton:hover{
-    text-decoration-line: underline;
-}
-
 #exia {
     margin-left: 3%;
     padding: 0.8%;
@@ -64,20 +48,8 @@ section {
     margin: auto;
     margin-top: 3%;
     width: 60%;
+    border: 2px black groove;
 }
-
-#side {
-    width: 3.5%;
-    position: fixed;
-    margin: 0;
-    right:10px;
-    top : 93%;
-}
-
-#side img {
-    width: 60%;
-}
-
 
 footer {
     height: 10%;
@@ -98,64 +70,15 @@ footer img {
 /* Full-width input fields */
 input[type=text], input[type=password] {
     width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
+    padding: 3%;
+    margin: 3% 0;
     border: 1px solid #ccc;
     box-sizing: border-box;
-    font-size: 20px;
+    font-size: 100%;
 }
-
 
 button:hover {
     opacity: 0.8;
-}
-
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-    font-size: 20px;
-}
-
-.loginbtn{
-    width: auto;
-    padding: 10px 18px;
-    background-color: #4CAF50;
-    font-size: 20px;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
 }
 
 .shop
@@ -204,7 +127,7 @@ span.psw {
     width: 14%;
     position: fixed;
     right: 1%;
-    top: 24%;
+    top: 16.5%;
     background: white;
     opacity:
 }
@@ -243,7 +166,18 @@ span.psw {
     width: 14%;
     position: fixed;
     left: 1%;
-    top: 24%;
+    top: 16.5%;
     background: white;
-    opacity:
+}
+
+#basket
+{
+    position: fixed;
+    left: 8.8%;
+    top: 34%;
+    border: 2px black groove;
+    width: 5%;
+    padding: 1%;
+    background: #FFF;
+    z-index: 2;
 }
