@@ -65,26 +65,6 @@
 
 
 
-<div class="filter">
-
-    <form id="lookForEvent" action="scriptLookForEvent.php" method="post">
-        <textarea style="resize:none" rows="2" cols="16.5" placeholder="Rechercher un évènement"></textarea>
-    </form>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
 <form class="addNewEvent" action="scriptAddEventOfTheMonth.php" method="post" enctype="multipart/form-data">
     <fieldset class="event">
         <legend class="">Nouvel évènement</legend>
@@ -97,13 +77,13 @@
 
 
                     <div class="photo">
-                        <input type="file" name="photoOfTheEvent" />
+                        <input type="file" name="photoOfTheEvent" id="choosePhoto"/>
 
-                    <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
+                    </div>
                 </div>
                 <div class="eventDescription">
 
-                                                        <textarea style="resize:none" rows="15" cols="51" placeholder="Description de l'évènement" name="eventDescription" ></textarea>
+                    <textarea style="resize:none" rows="15" cols="51" placeholder="Description de l'évènement" name="eventDescription" ></textarea>
                 </div>
                 <div id="test">
                     <div>
@@ -171,19 +151,7 @@
         </section>
 
 
-        <footer id="bas">
-             <div id="logoContact">
-                <img src="\projetWeb\imagePNG\www.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\mail.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\facebook.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\github.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\twitter.png" alt="logo réseaux sociaux">
-            </div>
-            <p> © BDE Pau - 2018</p>
-            <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-
-        </footer>
+    <?php include('footer.php');?>
 
     </body>
 </html>

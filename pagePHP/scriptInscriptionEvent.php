@@ -19,7 +19,7 @@ $check=$bdd->prepare("SELECT IDUser FROM interest WHERE IDEvent= :IDEvent");
 $check->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
 $check->execute();
 $IDUserFromBDD=$check->fetch();
-if(isset($IDUser)){
+if(isset($IDUser) AND isset($IDEvent)){
     if($IDUser=$IDUserFromBDD['IDUser'])
     {
         echo "<script>alert('Vous êtes déjà inscrit à l\'évènement !');
@@ -38,18 +38,15 @@ if(isset($IDUser)){
 
 }
 else{
-<<<<<<< HEAD
+
 //
 //    include ('modalInscription.php');
 //    document.getElementById('id01').style.display='block';
 
-    function goback(){
 
-
-    }
         echo "<script>alert('Vous n\'êtes pas connectés !');
-        window.location.replace('eventOfTheMonth.php');</script>";
-=======
+        window.location.replace('home.php');</script>";
+
 echo "<script>alert('Vous n\'êtes pas connectés !');
         ;</script>";
    include ('modalInscription.php');
@@ -57,7 +54,7 @@ echo "<script>alert('Vous n\'êtes pas connectés !');
 
         ;
 
->>>>>>> origin/master
+
 
 
 
