@@ -88,6 +88,11 @@ input[type=text], input[type=password] {
 
 
 }
+#eventAndParticipants{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 .event{
     margin-bottom: 1%;
     width: 70%;

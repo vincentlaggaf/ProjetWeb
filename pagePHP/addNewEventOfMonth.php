@@ -86,9 +86,9 @@
                     <textarea style="resize:none" rows="15" cols="51" placeholder="Description de l'évènement" name="eventDescription" ></textarea>
                 </div>
                 <div id="test">
-                    <div>
+                    <div class="payant">
                     <label class="textOfSelect" for="choiceFreeOrNotFree">Cet évènement est gratuit ou payant? </label>
-     <select id="choiceFreeOrNotFree" name="freeOrNot">
+     <select class="choices" name="freeOrNot">
            <option value="1">Gratuit</option>
          <option value="0">Payant</option>
      </select>
@@ -109,7 +109,7 @@
 
  <div class="inscriptionButton">
      <input type="hidden" name="IDEvent" value=""/>
-    <input type="submit" value="Je m'inscris !" name="test"/>
+    <input type="submit" value="Ajouter l'événement" name="test"/>
 </div>
 
 

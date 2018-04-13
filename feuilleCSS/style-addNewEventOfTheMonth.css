@@ -49,13 +49,22 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
 
+}
+.choices
+{
+    width: 100%;
+    margin: auto;
+}
+.payant
+{
+    display: flex;
+}
 .bouton:hover{
     text-decoration-line: underline;
 }
 .textOfSelect{
-    font-size: 75%;
+    font-size: 95%;
 }
 #exia {
     margin-left: 3%;

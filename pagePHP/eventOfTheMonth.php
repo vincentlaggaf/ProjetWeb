@@ -123,7 +123,7 @@
     ?>
             <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
                 <fieldset class="event">
-                    <legend class="eventNumber">Event <?php echo $eventNumber;?></legend>
+                    <legend class="eventNumber"><a href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> ">Event <?php echo $eventNumber;?></a></legend>
                         <div class="eventBloc">
 
                             <div class="titleAndPhoto">
