@@ -15,7 +15,6 @@ $Mail =  $_POST['Mail'];
 $LastName = $_POST['LastName'];
 $FirstName = $_POST['FirstName'];
 
-
 $reponse = $bdd->prepare("SELECT Login FROM Users WHERE Login= :Login");
 $reponse->bindValue(':Login', $Login, PDO::PARAM_STR);
 $reponse->execute();
@@ -23,6 +22,7 @@ $pseudo = $reponse->fetch();
 
 if($Login == $pseudo['Login']){
     echo '<script> alert ("pseudo déjà utilisé")</script>';
+
 }
 
 else {
@@ -34,6 +34,13 @@ else {
     $requete->bindValue(':FirstName', $FirstName, PDO::PARAM_STR);
     $requete->execute();
 }
+
+$url = '/projetWeb/pagePHP/home.php';
+header( "Location: $url" );
+
+
+//$url = window.history.back();
+//header( "Location: $url" );
 
 
 ?>

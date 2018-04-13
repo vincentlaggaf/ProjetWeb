@@ -26,41 +26,64 @@
 
         <section>
             <?php
-                $answer = getGoodiesQuery();
-                while ($data = $answer->fetch())
+                require 'shop\fillShop.php';
+                if (isset($_POST['research']) AND $_POST['research'] != '')
                 {
-            ?>
-                    <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="shop-picture"/>
-
-                    <div class="goodies_information invisible">
-                        <div class="goodies_information_part">
-
-                            <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="goodies-picture"/>
-
-                            <div class="info_goodies info_goodies_margin">Nom :<br/><?php echo $data['NameGoodies']; ?></div>
-
-                            <div class="info_goodies info_goodies_margin">Catégorie :<br/><?php echo $data['NameGoodiesCategory']; ?></div>
-
-                            <div class="info_goodies info_goodies_margin">Prix :<br/><?php echo $data['Price']; ?>€</div>
-
-                        </div>
-                        <div class="goodies_information_part">
-
-                            <div class="info_goodies info_goodie_description info_goodies_margin">Description :<br/><?php echo $data['Description']; ?></div>
-
-                        </div>
-                        <div class="goodies_information_part goodies_information_part_position">
-
-                            <div class="info_goodies">acheter</div>
-                            <div class="info_goodies">supprimer</div>
-
-                        </div>
-                    </div>
-
-            <?php
+                    researchedShop($_POST['research']);
+                    $_POST['research'] = '';
+                }
+                else if (isset($_POST['category']) AND $_POST['category'] == 1)
+                {
+                    categorisedShop();
+                    $_POST['category'] = 0;
+                }
+                else if (isset($_POST['price']) AND $_POST['price'] == 1)
+                {
+                    priceShop();
+                    $_POST['price']= 0;
+                }
+//                else if (isset($_POST['popularity'])AND $_POST['popularity'] == 1)
+//                {
+//                    getGoodiesByCategory();
+//                }
+                else
+                {
+                    normalShop();
                 }
             ?>
+
+
+
+            <div id="sidebar">
+                <button type="button" id="filterButton">Filtrer</button>
+
+                <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+
+                <div id="filter">
+                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="text" name="research" placeholder="Recherche"/>
+                        <input type="submit" value="Valider" />
+                    </form>
+                    <p>Filtres :</p>
+                        <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="hidden" name="category" value="1">
+                        <input type="submit" value="Catégorie">
+                        </form>
+                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="hidden" name="price" value="1">
+                        <input type="submit" value="Prix">
+                        </form>
+                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="hidden" name="popularity" value="1">
+                        <input type="submit" value="Popularité">
+                    </form>
+                    <p>Ajouter</p>
+                </div>
+            </div>
+
         </section>
+
+
 
         <footer id="bas">
              <div id="logoContact">

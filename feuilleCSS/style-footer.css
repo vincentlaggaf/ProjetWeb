@@ -1,0 +1,16 @@
+
+footer {
+    height: 10%;
+    padding-top: 2%;
+    text-align: center;
+    color: #ECF0F1;
+}
+
+footer a {
+    text-decoration: none;
+    color: #BFBFBF;
+}
+
+footer img {
+    width: 5%;
+}

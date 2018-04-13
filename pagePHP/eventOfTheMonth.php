@@ -18,7 +18,9 @@
         <title> Evènement du mois </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
+
 
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
@@ -65,15 +67,29 @@
 
 
 
-<div class="filter">
-
-    <form id="lookForEvent" action="scriptLookForEvent.php" method="post">
-        <textarea style="resize:none" rows="2" cols="16.5" placeholder="Rechercher un évènement"></textarea>
-    </form>
-
+            <div id="sidebar">
+                <form action="" method="post">
+                    <input type="text" name="research" placeholder="Recherche"/>
+                    <input type="submit" value="Valider" />
+                </form>
+                <p>Filtres :</p>
+                    <form action="" method="post">
+                    <input type="hidden" name="category" value="1">
+                    <input type="submit" value="Catégorie">
+                    </form>
+                <form action="" method="post">
+                    <input type="hidden" name="price" value="1">
+                    <input type="submit" value="Prix">
+                    </form>
+                <form action="" method="post">
+                    <input type="hidden" name="popularity" value="1">
+                    <input type="submit" value="Popularité">
+                </form>
+                <form action="addNewEventOfMonth.php">
+                    <input type="submit" value="Ajouter un nouvel événement">
+                </form>
 
             </div>
-
 
 
 
@@ -84,123 +100,85 @@
 
 
 <?php
-     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description,IDEvent FROM Happenings');
+    $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description,IDEvent FROM Happenings');
     $numberOfEvent=0;
     $currentMonth=date("m");
     $eventNumber=1;
+
     // Events passés $currentDate=date("y-m-d");
     //echo ($currentDate);
 
-                       while( $happening=$getHappening->fetch() AND $numberOfEvent<2 ){
-                           //echo strtotime($title['EventDate']);
-                          $monthOfTheEvent=explode("-",$happening['EventDate']);
-                          // echo $monthOfTheEvent[1];
-                           //if (strtotime($title['EventDate])<strtotime($currentDate))
-                           if ($currentMonth==$monthOfTheEvent[1]){
-
-
+                       while( $happening=$getHappening->fetch() AND $numberOfEvent<6 ){
+                               //echo strtotime($title['EventDate']);
+                              $monthOfTheEvent=explode("-",$happening['EventDate']);
+                              // echo $monthOfTheEvent[1];
+                               //if (strtotime($title['EventDate])<strtotime($currentDate))
+                               if ($currentMonth==$monthOfTheEvent[1]){
+                                $idToLookFor=$happening['IDEvent'];
+                                $getPhoto=$bdd->prepare("SELECT Url FROM photo WHERE IDEvent =:IDEvent");
+                                $getPhoto->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_STR);
+                                $getPhoto->execute();
+                                $urlPhoto=$getPhoto->fetch();
 
     ?>
-<form class="addNewEvent" action="scriptInscriptionEvent.php" method="post">
-    <fieldset class="event">
-        <legend class="eventNumber">Event <?php echo $eventNumber;?></legend>
-            <div class="eventBloc">
+            <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
+                <fieldset class="event">
+                    <legend class="eventNumber"><a href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> ">Event <?php echo $eventNumber;?></a></legend>
+                        <div class="eventBloc">
 
-                <div class="titleAndPhoto">
-                    <div class="title">
-
-                        <?php
-
-
+                            <div class="titleAndPhoto">
+                                <div class="title">
+                                    <strong>
+                                    <?php
 
 
+                                    echo $happening['NameEvent'];
+
+                                    ?>
+                                    </strong>
+
+
+                                </div>
+                                <div class="photo">
+
+                                <img src="<?php echo $urlPhoto['Url'] ;?>"alt="" class="thumbnail"></div>
+                            </div>
+                            <div class="eventDescription">
+                                <?php
+
+                                echo $happening['Description'];
 
 
 
-
-                        echo $happening['EventDate'];
-
-                        ?>
-
-
-
-                    </div>
-                    <div class="photo">
-
-                    <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
+                                ?>
+                            </div>
+                <div class="inscriptionButton">
+                    <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
+                    <input type="submit" value="Je m'inscris !" name="test"/>
                 </div>
-                <div class="eventDescription">
-                    <?php
-
-                    echo $happening['Description'];
 
 
-
-                    ?>
-                </div>
- <div class="inscriptionButton">
-     <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
-    <input type="submit" value="Je m'inscris !" name="test"/>
-</div>
+                        </div>
+                </fieldset>
 
 
-            </div>
-    </fieldset>
+                </form>
 
 
-    </form>
-
-
-               <?php }
-                           $eventNumber++;
-                           $numberOfEvent++;}
+                           <?php }
+                                       $eventNumber++;
+                                       $numberOfEvent++;}
     $getHappening->closeCursor();
     ?>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             <script>
 
-
-
-
             </script>
-
-
-
-
-
 
         </section>
 
 
-        <footer id="bas">
-             <div id="logoContact">
-                <img src="\projetWeb\imagePNG\www.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\mail.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\facebook.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\github.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\twitter.png" alt="logo réseaux sociaux">
-            </div>
-            <p> © BDE Pau - 2018</p>
-            <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-
-        </footer>
+  <?php include('footer.php');?>
 
     </body>
 </html>

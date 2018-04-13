@@ -2,7 +2,6 @@
 
 try
 {
-    //    $bdd = new PDO('mysql:host=localhost;dbname=WSProsit5', 'root', 'root');
     $bdd = new PDO('mysql:host=178.62.4.64:3306;dbname=BDDWeb', 'Administrateur', 'maxime1');
 }
 catch (Exception $e)
@@ -32,7 +31,9 @@ if(($Login != $pseudo['Login'])||($UserPassword != $password['UserPassword'])){
 else {
     $requete = $bdd->prepare("SELECT * FROM Users WHERE Login= :Login;");
     $requete->execute();
-    echo '<script> alert ("ok")</script>';
 }
+
+$url = '/projetWeb/pagePHP/home.php';
+header( "Location: $url" );
 
 ?>

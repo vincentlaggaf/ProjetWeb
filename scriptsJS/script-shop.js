@@ -1,9 +1,9 @@
-var element = document.getElementsByClassName('shop-picture');
+var shopPictures = document.getElementsByClassName('shop-picture');
 
-for(i=0; i<element.length; i++)
+for(i=0; i<shopPictures.length; i++)
 {
-    element[i].addEventListener('click', function(e) {
-        var displayedInformations = document.getElementsByClassName('invisible');
+    shopPictures[i].addEventListener('click', function(e) {
+        var displayedInformations = document.getElementsByClassName('goodies_information');
         for(j=0; j<displayedInformations.length; j++)
         {
             displayedInformations[j].style.display = 'none';
@@ -13,6 +13,19 @@ for(i=0; i<element.length; i++)
     });
 }
 
+var filterButton = document.getElementById('filterButton');
+
+filterButton.addEventListener('click', function(){
+    var sidebarFilter = document.getElementById('filter');
+    if(sidebarFilter.style.display == 'block')
+    {
+        sidebarFilter.style.display = 'none';
+    }
+    else
+    {
+     sidebarFilter.style.display = 'block';
+    }
+});
 
 function insertAfter(newElement, afterElement) {
     var parent = afterElement.parentNode;
