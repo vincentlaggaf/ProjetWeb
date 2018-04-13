@@ -151,19 +151,7 @@
         </section>
 
 
-        <footer id="bas">
-             <div id="logoContact">
-                <img src="\projetWeb\imagePNG\www.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\mail.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\facebook.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\github.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\twitter.png" alt="logo réseaux sociaux">
-            </div>
-            <p> © BDE Pau - 2018</p>
-            <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-
-        </footer>
+    <?php include('footer.php');?>
 
     </body>
 </html>

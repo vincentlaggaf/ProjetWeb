@@ -4,7 +4,7 @@
         <title>Exercice 6 PHP</title>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-footer.css">
     </head>
 
     <body>
