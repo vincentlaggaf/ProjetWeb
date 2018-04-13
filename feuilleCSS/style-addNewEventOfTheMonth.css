@@ -28,7 +28,16 @@ body {
 .bouton li{ list-style-type: none;
 }
 
-.bouton{
+.photo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#choosePhoto{
+   align-self: center;
+}
+
+    .bouton{
     justify-content: center;
     padding: 1%;
     text-decoration: none;

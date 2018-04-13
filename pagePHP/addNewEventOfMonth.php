@@ -65,26 +65,6 @@
 
 
 
-<div class="filter">
-
-    <form id="lookForEvent" action="scriptLookForEvent.php" method="post">
-        <textarea style="resize:none" rows="2" cols="16.5" placeholder="Rechercher un évènement"></textarea>
-    </form>
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
 <form class="addNewEvent" action="scriptAddEventOfTheMonth.php" method="post" enctype="multipart/form-data">
     <fieldset class="event">
         <legend class="">Nouvel évènement</legend>
@@ -97,13 +77,13 @@
 
 
                     <div class="photo">
-                        <input type="file" name="photoOfTheEvent" />
+                        <input type="file" name="photoOfTheEvent" id="choosePhoto"/>
 
-                    <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
+                    </div>
                 </div>
                 <div class="eventDescription">
 
-                                                        <textarea style="resize:none" rows="15" cols="51" placeholder="Description de l'évènement" name="eventDescription" ></textarea>
+                    <textarea style="resize:none" rows="15" cols="51" placeholder="Description de l'évènement" name="eventDescription" ></textarea>
                 </div>
                 <div id="test">
                     <div>
