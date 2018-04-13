@@ -18,9 +18,7 @@
         <title> Evènement du mois </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
-
+        <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-addNewEventOfTheMonth.css">
 
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
@@ -74,6 +72,7 @@
     </form>
 
 
+
             </div>
 
 
@@ -85,63 +84,51 @@
 
 
 
-<?php
-     $getHappening=$bdd->query('SELECT NameEvent, EventDate,Description,IDEvent FROM Happenings');
-    $numberOfEvent=0;
-    $currentMonth=date("m");
-    $eventNumber=1;
-    // Events passés $currentDate=date("y-m-d");
-    //echo ($currentDate);
 
-                       while( $happening=$getHappening->fetch() AND $numberOfEvent<2 ){
-                           //echo strtotime($title['EventDate']);
-                          $monthOfTheEvent=explode("-",$happening['EventDate']);
-                          // echo $monthOfTheEvent[1];
-                           //if (strtotime($title['EventDate])<strtotime($currentDate))
-                           if ($currentMonth==$monthOfTheEvent[1]){
-
-
-
-    ?>
-<form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
+<form class="addNewEvent" action="scriptAddEventOfTheMonth.php" method="post" enctype="multipart/form-data">
     <fieldset class="event">
-        <legend class="eventNumber">Event <?php echo $eventNumber;?></legend>
+        <legend class="">Nouvel évènement</legend>
             <div class="eventBloc">
 
                 <div class="titleAndPhoto">
-                    <div class="title">
 
-                        <?php
-
+                          <textarea style="resize:none" rows="2" placeholder="Nom de l'évènement" name="eventName"></textarea>
 
 
 
-
-
-
-
-                        echo $happening['NameEvent'];
-
-                        ?>
-
-
-
-                    </div>
                     <div class="photo">
+                        <input type="file" name="photoOfTheEvent" />
 
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail"></div>
                 </div>
                 <div class="eventDescription">
-                    <?php
 
-                    echo $happening['Description'];
-
-
-
-                    ?>
+                                                        <textarea style="resize:none" rows="15" cols="51" placeholder="Description de l'évènement" name="eventDescription" ></textarea>
                 </div>
+                <div id="test">
+                    <div>
+                    <label class="textOfSelect" for="choiceFreeOrNotFree">Cet évènement est gratuit ou payant? </label>
+     <select id="choiceFreeOrNotFree" name="freeOrNot">
+           <option value="1">Gratuit</option>
+         <option value="0">Payant</option>
+     </select>
+                    </div>
+                                 <div>
+                    <label class="textOfSelect" for="choiceRecurrentOrNot">Sera t-il récurrent?</label>
+     <select id="choiceRecurrentOrNot" name="recurrentOrNot">
+           <option value="1">Oui</option>
+         <option value="0">Non</option>
+     </select>
+                    </div>
+
+                    <div><p class="textOfSelect">Date de l'évènement</p>
+                    <input type="date" name="dateOfTheEvent">
+                </div>
+
+                </div>
+
  <div class="inscriptionButton">
-     <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
+     <input type="hidden" name="IDEvent" value=""/>
     <input type="submit" value="Je m'inscris !" name="test"/>
 </div>
 
@@ -153,15 +140,33 @@
     </form>
 
 
-               <?php }
-                           $eventNumber++;
-                           $numberOfEvent++;}
-    $getHappening->closeCursor();
-    ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <script>
 
+
+
+
             </script>
+
+
+
+
+
 
         </section>
 

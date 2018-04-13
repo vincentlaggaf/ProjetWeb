@@ -10,6 +10,8 @@ body {
 
 section {
     margin: 3%;
+    margin-top: 4%;
+    margin-left: 2%;
     justify-content: center;
 }
 
@@ -39,8 +41,8 @@ section {
 }
 
 
-#exia {
-    margin-left: 3%;
+#exia{
+    margin-left: 4%;
     padding: 0.8%;
     background-color: #F2F1EF;
     border-radius: 10px;
