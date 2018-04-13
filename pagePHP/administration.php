@@ -48,13 +48,28 @@
             $reponse->closeCursor();
             ?>
         </table>
+
+        <button onclick="goBack()">Go Back</button>
+
         <script>
-            //            function changeRole(val) {
-            //                var chosenRole = val;
-            //                document.getElementById("role").value = chosenRole;
-            //
-            //            }
+            function goBack() {
+                if (document.referrer == "")
+                {
+                alert("rien");
+                }
+                else {
+//                    alert(document.referrer);
+                    window.history.back();
+                }
+            }
         </script>
+
+        <!--
+function changeRole(val) {
+var chosenRole = val;
+document.getElementById("role").value = chosenRole;
+}
+-->
 
     </body>
 </html>

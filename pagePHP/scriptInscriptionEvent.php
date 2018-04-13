@@ -35,16 +35,19 @@ if(isset($IDUser)){
         echo "Inscription réussie";
     }
 
-<<<<<<< HEAD
+
 }
 else{
 //
 //    include ('modalInscription.php');
 //    document.getElementById('id01').style.display='block';
-=======
+
+    function goback(){
+
+
+    }
         echo "<script>alert('Vous n\'êtes pas connectés !');
         window.location.replace('eventOfTheMonth.php');</script>";
->>>>>>> origin/master
 
 
 
