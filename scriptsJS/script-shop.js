@@ -1,8 +1,8 @@
-var element = document.getElementsByClassName('shop-picture');
+var shopPictures = document.getElementsByClassName('shop-picture');
 
-for(i=0; i<element.length; i++)
+for(i=0; i<shopPictures.length; i++)
 {
-    element[i].addEventListener('click', function(e) {
+    shopPictures[i].addEventListener('click', function(e) {
         var displayedInformations = document.getElementsByClassName('invisible');
         for(j=0; j<displayedInformations.length; j++)
         {
@@ -13,6 +13,14 @@ for(i=0; i<element.length; i++)
     });
 }
 
+//var categoryButton = document.getElementById('categoryButton');
+//categoryButton.addEventListener('click', function(){
+//
+//    var xhr = new XMLHttpRequest();
+//    xhr.open('POST', '\projetWeb\pagePHP\shop.php');
+//    xhr.send('category=1');
+//    alert("test");
+//})
 
 function insertAfter(newElement, afterElement) {
     var parent = afterElement.parentNode;

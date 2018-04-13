@@ -22,6 +22,7 @@ $pseudo = $reponse->fetch();
 
 if($Login == $pseudo['Login']){
     echo '<script> alert ("pseudo déjà utilisé")</script>';
+
 }
 
 else {
@@ -36,6 +37,10 @@ else {
 
 $url = '/projetWeb/pagePHP/home.php';
 header( "Location: $url" );
+
+
+//$url = window.history.back();
+//header( "Location: $url" );
 
 
 ?>

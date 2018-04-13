@@ -118,12 +118,6 @@
                         <?php
 
 
-
-
-
-
-
-
                         echo $happening['NameEvent'];
 
                         ?>

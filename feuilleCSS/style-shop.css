@@ -54,16 +54,16 @@ body {
 }
 
 section {
-    background-color: #FFF;
-    padding: 1%;
-    margin: auto;
-    margin-top: 3%;
-    width: 60%;
-
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+
+    background-color: #FFF;
+    padding: 2%;
+    margin: auto;
+    margin-top: 3%;
+    width: 60%;
 }
 
 #side {
@@ -158,12 +158,16 @@ span.psw {
     width: 50%; /* Could be more or less, depending on screen size */
 }
 
+.shop
+{
+    margin: 3%;
+    width: 200px;
+}
+
 .shop-picture
 {
     width: 200px;
     height: 200px;
-    margin: 3%;
-    padding: 4px;
     border: 1px black groove;
 }
 
@@ -174,18 +178,15 @@ span.psw {
     border: 1px black groove;
     padding: 10px;
     margin: auto;
+    margin-bottom: 2%;
 }
 
 .info_goodies
 {
-    padding: 2px;
+    padding: 1%;
+    margin: 2%;
     border: 1px black groove;
     overflow: auto;
-}
-
-.info_goodies_margin
-{
-    margin: auto;
 }
 
 .info_goodie_description
@@ -199,15 +200,19 @@ span.psw {
     flex-direction: column;
     flex-wrap: wrap;
     border: 2px black groove;
-    margin: 3%;
     padding: 1%;
-    width: 55%;
+    width: 14%;
+    position: fixed;
+    right: 1%;
+    top: 24%;
+    background: white;
+    opacity:
 }
 
 .goodies_information_part
 {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     margin: 2%;
     padding: 1%;
@@ -226,4 +231,19 @@ span.psw {
 .invisible
 {
    display: none;
+}
+
+#sidebar
+{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    border: 2px black groove;
+    padding: 1%;
+    width: 14%;
+    position: fixed;
+    left: 1%;
+    top: 24%;
+    background: white;
+    opacity:
 }
