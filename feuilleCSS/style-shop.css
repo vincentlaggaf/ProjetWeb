@@ -104,7 +104,7 @@ button:hover {
     width: 14%;
     position: fixed;
     right: 1%;
-    top: 16.5%;
+    top: 20%;
     background: white;
     display: none;
 }
@@ -140,26 +140,31 @@ button:hover {
 {
     display: flex;
     flex-direction: column;
+    position: fixed;
+    left: 2%;
+    top: 20%;
+    width: 14%;
+}
+
+#filter
+{
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     border: 2px black groove;
-    padding: 1%;
-    width: 14%;
-    position: fixed;
-    left: 1%;
-    top: 16.5%;
+    padding: 3%;
     background: white;
+    display: block;
 }
 
 #basket
 {
-    position: fixed;
-    left: 8.8%;
-    top: 34%;
     border: 2px black groove;
-    width: 5%;
-    padding: 1%;
+    height: 50%;
+    width: 50%;
+    padding: 3%;
+    margin-bottom: 10%;
     background: #FFF;
-    z-index: 2;
 }
 
 #filterButton
@@ -167,7 +172,7 @@ button:hover {
     display: none;
 }
 
-@media screen and (max-width: 400px)
+@media screen and (max-width: 750px)
 {
     section
     {
@@ -176,10 +181,6 @@ button:hover {
 
     .shop
     {
-/*
-        margin: auto;
-        padding: auto;
-*/
         text-align: center;
         width: 100%;
     }
@@ -236,31 +237,38 @@ button:hover {
 
     #sidebar
     {
-        width: 50%;
+        display: flex;
+        flex-direction: column;
         position: fixed;
         left: 2%;
         top: 30%;
+    }
+
+    #filter
+    {
+        width: 150px;
+        position: static;
         display: none;
         font-size: 0.7em;
     }
 
     #basket
     {
-        position: fixed;
-        left: 8.8%;
-        top: 34%;
+        position: static;
         border: 2px black groove;
-        width: 5%;
-        padding: 1%;
+        width: 10%;
+        min-width: 42px;
+        padding: 3%;
         background: #FFF;
-        z-index: 2;
+        z-index: 1;
     }
 
     #filterButton
     {
-        position: fixed;
-        left: 2%;
-        top: 24%;
+        position: static;
         display: block;
+        z-index: 1;
+        width: 50px;
+        margin-bottom: 10%;
     }
 }

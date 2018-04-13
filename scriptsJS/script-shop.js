@@ -16,7 +16,7 @@ for(i=0; i<shopPictures.length; i++)
 var filterButton = document.getElementById('filterButton');
 
 filterButton.addEventListener('click', function(){
-    var sidebarFilter = document.getElementById('sidebar');
+    var sidebarFilter = document.getElementById('filter');
     if(sidebarFilter.style.display == 'block')
     {
         sidebarFilter.style.display = 'none';

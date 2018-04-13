@@ -52,31 +52,38 @@
                 }
             ?>
 
-            <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+
 
             <div id="sidebar">
-                <form action="\projetWeb\pagePHP\shop.php" method="post">
-                    <input type="text" name="research" placeholder="Recherche"/>
-                    <input type="submit" value="Valider" />
-                </form>
-                <p>Filtres :</p>
+                <button type="button" id="filterButton">Filtrer</button>
+
+                <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+
+                <div id="filter">
                     <form action="\projetWeb\pagePHP\shop.php" method="post">
-                    <input type="hidden" name="category" value="1">
-                    <input type="submit" value="Catégorie">
+                        <input type="text" name="research" placeholder="Recherche"/>
+                        <input type="submit" value="Valider" />
                     </form>
-                <form action="\projetWeb\pagePHP\shop.php" method="post">
-                    <input type="hidden" name="price" value="1">
-                    <input type="submit" value="Prix">
+                    <p>Filtres :</p>
+                        <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="hidden" name="category" value="1">
+                        <input type="submit" value="Catégorie">
+                        </form>
+                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="hidden" name="price" value="1">
+                        <input type="submit" value="Prix">
+                        </form>
+                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="hidden" name="popularity" value="1">
+                        <input type="submit" value="Popularité">
                     </form>
-                <form action="\projetWeb\pagePHP\shop.php" method="post">
-                    <input type="hidden" name="popularity" value="1">
-                    <input type="submit" value="Popularité">
-                </form>
-                <p>Ajouter</p>
+                    <p>Ajouter</p>
+                </div>
             </div>
+
         </section>
 
-        <button type="button" id="filterButton">Filtrer</button>
+
 
         <footer id="bas">
              <div id="logoContact">
