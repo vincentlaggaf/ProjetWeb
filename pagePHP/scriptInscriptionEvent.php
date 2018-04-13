@@ -38,6 +38,7 @@ if(isset($IDUser)){
 
 }
 else{
+<<<<<<< HEAD
 //
 //    include ('modalInscription.php');
 //    document.getElementById('id01').style.display='block';
@@ -48,6 +49,15 @@ else{
     }
         echo "<script>alert('Vous n\'êtes pas connectés !');
         window.location.replace('eventOfTheMonth.php');</script>";
+=======
+echo "<script>alert('Vous n\'êtes pas connectés !');
+        ;</script>";
+   include ('modalInscription.php');
+     "<script>    document.getElementById('id01').style.display='block';</script>";
+
+        ;
+
+>>>>>>> origin/master
 
 
 

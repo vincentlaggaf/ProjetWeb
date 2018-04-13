@@ -103,7 +103,7 @@
 
 
     ?>
-<form class="addNewEvent" action="scriptInscriptionEvent.php" method="post">
+<form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
     <fieldset class="event">
         <legend class="eventNumber">Event <?php echo $eventNumber;?></legend>
             <div class="eventBloc">

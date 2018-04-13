@@ -12,7 +12,10 @@
     <body>
         <?php include ('nav.php'); ?>
         <section id="corps">
-            <section>
+
+                <?php include ('modalInscription.php'); ?>
+                <?php include ('modalLogin.php'); ?>
+
                 <div class="theCarousel">
                     <div class="mySlides fade">
                         <img src="/projetWeb/imagePNG/boutique.png" style="width:100%">
