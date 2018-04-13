@@ -3,7 +3,36 @@
 
     function getGoodiesQuery(){
         $bdd = getBDD();
-        $goodiesQuery = $bdd->prepare('SELECT * FROM Goodies') or die(print_r($bdd->errorInfo()));
+        $goodiesQuery = $bdd->prepare('CALL `GoodiesQuery`()') or die(print_r($bdd->errorInfo()));
+        $goodiesQuery->execute();
+        return $goodiesQuery;
+    }
+
+    function getGoodiesByResearch($research){
+        $bdd = getBDD();
+        $goodiesQuery = $bdd->prepare('CALL `GoodiesByResearch`(:research)') or die(print_r($bdd->errorInfo()));
+        $goodiesQuery->bindValue(':research', $research, PDO::PARAM_STR);
+        $goodiesQuery->execute();
+        return $goodiesQuery;
+    }
+
+    function getGoodiesByCategory(){
+        $bdd = getBDD();
+        $goodiesQuery = $bdd->prepare('CALL `GoodiesByCategory`()') or die(print_r($bdd->errorInfo()));
+        $goodiesQuery->execute();
+        return $goodiesQuery;
+    }
+
+    function getGoodiesByPrice(){
+        $bdd = getBDD();
+        $goodiesQuery = $bdd->prepare('CALL `GoodiesByPrice`()') or die(print_r($bdd->errorInfo()));
+        $goodiesQuery->execute();
+        return $goodiesQuery;
+    }
+
+    function getGoodiesByPopularity(){
+        $bdd = getBDD();
+        $goodiesQuery = $bdd->prepare('CALL `GoodiesByPopularity`()') or die(print_r($bdd->errorInfo()));
         $goodiesQuery->execute();
         return $goodiesQuery;
     }
