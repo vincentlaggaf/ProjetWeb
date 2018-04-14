@@ -1,6 +1,10 @@
+<?php
+session_start();
+include ('nav.php');
+?>
+
 <!DOCTYPE html>
 <html id="top">
-
     <head>
         <title> Accueil </title>
         <meta charset="UTF-8">
@@ -8,14 +12,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
     </head>
-
     <body>
-        <?php include ('nav.php'); ?>
         <section id="corps">
-
-            <?php include ('modalInscription.php'); ?>
-            <?php include ('modalLogin.php'); ?>
-
             <div class="theCarousel">
                 <div class="mySlides fade">
                     <img src="/projetWeb/imagePNG/boutique.png" style="width:100%">
@@ -27,7 +25,6 @@
                     <img src="/projetWeb/imagePNG/boite.png" style="width:100%">
                 </div>
             </div>
-
             <div id="pass">
                 <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
                 <span class="dot" onclick="currentSlide(1)"></span>
@@ -35,9 +32,7 @@
                 <span class="dot" onclick="currentSlide(3)"></span>
                 <a class="next" onclick="plusSlides(1)">&#10095;</a>
             </div>
-
         </section>
-
         <?php include ('footer.php'); ?>
         <script>
             var slideIndex = 1;
@@ -66,6 +61,5 @@
                 dots[slideIndex-1].className += " active";
             }
         </script>
-
     </body>
 </html>

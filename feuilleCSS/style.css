@@ -40,7 +40,6 @@ section {
     text-decoration-line: underline;
 }
 
-
 #exia{
     margin-left: 4%;
     padding: 0.8%;
@@ -49,11 +48,15 @@ section {
     float: left;
     width: 8%;
 }
-#authentificationBtn {
+#authentificationBtn{
     background-color: #CF000F;
     border: none;
 }
 
+#cache{
+     background-color: #CF000F;
+    border: none;
+}
 
 #side {
     width: 3.5%;
@@ -157,8 +160,6 @@ width: 100%;
 }
 */
 
-
-
 /*CSS du caroussel*/
 
 #pass, .text {
@@ -203,3 +204,6 @@ width: 100%;
     background-color: #717171;
 }
 
+#hidden {
+    display:none;
+}

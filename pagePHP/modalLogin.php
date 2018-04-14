@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html id="top">
-
     <head>
-        <title> accueil </title>
+        <title> Connection </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
     </head>
     <body>
-        <!-- AUTHENTIFICATION  -->
         <div id="id02" class="modal">
             <form class="modal-content animate" action="logIn.php" method="post">
                 <div class="container">
@@ -24,7 +22,6 @@
             </form>
         </div>
         <script>
-
             <?php
             $homepage = "/projetWeb/pagePHP/home.php";
             $currentpage = $_SERVER['REQUEST_URI'];
@@ -39,34 +36,23 @@
             <?php
             }
             ?>
-
             function test() {
-                //   document.getElementById('id02').style.display='none';
                 var backPage = document.referrer;
                 switch(backPage) {
                     case "":
-                        alert("case : vide");
                         document.getElementById('id02').style.display='none';
                         break;
-
                     case "http://localhost:8888/projetWeb/pagePHP/home.php":
-                        alert("case : http://localhost:8888/projetWeb/pagePHP/home.php");
                         window.history.back();
                         break;
-
                     case "http://localhost:8888/projetWeb/pagePHP/modalInscription.php":
                         document.location.replace('/projetWeb/pagePHP/home.php');
                         break;
-
                     case "http://localhost:8888/projetWeb/pagePHP/scriptInscriptionEvent.php":
-                        alert("case : scriptInscriptionEvent");
                         window.history.go(-2);
                         break;
-
                     default:
-                        alert("case : default");
                         document.getElementById('id02').style.display='none';
-                        //window.history.back();
                 }
             }
         </script>
