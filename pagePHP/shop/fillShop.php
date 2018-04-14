@@ -7,8 +7,19 @@
 
     function researchedShop($research){
         $researchedShop = getGoodiesByResearch($research);
-        displayGoodies($researchedShop);
-        $researchedShop->closeCursor();
+        $row = $researchedShop->rowCount();
+        if($row == 0)
+        {
+            $researchedShop->closeCursor();
+            normalShop();
+            echo '<script> alert ("Votre recherche ne donne rien, veuillez essayer quelque chose d\'autre.");</script>';
+        }
+        else
+        {
+            displayGoodies($researchedShop);
+            $researchedShop->closeCursor();
+        }
+
     }
 
     function categorisedShop(){

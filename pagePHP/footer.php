@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Exercice 6 PHP</title>
         <meta charset="utf-8">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-footer.css">
@@ -17,7 +16,7 @@
                 <a href="https://exia.cesi.fr/ecole-informatique-pau">
                     <img src="/projetWeb/imagePNG/www.png" alt="logo www">
                 </a>
-                <a href="https://github.com/vincentlaggaf/ProjetWeb.git">
+                <a href="https://github.com">
                     <img src="/projetWeb/imagePNG/github.png" alt="logo github">
                 </a>
                 <a href="https://twitter.com/cesisudouest">
