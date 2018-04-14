@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-modal.css">
     </head>
     <body>
         <div id="id01" class="modal">

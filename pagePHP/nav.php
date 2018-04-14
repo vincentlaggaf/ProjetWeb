@@ -4,6 +4,7 @@ include ('modalInscription.php');
 include ('modalLogin.php');
 ?>
 <div>
+    <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-nav.css">
     <img id="exia" src="/projetWeb/imagePNG/exia.png" alt="logo exia">
     <nav class="table">
         <a href="shop.php" class="bouton"> <li> Boutique </li> </a>

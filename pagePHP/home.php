@@ -11,6 +11,7 @@ include ('nav.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-caroussel.css">
     </head>
     <body>
         <section id="corps">
