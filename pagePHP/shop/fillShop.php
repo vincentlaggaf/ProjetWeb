@@ -2,21 +2,25 @@
     function normalShop(){
         $normalShop = getGoodiesQuery();
         displayGoodies($normalShop);
+        $normalShop->closeCursor();
     }
 
     function researchedShop($research){
-            $researchedShop = getGoodiesByResearch($research);
-            displayGoodies($researchedShop);
+        $researchedShop = getGoodiesByResearch($research);
+        displayGoodies($researchedShop);
+        $researchedShop->closeCursor();
     }
 
     function categorisedShop(){
-            $categorisedShop = getGoodiesByCategory();
-            displayGoodies($categorisedShop);
+        $categorisedShop = getGoodiesByCategory();
+        displayGoodies($categorisedShop);
+        $categorisedShop->closeCursor();
     }
 
     function priceShop(){
-            $priceShop = getGoodiesByPrice();
-            displayGoodies($priceShop);
+        $priceShop = getGoodiesByPrice();
+        displayGoodies($priceShop);
+        $priceShop->closeCursor();
     }
 
     function displayGoodies($answer){
@@ -26,7 +30,7 @@
             <div class="shop">
                 <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="shop-picture"/>
 
-                <div class="goodies_information invisible">
+                <div class="goodies_information">
                     <div class="goodies_information_part">
 
                         <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="goodies-picture"/>
@@ -43,10 +47,8 @@
 
                         <div class="info_goodies info_goodie_description info_goodies_margin">Description :<br/><?php echo $data['Description']; ?></div>
 
-                    </div>
-                    <div class="goodies_information_part goodies_information_part_position">
-
                         <div class="info_goodies">acheter</div>
+
                         <div class="info_goodies">supprimer</div>
 
                     </div>

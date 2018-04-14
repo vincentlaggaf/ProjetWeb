@@ -28,16 +28,7 @@ body {
 .bouton li{ list-style-type: none;
 }
 
-.photo{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-#choosePhoto{
-   align-self: center;
-}
-
-    .bouton{
+.bouton{
     justify-content: center;
     padding: 1%;
     text-decoration: none;
@@ -45,27 +36,11 @@ body {
     font-size:30px;
     letter-spacing: 2px;
 }
-#test{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
 
-}
-.choices
-{
-    width: 100%;
-    margin: auto;
-}
-.payant
-{
-    display: flex;
-}
 .bouton:hover{
     text-decoration-line: underline;
 }
-.textOfSelect{
-    font-size: 95%;
-}
+
 #exia {
     margin-left: 3%;
     padding: 0.8%;
@@ -125,6 +100,7 @@ footer img {
 input[type=text], input[type=password] {
     width: 100%;
 
+    margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
@@ -263,7 +239,8 @@ span.psw {
 
 }
 .event{
-    width: 95%;
+    margin-bottom: 1%;
+    width: 70%;
     background-color: #F2F1EF;
     margin: auto;
 
@@ -276,16 +253,20 @@ section {
     justify-content: center;
     background-color: #F2F1EF;
 }
-.eventDescription{
-    margin-left: 1%;
-    margin-right: 1%;
-}
 
+.descriptionBox
+{
+width: 100%;
+
+}
 .addNewEvent
 {
     margin: 1%;
 }
-
+.titre
+{
+    height: 25%;
+}
 
 .titleAndPhoto{
     display: flex;
@@ -296,11 +277,33 @@ section {
 }
 
 
+.eventDescription{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    background-color: white;
+
+    margin-top: 1.1%;
+    margin-bottom: 0.2%;
+    margin-left: 1%;
+    margin-right: 2%;
+    flex:1;
+}
+
+
+.title{
+    font-size: 20px;
+    border: black 1px solid;
+    margin: 2px;
+    margin-top: 4%;
+    background-color: white;
+
+}
 
 .photo
 {
     border: double 2px black;
-    height: 100%;
+    height: 100px;
     margin: 2px;
 }
 
@@ -308,6 +311,21 @@ section {
     height: 100%;
     width: 100%;
 }
+.bar{
+
+    border: 1px solid #eee;
+    box-shadow: 0 5px 5px #ccc;
+    padding : 15px;
+    margin: auto;
+    border-color: dimgray;
+    background-color: dimgray;
+    border-radius: 10px;
+    width: 60%;
+    text-align: center;
+    margin-top: 6%;
+    margin-bottom: 6%;
+}
+
 
 
 /*
@@ -325,16 +343,13 @@ to {opacity: 1}
     position: fixed;
     height: 60%;
     left: 3%;
+    width: 10%;
     margin-top: -1%;
     background-color: #F2F1EF;
 
 }
 
-#lookForEvent
-{
-}
-
-.inscriptionButton
+.voteButton
 {
     align-self: flex-end;
 }
