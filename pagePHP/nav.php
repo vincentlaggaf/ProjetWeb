@@ -1,7 +1,4 @@
-<?php
-include ('modalInscription.php');
-include ('modalLogin.php');
-?>
+
 <div>
     <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-nav.css">
     <img id="exia" src="/projetWeb/imagePNG/exia.png" alt="logo exia">
@@ -18,6 +15,8 @@ include ('modalLogin.php');
         <?php
         }
         else {
+include ('modalInscription.php');
+include ('modalLogin.php');
         ?>
             <button id ="authentificationBtn" onclick="document.getElementById('id01').style.display='block'">
                 <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">

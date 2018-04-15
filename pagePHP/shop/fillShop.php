@@ -5,21 +5,26 @@
         $normalShop->closeCursor();
     }
 
-    function researchedShop($research){
+    function researchCheck($research){
         $researchedShop = getGoodiesByResearch($research);
         $row = $researchedShop->rowCount();
         if($row == 0)
         {
-            $researchedShop->closeCursor();
-            normalShop();
-            echo '<script> alert ("Votre recherche ne donne rien, veuillez essayer quelque chose d\'autre.");</script>';
+            echo "<p>Votre recherche ne donne rien, veuillez essayer quelque chose d'autre.</p>";
+            $check = false;
         }
         else
         {
-            displayGoodies($researchedShop);
-            $researchedShop->closeCursor();
+            $check = true;
         }
+        $researchedShop->closeCursor();
+        return $check;
+    }
 
+    function researchedShop($research){
+        $researchedShop = getGoodiesByResearch($research);
+        displayGoodies($researchedShop);
+        $researchedShop->closeCursor();
     }
 
     function categorisedShop(){
