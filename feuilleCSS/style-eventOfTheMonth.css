@@ -130,7 +130,9 @@ input[type=text], input[type=password] {
     align-self: flex-end;
 }
 
-
+.linkToEvent{
+    color:  #CF000F;
+}
 
 @media screen and (max-width:720px){
 
