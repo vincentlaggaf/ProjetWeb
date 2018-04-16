@@ -1,9 +1,6 @@
+<?php include ('modals.php'); ?>
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-nav.css">
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-dropdownMenu.css">
-<?php
-include ('modalInscription.php');
-include ('modalLogin.php');
-?>
 
 <div class="menu">
     <nav>
@@ -21,7 +18,7 @@ include ('modalLogin.php');
             <?php }
             else {
             ?>
-            <button class="authentificationBtn" onclick="document.getElementById('inscriptionModal').style.display='block'">
+            <button class="authentificationBtn" onclick="document.getElementById('signInModal').style.display='block'">
                 <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
             </button>
             <button class="authentificationBtn" onclick="document.getElementById('logInModal').style.display='block'">
@@ -41,10 +38,7 @@ include ('modalLogin.php');
 
 
 <div class="dropdown">
-    <button onclick="dropdownFunction()" class="dropbtn">
-        MENU <!--  <img src="/projetWeb/imagePNG/Menu_icon.png" alt="menu">-->
-    </button>
-    <!--<input type="button" onclick="myFunction()" class="dropbtn" src="/projetWeb/imagePNG/Menu_icon.png"/>-->
+    <button onclick="dropdownFunction()" class="dropbtn">MENU</button>
     <div id="myDropdown" class="dropdown-content">
         <a href="home.php">Accueil</a>
         <a href="shop.php">Boutique</a>
@@ -53,11 +47,9 @@ include ('modalLogin.php');
         <a href="#">Évènements passés</a>
         <?php if(isset($_SESSION['Login'])){ ?>
         <a href="/projetWeb/pagePHP/destroySession.php" class="bouton">Déconnexion</a>
-        <?php
-}
-        else {
+        <?php } else {
         ?>
-        <button class="authentificationBtn" onclick="document.getElementById('inscriptionModal').style.display='block'">
+        <button class="authentificationBtn" onclick="document.getElementById('signInModal').style.display='block'">
             <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
         </button>
         <button class="authentificationBtn" onclick="document.getElementById('logInModal').style.display='block'">
@@ -70,8 +62,6 @@ include ('modalLogin.php');
 </div>
 
 <script>
-    //    document.getElementById('logInModal').style.display='none';
-    //    document.getElementById('inscriptionModal').style.display='none';
     /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
     function dropdownFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
