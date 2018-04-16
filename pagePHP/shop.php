@@ -1,5 +1,6 @@
 <?php
     require 'shop\BDDInteraction.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,8 +12,10 @@
     </head>
 
     <body>
-        <?php include 'nav.php'; ?>
-        <div id="test">
+        <?php include 'nav.php';
+
+        ?>
+        <div id="shopDiv">
             <section>
                 <?php
                 require 'shop\fillShop.php';
@@ -20,9 +23,14 @@
                 {
                     $check = researchCheck($_POST['research']);
                 }
+                $role = roleCheck();
                 ?>
                 <article>
                 <?php
+                    if (isset($_POST['delete']))
+                    {
+                        deletegoodie($_POST['delete']);
+                    }
                     if (isset($check) AND $check)
                     {
                         researchedShop($_POST['research']);
@@ -74,7 +82,14 @@
                     <input type="hidden" name="popularity" value="1">
                     <input type="submit" value="Popularité">
                 </form>
-                <p>Ajouter</p>
+                <?php
+                if($role == "BDEMember")
+                {
+                ?>
+                    <p>Ajouter</p>
+                <?php
+                }
+                ?>
             </div>
         </div>
 

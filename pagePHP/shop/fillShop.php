@@ -1,4 +1,21 @@
 <?php
+    function roleCheck(){
+        if(isset($_SESSION['Role']) AND $_SESSION['Role'] == "BDEMember")
+        {
+            $role = "BDEMember";
+        }
+        else
+        {
+            $role = "Student";
+        }
+        return $role;
+    }
+
+    function deleteGoodie($goodie){
+        $deleteGoodie = deleteGoodieQuery($goodie);
+        $normalShop->closeCursor();
+    }
+
     function normalShop(){
         $normalShop = getGoodiesQuery();
         displayGoodies($normalShop);
@@ -65,8 +82,18 @@
 
                         <div class="info_goodies">acheter</div>
 
-                        <div class="info_goodies">supprimer</div>
-
+                        <?php
+                        if(roleCheck() == "BDEMember")
+                        {
+                        ?>
+<!--                            <div class="info_goodies">supprimer</div>-->
+                            <form action="\projetWeb\pagePHP\shop.php" method="post">
+                            <input type="hidden" name="delete" value="<?php echo $data['NameGoodies']; ?>">
+                            <input type="submit" value="Supprimer">
+                            </form>
+                        <?php
+                        }
+                        ?>
                     </div>
                 </div>
         </div>
