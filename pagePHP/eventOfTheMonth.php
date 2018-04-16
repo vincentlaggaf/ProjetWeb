@@ -146,6 +146,7 @@
                                 ?>
                             </div>
                 <div class="inscriptionButton">
+                    <input type="hidden" name="NameEvent" value="<?php echo $happening['NameEvent']?>;">
                     <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
                     <input type="submit" value="Je m'inscris !" name="test"/>
                 </div>

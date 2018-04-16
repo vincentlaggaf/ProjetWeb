@@ -2,7 +2,7 @@
     session_start();
     try
         {
-            $bdd = new PDO('mysql:host=localhost;dbname=eventofthemonth;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+               $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         catch (Exception $e)
         {
@@ -88,6 +88,30 @@
            <option value="1">Oui</option>
          <option value="0">Non</option>
      </select>
+
+
+
+                    </div>
+
+                                                 <div>
+                    <label class="textOfSelect" for="eventCategory">Quel est le type de l'événement?</label>
+     <select id="eventCategory" name="eventCategory">
+            <?php
+            $getCategory=$bdd->prepare("SELECT * FROM EventCategory");
+            $getCategory->execute();
+         while(   $category=$getCategory->fetch()){
+             $eventCategoryWithNoSpace=str_replace(' ','_',$category['NameEventCategory']);
+
+             ?>
+          <option value="<?php echo $eventCategoryWithNoSpace;?>"><?php echo $category['NameEventCategory'];?></option>
+         <?php
+         }
+
+         ?>
+     </select>
+
+
+
                     </div>
 
                     <div><p class="textOfSelect">Date de l'évènement</p>

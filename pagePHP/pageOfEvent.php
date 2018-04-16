@@ -2,7 +2,7 @@
 session_start();
 try
 {
-    $bdd = new PDO('mysql:host=localhost;dbname=eventofthemonth;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch (Exception $e)
 {
@@ -16,12 +16,12 @@ catch (Exception $e)
 if(isset($_GET['name'])){
     $eventName=$_GET['name'];
 
-    $getInfoEvent=$bdd->prepare('SELECT * FROM happenings WHERE NameEvent= :nameEvent');
+    $getInfoEvent=$bdd->prepare('SELECT * FROM Happenings WHERE NameEvent= :nameEvent');
     $getInfoEvent->bindValue(':nameEvent',$eventName,PDO::PARAM_STR);
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
 
-    $getPhotoEvent=$bdd->prepare('SELECT Url FROM photo WHERE IDEvent =:IDEvent');
+    $getPhotoEvent=$bdd->prepare('SELECT Url FROM Photo WHERE IDEvent =:IDEvent');
     $getPhotoEvent->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
     $getPhotoEvent->execute();
     $photoEvent=$getPhotoEvent->fetch();
