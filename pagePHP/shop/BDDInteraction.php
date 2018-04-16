@@ -1,11 +1,59 @@
 <?php
-    session_start();
+
+    function checkBasketQuery($IDUser, $NameGoodie){
+        $bdd = getBDD();
+
+        $checkBasketQuery = $bdd->prepare('CALL `CheckBasket`(:IDUser, :NameGoodies)') or die(print_r($bdd->errorInfo()));
+
+        $checkBasketQuery->bindValue(':IDUser', $IDUser, PDO::PARAM_STR);
+        $checkBasketQuery->bindValue(':NameGoodies', $NameGoodie, PDO::PARAM_STR);
+
+        $checkBasketQuery->execute();
+
+        return $checkBasketQuery;
+    }
+
+    function changeQuantityOnBasketGoodies($IDUser, $NameGoodie, $Quantity){
+        $bdd = getBDD();
+
+        $changeQuantityOnBasketGoodies = $bdd->prepare('CALL `ChangeQuantityOnBasketGoodies`(:IDUser, :NameGoodies, :Quantity)') or die(print_r($bdd->errorInfo()));
+
+        $changeQuantityOnBasketGoodies->bindValue(':IDUser', $IDUser, PDO::PARAM_STR);
+        $changeQuantityOnBasketGoodies->bindValue(':NameGoodies', $NameGoodie, PDO::PARAM_STR);
+        $changeQuantityOnBasketGoodies->bindValue(':Quantity', $Quantity, PDO::PARAM_STR);
+
+        $changeQuantityOnBasketGoodies->execute();
+
+        return $changeQuantityOnBasketGoodies;
+    }
+
+    function addGoodieToBasketQuery($IDUser, $NameGoodie, $Quantity){
+        $bdd = getBDD();
+
+        $addGoodieToBasketQuery = $bdd->prepare('CALL `AddGoodieToBasket`(:IDUser, :NameGoodies, :Quantity)') or die(print_r($bdd->errorInfo()));
+
+        $addGoodieToBasketQuery->bindValue(':IDUser', $IDUser, PDO::PARAM_STR);
+        $addGoodieToBasketQuery->bindValue(':NameGoodies', $NameGoodie, PDO::PARAM_STR);
+        $addGoodieToBasketQuery->bindValue(':Quantity', $Quantity, PDO::PARAM_STR);
+
+        $addGoodieToBasketQuery->execute();
+
+        return $addGoodieToBasketQuery;
+    }
 
     function getGoodiesQuery(){
         $bdd = getBDD();
         $goodiesQuery = $bdd->prepare('CALL `GoodiesQuery`()') or die(print_r($bdd->errorInfo()));
         $goodiesQuery->execute();
         return $goodiesQuery;
+    }
+
+    function deleteGoodieQuery($goodie){
+        $bdd = getBDD();
+        $deleteGoodieQuery = $bdd->prepare('CALL `DeleteGoodie`(:goodie)') or die(print_r($bdd->errorInfo()));
+        $deleteGoodieQuery->bindValue(':goodie', $goodie, PDO::PARAM_STR);
+        $deleteGoodieQuery->execute();
+        return $deleteGoodieQuery;
     }
 
     function getGoodiesByResearch($research){
@@ -36,18 +84,4 @@
         $goodiesQuery->execute();
         return $goodiesQuery;
     }
-
-    function getBDD(){
-        try
-        {
-            $bdd = new PDO('mysql:host=178.62.4.64;dbname=test_boutique_lav;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-            return $bdd;
-        }
-        catch (Exception $e)
-        {
-            die ('Erreur : ' . $e->getMessage());
-        }
-    }
-
-
 ?>

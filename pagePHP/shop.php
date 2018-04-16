@@ -1,5 +1,8 @@
 <?php
+    session_start();
     require 'shop\BDDInteraction.php';
+    require 'BDDConnection.php';
+    require 'shop\fillShop.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,18 +14,28 @@
     </head>
 
     <body>
-        <?php include 'nav.php'; ?>
-        <div id="test">
+        <?php include 'nav.php';
+
+        ?>
+        <div id="shopDiv">
             <section>
                 <?php
-                require 'shop\fillShop.php';
                 if (isset($_POST['research']) AND $_POST['research'] != '')
                 {
                     $check = researchCheck($_POST['research']);
                 }
+                $role = roleCheck();
                 ?>
                 <article>
                 <?php
+                    if (isset($_POST['delete']))
+                    {
+                        deleteGoodie($_POST['delete']);
+                    }
+                    else if (isset($_POST['buy']) AND $_POST['quantity'] AND isset($_SESSION['Id']) AND $role != "Visitor")
+                    {
+                        addGoodieToBasket($_SESSION['Id'], $_POST['buy'], $_POST['quantity']);
+                    }
                     if (isset($check) AND $check)
                     {
                         researchedShop($_POST['research']);
@@ -46,15 +59,28 @@
                     {
                         normalShop();
                     }
-                ?>
+                    ?>
                 </article>
             </section>
         </div>
 
         <div id="sidebar">
-            <button type="button" id="filterButton">Filtrer</button>
 
-            <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+            <button type="button" id="filterButton">Filtrer</button>
+            <?php
+            if($role != "Visitor")
+            {
+            ?>
+                <a href="basket.php"><img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/></a>
+            <?php
+            }
+            else
+            {
+            ?>
+                <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+            <?php
+            }
+            ?>
 
             <div id="filter">
                 <form action="\projetWeb\pagePHP\shop.php" method="post">
@@ -74,7 +100,14 @@
                     <input type="hidden" name="popularity" value="1">
                     <input type="submit" value="Popularité">
                 </form>
-                <p>Ajouter</p>
+                <?php
+                if($role == "BDEMember")
+                {
+                ?>
+                    <p>Ajouter</p>
+                <?php
+                }
+                ?>
             </div>
         </div>
 

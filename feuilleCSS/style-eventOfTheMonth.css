@@ -24,49 +24,6 @@ body {
     background: white;
 }
 
-.table {
-    background-color: #CF000F;
-    display: flex ;
-    flex-flow: wrap;
-    justify-content: flex-end;
-    align-items: center;
-    color: #ECF0F1;
-    margin: 1%;
-}
-
-
-#exia {
-    margin-left: 3%;
-    padding: 0.8%;
-    background-color: #F2F1EF;
-    border-radius: 15px;
-    float: left;
-}
-#cc {
-    background-color: #CF000F;
-    border: none;
-}
-
-
-
-footer {
-    height: 10%;
-    padding-top: 2%;
-    text-align: center;
-    color: #ECF0F1;
-}
-
-footer a {
-    text-decoration: none;
-    color: #BFBFBF;
-}
-
-footer img {
-    width: 3%;
-}
-
-
-
 
 
 /* Full-width input fields */
@@ -100,7 +57,7 @@ input[type=text], input[type=password] {
     margin: auto;
 
 }
-section {
+#corps {
     margin: 3%;
     margin-left: 20%;
     margin-right: 10%;
@@ -173,7 +130,9 @@ section {
     align-self: flex-end;
 }
 
-
+.linkToEvent{
+    color:  #CF000F;
+}
 
 @media screen and (max-width:720px){
 
