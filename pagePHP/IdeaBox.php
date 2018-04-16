@@ -130,9 +130,9 @@
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail">
                     </div>
 
-                    <div><p>Nombre de vote:<!--<?php
-                                    echo $happenings['Vote'];?>-->
+                    <div><p>Nombre de vote:
                         </p>
+                        <input type="submit" name="validation" value="Valider" OnClick="window.location.href='IdeaValidation.php';" />
                     </div>
 
                     </div>
