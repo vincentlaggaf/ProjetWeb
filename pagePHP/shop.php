@@ -1,6 +1,8 @@
 <?php
     session_start();
     require 'shop\BDDInteraction.php';
+    require 'BDDConnection.php';
+    require 'shop\fillShop.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,7 +20,6 @@
         <div id="shopDiv">
             <section>
                 <?php
-                require 'shop\fillShop.php';
                 if (isset($_POST['research']) AND $_POST['research'] != '')
                 {
                     $check = researchCheck($_POST['research']);
@@ -29,11 +30,11 @@
                 <?php
                     if (isset($_POST['delete']))
                     {
-                        deletegoodie($_POST['delete']);
+                        deleteGoodie($_POST['delete']);
                     }
-                    else if (isset($_POST['buy']))
+                    else if (isset($_POST['buy']) AND $_POST['quantity'] AND isset($_SESSION['Id']) AND $role != "Visitor")
                     {
-
+                        addGoodieToBasket($_SESSION['Id'], $_POST['buy'], $_POST['quantity']);
                     }
                     if (isset($check) AND $check)
                     {
@@ -64,9 +65,22 @@
         </div>
 
         <div id="sidebar">
-            <button type="button" id="filterButton">Filtrer</button>
 
-            <a href="basket.php"><img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/></a>
+            <button type="button" id="filterButton">Filtrer</button>
+            <?php
+            if($role != "Visitor")
+            {
+            ?>
+                <a href="basket.php"><img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/></a>
+            <?php
+            }
+            else
+            {
+            ?>
+                <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+            <?php
+            }
+            ?>
 
             <div id="filter">
                 <form action="\projetWeb\pagePHP\shop.php" method="post">

@@ -4,20 +4,36 @@
         {
             $role = "BDEMember";
         }
-        else
+        else if(isset($_SESSION['Role']) AND $_SESSION['Role'] == "CESIMember")
+        {
+            $role = "CESIMember";
+        }
+        else if(isset($_SESSION['Role']))
         {
             $role = "Student";
+        }
+        else
+        {
+            $role = "Visitor";
         }
         return $role;
     }
 
-    function addGoodieToBasket($goodie, $quantity){
-        $addGoodieToBasket = addGoodieToBasket($goodie, $quantity);
+    function addGoodieToBasket($IDUser, $NameGoodie, $Quantity){
+        $addGoodieToBasket = checkBasketQuery($IDUser, $NameGoodie);
+        $row = $addGoodieToBasket->rowCount();
+        $addGoodieToBasket->closeCursor();
+        if($row >= 1){
+            changeQuantityOnBasketGoodies($IDUser, $NameGoodie, $Quantity);
+        }
+        else{
+            $addGoodieToBasket = addGoodieToBasketQuery($IDUser, $NameGoodie, $Quantity);
+        }
         $addGoodieToBasket->closeCursor();
     }
 
-    function deleteGoodie($goodie){
-        $deleteGoodie = deleteGoodieQuery($goodie);
+    function deleteGoodie($NameGoodie){
+        $deleteGoodie = deleteGoodieQuery($NameGoodie);
         $deleteGoodie->closeCursor();
     }
 
@@ -89,7 +105,7 @@
 
                         <form action="\projetWeb\pagePHP\shop.php" method="post">
                             <input type="hidden" name="buy" value="<?php echo $data['NameGoodies']; ?>">
-                            <input type="number" min="1" value="1">
+                            <input type="number" name="quantity" min="1" value="1">
                             <input type="submit" value="Acheter">
                         </form>
 
