@@ -33,18 +33,7 @@
     <body>
         <!--        <header> </header> -->
 
-        <img id="exia" src="\projetWeb\imagePNG\exia.png" alt="logo exia">
-
-        <div id="menu">
-            <nav class="table">
-
-
-                <button id ="cc" onclick="document.getElementById('id01').style.display='block'">
-                    <img src="\projetWeb\imagePNG\Menu_icon.png" alt="signIn ">
-                </button>
-            </nav>
-        </div>
-
+  <?php include('nav.php');?>
 
 
 
