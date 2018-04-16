@@ -73,10 +73,13 @@
                     <input type="hidden" name="popularity" value="1">
                     <input type="submit" value="Popularité">
                 </form>
+                <?php if (isset($_SESSION['Role']) AND $_SESSION['Role']=='BDEMember'){
+    ?>
+
                 <form action="addNewEventOfMonth.php">
                     <input type="submit" value="Ajouter un nouvel événement">
                 </form>
-
+<?php } ?>
             </div>
 
 
@@ -113,7 +116,7 @@
     ?>
             <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
                 <fieldset class="event">
-                    <legend class="eventNumber"><a href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> ">Event <?php echo $eventNumber;?></a></legend>
+                    <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> ">Event <?php echo $eventNumber;?></a></legend>
                         <div class="eventBloc">
 
                             <div class="titleAndPhoto">

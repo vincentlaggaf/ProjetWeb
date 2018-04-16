@@ -1,7 +1,7 @@
 <?php
 try
 {
-    $bdd = new PDO('mysql:host=localhost;dbname=eventofthemonth;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch (Exception $e)
 {
@@ -15,7 +15,7 @@ $IDEvent= $_POST['IDEvent'];
 $reloadPage=0;
 
 
-$check=$bdd->prepare("SELECT IDUser FROM interest WHERE IDEvent= :IDEvent");
+$check=$bdd->prepare("SELECT IDUser FROM Interest WHERE IDEvent= :IDEvent");
 $check->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
 $check->execute();
 $IDUserFromBDD=$check->fetch();
