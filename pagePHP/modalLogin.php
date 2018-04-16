@@ -15,7 +15,7 @@
                     <label for="uname"><b>Nom d'utilisateur</b></label>
                     <input type="text" name="Login">
                     <label for="psw"><b>Mot de passe</b></label>
-                    <input type="text" name="UserPassword">
+                    <input type="password" name="UserPassword">
                     <button type="submit" class="loginbtn"> Se connecter </button>
                     <button type="reset" class="cancelbtn" onclick="closeLogInModal()"> Annuler </button>
                     <br/><br/>
