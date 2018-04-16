@@ -30,18 +30,7 @@
 
     <body>
         <!--        <header> </header> -->
-
-        <img id="exia" src="\projetWeb\imagePNG\exia.png" alt="logo exia">
-
-        <div id="menu">
-            <nav class="table">
-
-
-                <button id ="cc" onclick="document.getElementById('id01').style.display='block'">
-                    <img src="\projetWeb\imagePNG\Menu_icon.png" alt="signIn ">
-                </button>
-            </nav>
-        </div>
+<?php  include('nav.php');?>
 
 
 
@@ -104,13 +93,13 @@
                     <div><p class="textOfSelect">Date de l'évènement</p>
                     <input type="date" name="dateOfTheEvent">
                 </div>
-
-                </div>
-
  <div class="inscriptionButton">
      <input type="hidden" name="IDEvent" value=""/>
     <input type="submit" value="Ajouter l'événement" name="test"/>
 </div>
+                </div>
+
+
 
 
             </div>

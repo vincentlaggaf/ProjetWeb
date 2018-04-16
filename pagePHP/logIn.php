@@ -14,7 +14,7 @@ catch (Exception $e)
 $Login = $_POST['Login'];
 $UserPassword = $_POST['UserPassword'];
 
-$reponse = $bdd-> prepare("SELECT Login, UserPassword, Role FROM Users WHERE Login= :Login AND UserPassword= :UserPassword;");
+$reponse = $bdd-> prepare("SELECT Login, UserPassword, Role, IDUser FROM Users WHERE Login= :Login AND UserPassword= :UserPassword;");
 $reponse->bindValue(':Login', $Login, PDO::PARAM_STR);
 $reponse->bindValue(':UserPassword', $UserPassword, PDO::PARAM_STR);
 $reponse->execute();
@@ -24,6 +24,7 @@ if($Login == $identifiants['Login'] AND $UserPassword == $identifiants['UserPass
 {
     $_SESSION['Login'] = $identifiants['Login'];
     $_SESSION['Role'] = $identifiants['Role'];
+    $_SESSION['Id'] = $identifiants['IDUser'];
     echo '<script>document.location.replace(\'/projetWeb/pagePHP/home.php\');</script>';
 }
 else
