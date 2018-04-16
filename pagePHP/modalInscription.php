@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="inscriptionModal" class="modal">
-            <form class="modal-content animate" action="signIn.php" method="post">
+            <form name="formulaire" class="modal-content animate" action="signIn.php"  onSubmit="return checkform()" method="post">
                 <div class="container">
                     <label for="lastname"><b>Nom</b></label>
                     <input type="text"
@@ -26,18 +26,24 @@
                            size="64" maxLength="64"
                            required
                            placeholder="nom.prenom@viacesi.fr"
-                           pattern=".+@viacesi.fr"
+                           pattern="^[a-zA-Z0-9]+[.]?[a-zA-Z0-9]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$"
                            title="Merci de fournir uniquement une adresse Viacesi">
                     <label for="uname"><b>Nom d'utilisateur</b></label>
                     <input type="text"
                            name="Login"
                            required>
                     <label for="psw"><b>Mot de passe</b></label>
-                    <input type="password"
+                    <input id="mdp1" type="password"
                            name="UserPassword"
                            pattern="^(?=.*\d)(?=.*[A-Z])(?!.*\s).*$"
                            required
                            title="Le mot de passe doit  contenir au moins une majuscule et au moins un chiffre">
+
+                    <label for="psw2"><b>Mot de passe (vérification)</b></label>
+                    <input type="password"
+                           name="UserPassword2"
+                           required
+                           title="Veuillez remettre le même mot de passe">
                     <button type="submit" class="loginbtn"> S'inscrire </button>
                     <button type="reset" class="cancelbtn" onclick="closeInscriptionModal()"> Annuler </button>
                     <br/><br/>
@@ -46,6 +52,16 @@
             </form>
         </div>
         <script>
+
+            function checkform() {
+                if(document.formulaire.UserPassword.value != document.formulaire.UserPassword2.value) {
+                    alert("mots de passe différents");
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
 
             document.getElementById('inscriptionModal').style.display='none';
             <?php

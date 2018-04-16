@@ -40,15 +40,30 @@ section {
     text-align: center;
 }
 
-article {
+.basket_picture
+{
+    width: 200px;
+    height: 200px;
+    border: 1px black groove;
+}
+
+.basket_information
+{
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    background-color: #FFF;
+    border: 2px black groove;
+    padding: 1%;
     width: 100%;
+    background: white;
+    align-items: center;
+}
 
+.info_goodies
+{
+    padding: 1%;
+    margin: 2%;
+    border: 1px black groove;
+    width: 100%;
 }
 
 input[type=text], input[type=password] {
