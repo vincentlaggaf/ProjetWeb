@@ -12,7 +12,6 @@ input[type=text], input[type=password] {
     font-size: 20px;
 }
 
-
 button:hover {
     opacity: 0.8;
 }
