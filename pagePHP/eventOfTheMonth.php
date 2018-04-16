@@ -129,14 +129,12 @@ catch (Exception $e)
                     <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
                     <input type="submit" value="Je m'inscris !" name="test"/>
                 </div>
-<<<<<<< HEAD
+
                             <?php }
 ?>
 
                         </div>
-=======
 
->>>>>>> origin/master
                 </fieldset>
             </form>
             <?php }
