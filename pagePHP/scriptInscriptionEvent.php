@@ -43,8 +43,6 @@ if(isset($_SESSION['Id']) AND isset($IDEvent)){
             $addUserToEvent->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
             $addUserToEvent->bindValue(':IDUser',$IDUser,PDO::PARAM_INT);
             $addUserToEvent->execute();
-           // echo $NameEvent;
-            //echo $pathToPage;
             header('Location:http://localhost/projetWeb/pagePHP/pageOfEvent.php?name='.$EventPath);
 
         }
