@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-modal.css">
     </head>
     <body>
-        <div id="id02" class="modal">
+        <div id="logInModal" class="modal">
             <form class="modal-content animate" action="logIn.php" method="post">
                 <div class="container">
                     <label for="uname"><b>Nom d'utilisateur</b></label>
@@ -17,31 +17,31 @@
                     <label for="psw"><b>Mot de passe</b></label>
                     <input type="text" name="UserPassword">
                     <button type="submit" class="loginbtn"> Se connecter </button>
-                    <button type="reset" class="cancelbtn" onclick="test()"> Annuler </button>
+                    <button type="reset" class="cancelbtn" onclick="closeLogInModal()"> Annuler </button>
+                    <br/><br/>
                     <a href="modalInscription.php"> Pas encore inscrit ? </a>
                 </div>
             </form>
         </div>
         <script>
+            document.getElementById('logInModal').style.display='none';
             <?php
-            $homepage = "/projetWeb/pagePHP/home.php";
+            $page = "/projetWeb/pagePHP/modalLogin.php";
             $currentpage = $_SERVER['REQUEST_URI'];
-            if($homepage==$currentpage) {
+            if($page == $currentpage) {
             ?>
-            document.getElementById('id02').style.display='none';
-            <?php
-            }
+            document.getElementById('logInModal').style.display='block';
+            <?php }
             else {
             ?>
-            document.getElementById('id02').style.display='block';
-            <?php
-            }
+            document.getElementById('logInModal').style.display='none';
+            <?php }
             ?>
-            function test() {
+            function closeLogInModal() {
                 var backPage = document.referrer;
                 switch(backPage) {
                     case "":
-                        document.getElementById('id02').style.display='none';
+                        document.getElementById('logInModal').style.display='none';
                         break;
                     case "http://localhost:8888/projetWeb/pagePHP/home.php":
                         window.history.back();
@@ -53,7 +53,7 @@
                         window.history.go(-2);
                         break;
                     default:
-                        document.getElementById('id02').style.display='none';
+                        document.getElementById('logInModal').style.display='none';
                 }
             }
         </script>

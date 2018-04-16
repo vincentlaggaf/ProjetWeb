@@ -1,5 +1,9 @@
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-nav.css">
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-dropdownMenu.css">
+<?php
+include ('modalInscription.php');
+include ('modalLogin.php');
+?>
 
 <div class="menu">
     <nav>
@@ -14,27 +18,22 @@
             if(isset($_SESSION['Login'])){
             ?>
             <li><a href="/projetWeb/pagePHP/destroySession.php" class="bouton">Déconnexion</a> </li>
-            <?php
-            }
+            <?php }
             else {
-                include ('modalInscription.php');
-                include ('modalLogin.php');
             ?>
-            <button id ="authentificationBtn" onclick="document.getElementById('id01').style.display='block'">
+            <button class="authentificationBtn" onclick="document.getElementById('inscriptionModal').style.display='block'">
                 <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
             </button>
-            <button id ="authentificationBtn" onclick="document.getElementById('id02').style.display='block'">
+            <button class="authentificationBtn" onclick="document.getElementById('logInModal').style.display='block'">
                 <img src="/projetWeb/imagePNG/logIn.png" alt="logIn ">
             </button>
-            <?php
-            }
+            <?php }
             if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'BDEMember') {
             ?>
             <a href="/projetWeb/pagePHP/administration.php" class="bouton">
                 <img src="/projetWeb/imagePNG/reglage.png" alt="reglage">
             </a>
-            <?php
-            }
+            <?php }
             ?>
         </ul>
     </nav>
@@ -42,11 +41,10 @@
 
 
 <div class="dropdown">
-    <button onclick="myFunction()" class="dropbtn">
-        menu
-<!--                        <img src="/projetWeb/imagePNG/Menu_icon.png" alt="menu">-->
+    <button onclick="dropdownFunction()" class="dropbtn">
+        MENU <!--  <img src="/projetWeb/imagePNG/Menu_icon.png" alt="menu">-->
     </button>
-    <!--    <input type="button" onclick="myFunction()" class="dropbtn" src="/projetWeb/imagePNG/Menu_icon.png"/>-->
+    <!--<input type="button" onclick="myFunction()" class="dropbtn" src="/projetWeb/imagePNG/Menu_icon.png"/>-->
     <div id="myDropdown" class="dropdown-content">
         <a href="home.php">Accueil</a>
         <a href="shop.php">Boutique</a>
@@ -55,12 +53,15 @@
         <a href="#">Évènements passés</a>
         <?php if(isset($_SESSION['Login'])){ ?>
         <a href="/projetWeb/pagePHP/destroySession.php" class="bouton">Déconnexion</a>
-        <?php } else { ?>
-        <button onclick="document.getElementById('id01').style.display='block'">
-            Inscription
+        <?php
+}
+        else {
+        ?>
+        <button class="authentificationBtn" onclick="document.getElementById('inscriptionModal').style.display='block'">
+            <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
         </button>
-        <button onclick="document.getElementById('id02').style.display='block'">
-            Connection
+        <button class="authentificationBtn" onclick="document.getElementById('logInModal').style.display='block'">
+            <img src="/projetWeb/imagePNG/logIn.png" alt="logIn ">
         </button>
         <?php } if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'BDEMember') { ?>
         <a href="/projetWeb/pagePHP/administration.php" class="bouton"> Administration </a>
@@ -69,10 +70,10 @@
 </div>
 
 <script>
-    document.getElementById('id01').style.display='none';
-    document.getElementById('id02').style.display='none';
+    //    document.getElementById('logInModal').style.display='none';
+    //    document.getElementById('inscriptionModal').style.display='none';
     /* When the user clicks on the button, toggle between hiding and showing the dropdown content */
-    function myFunction() {
+    function dropdownFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
     }
     // Close the dropdown menu if the user clicks outside of it

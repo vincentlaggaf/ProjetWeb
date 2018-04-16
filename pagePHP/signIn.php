@@ -33,7 +33,7 @@ if($Login == $pseudo['Login']){
 }
 
 else {
-    $requete = $bdd->prepare("INSERT INTO Users (Login, UserPassword, Mail, LastName, FirstName) VALUES(:Login, :UserPassword, :Mail, :LastName, :FirstName);");
+    $requete = $bdd->prepare("INSERT INTO Users (Login, UserPassword, Mail, LastName, FirstName, Role) VALUES(:Login, :UserPassword, :Mail, :LastName, :FirstName, 'Student');");
     $requete->bindValue(':Login', $Login, PDO::PARAM_STR);
     $requete->bindValue(':UserPassword', $UserPassword, PDO::PARAM_STR);
     $requete->bindValue(':Mail', $Mail, PDO::PARAM_STR);

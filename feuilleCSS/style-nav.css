@@ -12,7 +12,7 @@
         width: 60%;
     }
 
-    #authentificationBtn{
+    .authentificationBtn{
         background-color: #CF000F;
         border: none;
     }

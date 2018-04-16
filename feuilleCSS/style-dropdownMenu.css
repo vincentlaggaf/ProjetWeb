@@ -4,6 +4,10 @@
 
 @media screen and (max-width: 1140px) {
 
+    .authentificationBtn{
+background-color: #f1f1f1;
+        border: none;
+    }
 
     .dropbtn {
 /*        background-color: #CF000F;*/
