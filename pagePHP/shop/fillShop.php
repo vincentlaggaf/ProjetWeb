@@ -11,9 +11,14 @@
         return $role;
     }
 
+    function addGoodieToBasket($goodie, $quantity){
+        $addGoodieToBasket = addGoodieToBasket($goodie, $quantity);
+        $addGoodieToBasket->closeCursor();
+    }
+
     function deleteGoodie($goodie){
         $deleteGoodie = deleteGoodieQuery($goodie);
-        $normalShop->closeCursor();
+        $deleteGoodie->closeCursor();
     }
 
     function normalShop(){
@@ -27,7 +32,9 @@
         $row = $researchedShop->rowCount();
         if($row == 0)
         {
-            echo "<p>Votre recherche ne donne rien, veuillez essayer quelque chose d'autre.</p>";
+            ?>
+            <p>Votre recherche ne donne rien, veuillez essayer quelque chose d'autre.</p>
+            <?php
             $check = false;
         }
         else
@@ -59,7 +66,7 @@
     function displayGoodies($answer){
         while ($data = $answer->fetch())
         {
-    ?>
+        ?>
             <div class="shop">
                 <img src="<?php echo $data['URL']; ?>" alt="<?php echo $data['NameGoodies']; ?>" title="<?php echo $data['NameGoodies']; ?>" class="shop-picture"/>
 
@@ -80,16 +87,19 @@
 
                         <div class="info_goodies info_goodie_description info_goodies_margin">Description :<br/><?php echo $data['Description']; ?></div>
 
-                        <div class="info_goodies">acheter</div>
+                        <form action="\projetWeb\pagePHP\shop.php" method="post">
+                            <input type="hidden" name="buy" value="<?php echo $data['NameGoodies']; ?>">
+                            <input type="number" min="1" value="1">
+                            <input type="submit" value="Acheter">
+                        </form>
 
                         <?php
                         if(roleCheck() == "BDEMember")
                         {
                         ?>
-<!--                            <div class="info_goodies">supprimer</div>-->
                             <form action="\projetWeb\pagePHP\shop.php" method="post">
-                            <input type="hidden" name="delete" value="<?php echo $data['NameGoodies']; ?>">
-                            <input type="submit" value="Supprimer">
+                                <input type="hidden" name="delete" value="<?php echo $data['NameGoodies']; ?>">
+                                <input type="submit" value="Supprimer">
                             </form>
                         <?php
                         }
@@ -97,7 +107,7 @@
                     </div>
                 </div>
         </div>
-<?php
+    <?php
     }
 }
 ?>

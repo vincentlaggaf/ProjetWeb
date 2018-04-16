@@ -39,7 +39,7 @@ if(isset($_GET['name'])){
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
     </head>
     <?php include ('nav.php'); ?>
-
+<body>
     <section id="corps">
         <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
             <fieldset class="event">
@@ -64,10 +64,12 @@ if(isset($_GET['name'])){
                 </div>
             </fieldset>
         </form>
+    </section>
+        <?php include('footer.php');?>
         <?php
 }
 else{
-    // header('Location:home.php');
-    //exit();
+    header('Location:eventOfTheMonth.php');
+    exit();
 }
         ?>

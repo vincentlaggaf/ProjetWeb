@@ -55,6 +55,4 @@
             die ('Erreur : ' . $e->getMessage());
         }
     }
-
-
 ?>

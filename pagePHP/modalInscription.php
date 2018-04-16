@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-modal.css">
     </head>
     <body>
-        <div id="id01" class="modal">
+        <div id="inscriptionModal" class="modal">
             <form class="modal-content animate" action="signIn.php" method="post">
                 <div class="container">
                     <label for="lastname"><b>Nom</b></label>
@@ -39,29 +39,32 @@
                            required
                            title="Le mot de passe doit  contenir au moins une majuscule et au moins un chiffre">
                     <button type="submit" class="loginbtn"> S'inscrire </button>
-                    <button type="reset" class="cancelbtn" onclick="test2()"> Annuler </button>
+                    <button type="reset" class="cancelbtn" onclick="closeInscriptionModal()"> Annuler </button>
+                    <br/><br/>
                     <a href="modalLogin.php"> Déjà un compte ? </a>
                 </div>
             </form>
         </div>
         <script>
+
+            document.getElementById('inscriptionModal').style.display='none';
             <?php
-            $homepage = "/projetWeb/pagePHP/home.php";
+            $page = "/projetWeb/pagePHP/modalInscription.php";
             $currentpage = $_SERVER['REQUEST_URI'];
-            if($homepage==$currentpage) {
+            if($page == $currentpage) {
             ?>
-            document.getElementById('id01').style.display='none';
+            document.getElementById('inscriptionModal').style.display='block';
             <?php }
             else {
             ?>
-            document.getElementById('id01').style.display='block';
+            document.getElementById('inscriptionModal').style.display='none';
             <?php }
             ?>
-            function test2() {
+            function closeInscriptionModal() {
                 var backPage = document.referrer;
                 switch(backPage) {
                     case "":
-                        document.getElementById('id01').style.display='none';
+                        document.getElementById('inscriptionModal').style.display='none';
                         break;
                     case "http://localhost:8888/projetWeb/pagePHP/home.php":
                         window.history.back();
@@ -73,7 +76,7 @@
                         window.history.go(-2);
                         break;
                     default:
-                        document.getElementById('id01').style.display='none';
+                        document.getElementById('inscriptionModal').style.display='none';
                 }
             }
         </script>

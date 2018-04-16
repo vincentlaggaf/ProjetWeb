@@ -1,6 +1,6 @@
 <?php
+    session_start();
     require 'shop\BDDInteraction.php';
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,6 +31,10 @@
                     {
                         deletegoodie($_POST['delete']);
                     }
+                    else if (isset($_POST['buy']))
+                    {
+
+                    }
                     if (isset($check) AND $check)
                     {
                         researchedShop($_POST['research']);
@@ -54,7 +58,7 @@
                     {
                         normalShop();
                     }
-                ?>
+                    ?>
                 </article>
             </section>
         </div>
@@ -62,7 +66,7 @@
         <div id="sidebar">
             <button type="button" id="filterButton">Filtrer</button>
 
-            <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+            <a href="basket.php"><img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/></a>
 
             <div id="filter">
                 <form action="\projetWeb\pagePHP\shop.php" method="post">
