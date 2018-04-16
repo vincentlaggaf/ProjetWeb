@@ -43,13 +43,12 @@ else{
 //    include ('modalInscription.php');
 //    document.getElementById('id01').style.display='block';
 
+ include('modalLogin.php');
 
-        echo "<script>alert('Vous n\'êtes pas connectés !');
-        window.location.replace('home.php');</script>";
 
 echo "<script>alert('Vous n\'êtes pas connectés !');
         ;</script>";
-   include ('modalInscription.php');
+   //include ('modalInscription.php');
      "<script>    document.getElementById('id01').style.display='block';</script>";
 
         ;
