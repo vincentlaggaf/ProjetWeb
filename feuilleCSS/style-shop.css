@@ -1,5 +1,11 @@
+/*
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+*/
+
 html {
-    margin: 0;
     background-color: #CF000F;
 }
 
@@ -7,39 +13,20 @@ body {
     background-color: #CF000F;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
     color: #22313F;
-
 }
 
-.table {
-    background-color: #CF000F;
-    display: flex ;
-    flex-flow: wrap;
-    justify-content: flex-end;
-    align-items: center;
-    color: #ECF0F1;
-    margin: 1%;
-    margin: 1%;
-}
-
-#exia {
-    margin-left: 3%;
-    padding: 0.8%;
-    background-color: #F2F1EF;
-    border-radius: 15px;
-    float: left;
-}
-
-#cc {
-    background-color: #CF000F;
-    border: none;
+#test
+{
+    display: flex;
+    justify-content: center;
 }
 
 section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
 
@@ -47,24 +34,22 @@ section {
     padding: 2%;
     margin: auto;
     margin-top: 3%;
+    margin-left: 50%;
     width: 60%;
     border: 2px black groove;
-}
 
-footer {
-    height: 10%;
-    padding-top: 2%;
     text-align: center;
-    color: #ECF0F1;
 }
 
-footer a {
-    text-decoration: none;
-    color: #BFBFBF;
-}
+article {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
-footer img {
-    width: 3%;
+    background-color: #FFF;
+    width: 100%;
+
 }
 
 /* Full-width input fields */
@@ -84,7 +69,7 @@ button:hover {
 .shop
 {
     margin: 3%;
-    width: 200px;
+/*    width: 200px;*/
 }
 
 .shop-picture

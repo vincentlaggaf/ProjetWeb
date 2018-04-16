@@ -5,6 +5,22 @@
         $normalShop->closeCursor();
     }
 
+    function researchCheck($research){
+        $researchedShop = getGoodiesByResearch($research);
+        $row = $researchedShop->rowCount();
+        if($row == 0)
+        {
+            echo "<p>Votre recherche ne donne rien, veuillez essayer quelque chose d'autre.</p>";
+            $check = false;
+        }
+        else
+        {
+            $check = true;
+        }
+        $researchedShop->closeCursor();
+        return $check;
+    }
+
     function researchedShop($research){
         $researchedShop = getGoodiesByResearch($research);
         displayGoodies($researchedShop);

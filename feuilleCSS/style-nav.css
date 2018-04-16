@@ -1,0 +1,44 @@
+.table {
+    display: none;
+}
+
+
+@media screen and (min-width: 1141px) {
+
+    #exia{
+        padding: 7%;
+        background-color: #F2F1EF;
+        border-radius: 18%;
+        width: 60%;
+    }
+
+    .authentificationBtn{
+        background-color: #CF000F;
+        border: none;
+    }
+
+    .table {
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+
+    .table a {
+        color: #fff;
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+    }
+    .table li {
+        list-style-type: none;
+    }
+
+    .table li:first-child {
+        margin-right: auto;
+    }
+
+    .bouton:hover {
+        text-decoration-line: underline;
+    }
+}
+

@@ -8,7 +8,6 @@
                 <th>Role</th>
                 <th>Modifier</th>
             </tr>
-
             <?php
             try
             {
@@ -18,13 +17,10 @@
             {
                 die('Erreur : ' . $e->getMessage());
             }
-
             $reponse = $bdd-> prepare("SELECT LastName, FirstName, Role FROM Users;");
             $reponse->execute();
-            while($donnees = $reponse->fetch())
-            {
+            while($donnees = $reponse->fetch()) {
             ?>
-
             <tr>
                 <form action="updateUser.php" method="post">
                     <td><input type="text" name="LastName" value="<?php echo $donnees['LastName'];?>"/><br/></td>
@@ -37,39 +33,22 @@
                         <option  value="<?php echo $niveaux['Role'];?>">
                             <?php echo $niveaux['Role'];?>
                         </option>
-                        <?php
-                }?> </select>
+                        <?php }
+                        ?> </select>
                     </td>
                     <td><input type="submit" value="Submit"/></td>
                 </form>
             </tr>
-            <?php
-            }
+            <?php }
             $reponse->closeCursor();
             ?>
         </table>
-
         <button onclick="goBack()">Go Back</button>
-
         <script>
             function goBack() {
-                if (document.referrer == "")
-                {
-                alert("rien");
-                }
-                else {
-//                    alert(document.referrer);
-                    window.history.back();
-                }
+                document.location.replace('/projetWeb/pagePHP/home.php');
+                //if (document.referrer == ""){alert("rien");}else {window.history.back();}
             }
         </script>
-
-        <!--
-function changeRole(val) {
-var chosenRole = val;
-document.getElementById("role").value = chosenRole;
-}
--->
-
     </body>
 </html>
