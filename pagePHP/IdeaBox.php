@@ -1,14 +1,21 @@
 <?php
     session_start();
-    try
-        {
-            $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+  try
+{
+            $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+}
+catch (Exception $e)
+{
+    die ('Erreur : ' . $e->getMessage());
+}
 
-        }
-        catch (Exception $e)
-        {
-            die ('Erreur : ' . $e->getMessage());
-        }
+
+
+
+            //$getNumberVote = $bdd->prepare('SELECT COUNT(DISTINCT Vote) as nVote FROM interest WHERE IDEvent =:IDEvent');
+
+           // $donnees=mysql_fetch_array($getNumberVote);
+            //$getNumberVote->execute();
 
 ?>
 
@@ -116,9 +123,8 @@
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail">
                     </div>
 
-                    <div><p>Nombre de vote:<!--<?php
-                    echo $happenings['Vote'];
-                    ?>-->
+                    <div><p>Nombre de vote:<?php echo $donnees[0];
+                        ?>
                         </p>
 
                     </div>
@@ -130,7 +136,7 @@
 
 
                     <div class="voteButton">
-                        <input type="hidden" name="idEvent" value="<?php $happenings['IDEvent'];?>">
+                        <input type="hidden" name="idEvent" value="<?php echo $happenings['IDEvent'];?>">
                         <input type="submit" name="vote" value="Voter !" />
                     </div>
 
@@ -154,16 +160,33 @@
 
                         if(isset($_POST['vote'])){
 
+                           $getEntry =  $bdd->prepare('SELECT * FROM interest WHERE IDEvent =:IDEvent  AND IDUser =:IDUser');
 
-                           $vote =  $bdd->prepare('UPDATE interest SET Vote = 1 WHERE IDEvent =:IdEvent  AND IDUser =:IDUser  ');
+                            $getEntry->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
+                            $getEntry->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
+                            $getEntry->execute();
+                            $entry=$getEntry->fetch();
+
+                            if(isset($entry['IDUser'])){
+
+                           $vote =  $bdd->prepare('UPDATE interest SET Vote = 1 WHERE IDEvent =:IDEvent  AND IDUser =:IDUser ');
 
                             $vote->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
-                            $vote->bindValue(':IDEvent',$_POST['IDEvent'],PDO::PARAM_INT);
+                            $vote->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
                             $vote->execute();
+                            echo $_POST['idEvent'];
+                            echo $_SESSION['Id'];
 
                                 }
-            ?>
+                        else{
+                              $voteAdd =  $bdd->prepare('INSERT INTO interest (Participate,Vote,IDUser,IDEvent) VALUES (0,1,:IDUser,:IDEvent)');
 
+                            $voteAdd->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
+                            $voteAdd->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
+                            $voteAdd->execute();
+                        }
+                        }
+            ?>
 
 
          </section>
