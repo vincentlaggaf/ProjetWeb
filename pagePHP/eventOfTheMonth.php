@@ -77,7 +77,7 @@ catch (Exception $e)
             // Events passés $currentDate=date("y-m-d");
             //echo ($currentDate);
 
-            while( $happening=$getHappening->fetch() AND $numberOfEvent<6 ){
+            while( $happening=$getHappening->fetch() AND $numberOfEvent<18 ){
 
                 //echo strtotime($title['EventDate']);
                 $monthOfTheEvent=explode("-",$happening['EventDate']);

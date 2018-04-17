@@ -42,16 +42,19 @@ $create=$check->fetch();
     $requete->bindValue(':nameEventCategory',$eventCategory,PDO::PARAM_STR);
 
     $requete->execute();
-      echo "Création d'évènement réussie !";
+      //echo "Création d'évènement réussie !";
 
 
        if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
         {
-            if($_FILES['photoOfTheEvent']['size']<=1000000)
+            if($_FILES['photoOfTheEvent']['size']<=8000000)
             {
                 $infosPhoto = pathinfo($_FILES['photoOfTheEvent']['name']);
+                $namePhoto=str_replace(' ','_',($_FILES['photoOfTheEvent']['name']));
+                echo $namePhoto;
+                echo "ARG";
                 $extensionPhoto = $infosPhoto['extension'];
-                $extensionsAllowed = array('jpg', 'jpeg', 'png');
+                $extensionsAllowed = array('jpg', 'jpeg', 'png','PNG','JPG','JPEG');
                 if (in_array($extensionPhoto, $extensionsAllowed))
                 {
 
@@ -62,12 +65,12 @@ $create=$check->fetch();
                     $id=$getId->fetch();
 
                     $idToLookFor=$id['IDEvent'];
-                    echo $idToLookFor;
+                  //  echo $idToLookFor;
 
-                    move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.basename($_FILES['photoOfTheEvent']['name']));
+                    move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.basename($namePhoto));
 
-                    $urlPhoto='../imagePNG/events/'.basename($_FILES['photoOfTheEvent']['name']);
-                    echo "Photo bien reçue";
+                    $urlPhoto='../imagePNG/events/'.basename($namePhoto);
+                 //   echo "Photo bien reçue";
 
                     $saveUrl=$bdd->prepare("INSERT INTO Photo (Url,IDEvent)VALUES (:url,:IDEvent) ");
                     $saveUrl->bindValue(':url',$urlPhoto,PDO::PARAM_STR);
@@ -77,9 +80,12 @@ $create=$check->fetch();
                 }
 
 
-            }
+            }else{
+                echo "<script>alert('Une erreur s'est produite lors de l'envoi de la photo,veuillez réduire la taille de celle-ci!');</script>";
+        echo '<script> document.location.replace(/projetWeb/pagePHP/addNewEventOfTheMonth.php);</script>';
 
       }
+       }
 
 
 
@@ -91,5 +97,5 @@ $create=$check->fetch();
 
 
 
-header('Location:eventOfTheMonth.php');
+//header('Location:eventOfTheMonth.php');
 ?>
