@@ -16,8 +16,6 @@ $EventPath=str_replace(';','',$NameEvent);
 //$IDUser=4;
 $reloadPage=0;
 
-
-
 if(isset($_SESSION['Id']) AND isset($IDEvent)){
 
     $IDUser=$_SESSION['Id'];
@@ -69,9 +67,5 @@ else{
     //  header('Location:http://localhost/projetWeb/pagePHP/eventOfTheMonth.php');
 
 }
-
-
-
-
 
 ?>

@@ -10,8 +10,6 @@ catch (Exception $e)
 {
     die('Erreur : ' . $e->getMessage());
 }
-
-
 $Login = $_POST['Login'];
 $UserPassword = $_POST['UserPassword'];
 echo $Login . $UserPassword;
@@ -24,11 +22,9 @@ $identifiants= $reponse->fetch();
 
 if($Login == $identifiants['Login'] AND $UserPassword == $identifiants['UserPassword'])
 {
-    echo "j'y suis";
     $_SESSION['Login'] = $identifiants['Login'];
     $_SESSION['Role'] = $identifiants['Role'];
     $_SESSION['Id'] = $identifiants['IDUser'];
-//    echo '<script>document.location.replace(\'/projetWeb/pagePHP/home.php\');</script>';
     echo '<script> document.location.replace(window.history.back());</script>';
 
 }
@@ -36,7 +32,6 @@ else
 {
     echo '<script> alert ("erreur authentification");</script>';
     echo '<script> document.location.replace(window.history.back());</script>';
-//    echo '<script> document.location.replace(window.history.back());</script>';
 }
 ?>
 
