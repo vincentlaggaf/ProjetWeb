@@ -2,14 +2,13 @@
 session_start();
 try
 {
-            $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+    $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 catch (Exception $e)
 {
     die ('Erreur : ' . $e->getMessage());
 }
 ?>
-
 
 <?php
 
@@ -39,32 +38,32 @@ if(isset($_GET['name'])){
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
     </head>
     <?php include ('nav.php'); ?>
-<body>
-    <section id="corps">
-        <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
-            <fieldset class="event">
-                <legend class="eventNumber">Oui</legend>
-                <div id="eventAndParticipants">
-                    <div class="eventBloc">
-                        <div class="titleAndPhoto">
-                            <div class="title">
-                                <strong>
-                                    <?php echo $InfoEvent['NameEvent']?>
-                                </strong>
+    <body>
+        <section id="corps">
+            <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
+                <fieldset class="event">
+                    <legend class="eventNumber">Oui</legend>
+                    <div id="eventAndParticipants">
+                        <div class="eventBloc">
+                            <div class="titleAndPhoto">
+                                <div class="title">
+                                    <strong>
+                                        <?php echo $InfoEvent['NameEvent']?>
+                                    </strong>
+                                </div>
+                                <div class="photo">
+                                    <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
                             </div>
-                            <div class="photo">
-                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
+                            <div class="eventDescription">
+                                <?php echo $InfoEvent['Description']?>
+                            </div>
                         </div>
-                        <div class="eventDescription">
-                            <?php echo $InfoEvent['Description']?>
-                        </div>
+                        <legend >oui</legend>
+                        <div id="listOfParticipant">ezaezae</div>
                     </div>
-                    <legend >oui</legend>
-                    <div id="listOfParticipant">ezaezae</div>
-                </div>
-            </fieldset>
-        </form>
-    </section>
+                </fieldset>
+            </form>
+        </section>
         <?php include('footer.php');?>
         <?php
 }

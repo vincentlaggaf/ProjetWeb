@@ -10,18 +10,15 @@ catch (Exception $e)
 }
 ?>
 
-
 <!DOCTYPE html>
 <html id="top">
-
     <head>
-        <title> Evènement du mois </title>
+        <title> Evènements passés </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-pastEvent.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
-
     </head>
 
     <body>
@@ -29,6 +26,7 @@ catch (Exception $e)
         <?php include('nav.php');?>
 
         <section id="corps">
+
             <div id="sidebar">
                 <form action="" method="post">
                     <input type="text" name="research" placeholder="Recherche"/>
@@ -59,22 +57,15 @@ catch (Exception $e)
 
 
 
-
-
-
-
-
             <?php
-            $getHappening=$bdd->query('SELECT * FROM Happenings');
+            $getHappened=$bdd->query('SELECT * FROM Happenings');
             $numberOfEvent=0;
-            $currentMonth=date("m");
+            //            $currentMonth=date("m");
             $eventNumber=1;
-
-
-            // Events passés $currentDate=date("y-m-d");
+            $currentDate=date("y-m-d");
             //echo ($currentDate);
 
-            while( $happening=$getHappening->fetch() AND $numberOfEvent<6 ){
+            while( $happened=$getHappened->fetch() AND $numberOfEvent<6 ){
 
                 //echo strtotime($title['EventDate']);
                 $monthOfTheEvent=explode("-",$happening['EventDate']);
@@ -141,10 +132,7 @@ catch (Exception $e)
             ?>
         </section>
 
-        <?php
-        include('footer.php');
-        ?>
+        <?php include('footer.php'); ?>
 
     </body>
-
 </html>

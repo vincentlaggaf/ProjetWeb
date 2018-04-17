@@ -1,8 +1,8 @@
 <?php
     session_start();
-    require 'shop\BDDInteraction.php';
+    require 'shop/BDDInteraction.php';
     require 'BDDConnection.php';
-    require 'shop\fillShop.php';
+    require 'shop/fillShop.php';
 ?>
 <!DOCTYPE html>
 <html>
