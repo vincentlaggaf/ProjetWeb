@@ -8,6 +8,10 @@
         {
             $role = "CESIMember";
         }
+        else if(isset($_SESSION['Role']) AND $_SESSION['Role'] == "Inactif")
+        {
+            $role = "Inactif";
+        }
         else if(isset($_SESSION['Role']))
         {
             $role = "Student";
@@ -41,6 +45,12 @@
         $normalShop = getGoodiesQuery();
         displayGoodies($normalShop);
         $normalShop->closeCursor();
+    }
+
+    function getPopularGoodies(){
+        $getPopulargoodies = getPopulargoodiesQuery();
+        displayGoodies($getPopulargoodies);
+        $getPopulargoodies->closeCursor();
     }
 
     function researchCheck($research){

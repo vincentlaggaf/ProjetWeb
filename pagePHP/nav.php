@@ -2,6 +2,7 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <!--<link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">-->
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-nav.css">
+<link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-dropdownMenu.css">
 
 <div class="menu">

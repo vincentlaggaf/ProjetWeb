@@ -48,6 +48,13 @@
         return $goodiesQuery;
     }
 
+    function getPopulargoodiesQuery(){
+        $bdd = getBDD();
+        $getPopulargoodiesQuery = $bdd->prepare('CALL `PopularGoodiesQuery`()') or die(print_r($bdd->errorInfo()));
+        $getPopulargoodiesQuery->execute();
+        return $getPopulargoodiesQuery;
+    }
+
     function deleteGoodieQuery($goodie){
         $bdd = getBDD();
         $deleteGoodieQuery = $bdd->prepare('CALL `DeleteGoodie`(:goodie)') or die(print_r($bdd->errorInfo()));

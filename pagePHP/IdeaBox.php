@@ -89,7 +89,7 @@ catch (Exception $e)
 
 
             <?php
-            $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM happenings WHERE Validate=0');
+            $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate=0');
             while( $happenings = $gethappenings->fetch()){
 
             ?>
