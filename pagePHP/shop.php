@@ -24,18 +24,28 @@
                 {
                     $check = researchCheck($_POST['research']);
                 }
+                else if (isset($_POST['delete']))
+                {
+                    deleteGoodie($_POST['delete']);
+                }
+                else if (isset($_POST['buy']) AND $_POST['quantity'] AND isset($_SESSION['Id']) AND $role != "Visitor")
+                {
+                    addGoodieToBasket($_SESSION['Id'], $_POST['buy'], $_POST['quantity']);
+                }
                 $role = roleCheck();
                 ?>
+<!--
+                <p>Voici une sélection de nos articles les plus vendu :</p>
+                <div id="popularGoodies">
+
+                    <?php
+                    getPopularGoodies();
+                    ?>
+                </div>
+-->
+
                 <article>
                 <?php
-                    if (isset($_POST['delete']))
-                    {
-                        deleteGoodie($_POST['delete']);
-                    }
-                    else if (isset($_POST['buy']) AND $_POST['quantity'] AND isset($_SESSION['Id']) AND $role != "Visitor")
-                    {
-                        addGoodieToBasket($_SESSION['Id'], $_POST['buy'], $_POST['quantity']);
-                    }
                     if (isset($check) AND $check)
                     {
                         researchedShop($_POST['research']);
@@ -68,7 +78,7 @@
 
             <button type="button" id="filterButton">Filtrer</button>
             <?php
-            if($role != "Visitor")
+            if($role != "Visitor" AND $role != "Inactif")
             {
             ?>
                 <a href="basket.php"><img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/></a>
