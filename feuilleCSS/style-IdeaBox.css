@@ -15,15 +15,6 @@ body {
     color: #22313F;
 }
 
-.table {
-    background-color: #CF000F;
-    display: flex ;
-    flex-flow: wrap;
-    justify-content: flex-end;
-    align-items: center;
-    color: #ECF0F1;
-    margin: 1%;
-}
 
 .bouton li{ list-style-type: none;
 }
@@ -37,17 +28,8 @@ body {
     letter-spacing: 2px;
 }
 
-.bouton:hover{
-    text-decoration-line: underline;
-}
 
-#exia {
-    margin-left: 3%;
-    padding: 0.8%;
-    background-color: #F2F1EF;
-    border-radius: 15px;
-    float: left;
-}
+
 #cc {
     background-color: #CF000F;
     border: none;
@@ -76,23 +58,6 @@ background-color: #ECF0F1;
 }
 
 
-footer {
-    height: 10%;
-    padding-top: 2%;
-    text-align: center;
-    color: #ECF0F1;
-}
-
-footer a {
-    text-decoration: none;
-    color: #BFBFBF;
-}
-
-footer img {
-    width: 3%;
-}
-
-
 
 
 
@@ -107,94 +72,6 @@ input[type=text], input[type=password] {
     font-size: 20px;
 }
 
-
-button:hover {
-    opacity: 0.8;
-}
-
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-    font-size: 20px;
-}
-
-.loginbtn{
-    width: auto;
-    padding: 10px 18px;
-    background-color: #4CAF50;
-    font-size: 20px;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-}
-
-
-
-/* Slideshow container */
-.theCarousel {
-    max-width: 99%;
-    max-height: 99%;
-/*    position: relative;*/
-/*  margin: auto;*/
-}
-
-
-/* Next & previous buttons */
-.prev, .next {
-    cursor: pointer;
-/*    position: absolute;*/
-    top: 50%;
-    width: auto;
-    margin-top: -22px;
-    padding: 16px;
-    color: black;
-    font-weight: bold;
-    font-size: 18px;
-    /*  transition: 0.6s ease;*/
-    border-radius: 0 3px 3px 0;
-}
-
-/* Position the "next button" to the right */
-.next {
-    right: 0;
-    border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-    background-color: rgba(0,0,0,0.8);
-}
 
 /* Caption text */
 .text {
@@ -259,7 +136,7 @@ section {
 width: 100%;
 
 }
-.addNewEvent
+.addIdea
 {
     margin: 1%;
 }
@@ -299,6 +176,21 @@ width: 100%;
     background-color: white;
 
 }
+.validation{
+
+
+}
+
+
+
+.titleValidation{
+    font-size: 20px;
+    border: black 1px solid;
+    margin: 2px;
+    margin-top: 4%;
+    background-color: white;
+
+}
 
 .photo
 {
@@ -307,10 +199,12 @@ width: 100%;
     margin: 2px;
 }
 
+
 .thumbnail{
     height: 100%;
     width: 100%;
 }
+
 .bar{
 
     border: 1px solid #eee;
@@ -328,14 +222,6 @@ width: 100%;
 
 
 
-/*
-
-@-webkit-keyframes fade {
-from {opacity: .4}
-to {opacity: 1}
-*\
-*/
-
 .filter
 {
 
@@ -352,6 +238,16 @@ to {opacity: 1}
 .voteButton
 {
     align-self: flex-end;
+}
+
+.buttonvali{
+
+    margin-left: 100px;
+}
+.buttonValidation{
+
+   align-self: flex-end;
+
 }
 
 

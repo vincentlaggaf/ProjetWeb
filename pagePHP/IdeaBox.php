@@ -1,14 +1,21 @@
 <?php
     session_start();
-    try
-        {
-            $bdd = new PDO('mysql:host=localhost;dbname=projetweb;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+  try
+{
+            $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+}
+catch (Exception $e)
+{
+    die ('Erreur : ' . $e->getMessage());
+}
 
-        }
-        catch (Exception $e)
-        {
-            die ('Erreur : ' . $e->getMessage());
-        }
+
+
+
+            //$getNumberVote = $bdd->prepare('SELECT COUNT(DISTINCT Vote) as nVote FROM interest WHERE IDEvent =:IDEvent');
+
+           // $donnees=mysql_fetch_array($getNumberVote);
+            //$getNumberVote->execute();
 
 ?>
 
@@ -30,27 +37,13 @@
     </head>
 
     <body>
+
         <!--        <header> </header> -->
 
-        <img id="exia" src="\projetWeb\imagePNG\exia.png" alt="logo exia">
 
-        <div id="menu">
-            <nav class="table">
-
-
-                <button id ="cc" onclick="document.getElementById('id01').style.display='block'">
-                    <img src="\projetWeb\imagePNG\Menu_icon.png" alt="signIn ">
-                </button>
-            </nav>
-        </div>
-
-
+        <?php include('nav.php');?>
 
         <section id="corps">
-
-
-
-
 
 
             <form class="addNewEvent" action="IdeaBox.php" method="post">
@@ -110,7 +103,7 @@
 
                 ?>
 
-             <form class="addNewEvent" action="ideaValidation.php" method="post" >
+             <form class="addIdea" action="IdeaBox.php" method="post" >
                 <fieldset class="event">
                 <legend class="eventNumber" name="idevent">Idée <?=
                      $happenings['IDEvent'];
@@ -130,9 +123,8 @@
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail">
                     </div>
 
-                    <div><p>Nombre de vote:<!--<?php
-                    echo $happenings['Vote'];
-                    ?>-->
+                    <div><p>Nombre de vote:<?php echo $donnees[0];
+                        ?>
                         </p>
 
                     </div>
@@ -144,7 +136,7 @@
 
 
                     <div class="voteButton">
-                        <input type="hidden" name="idEvent" value="<?php $happenings['IDEvent'];?>">
+                        <input type="hidden" name="idEvent" value="<?php echo $happenings['IDEvent'];?>">
                         <input type="submit" name="vote" value="Voter !" />
                     </div>
 
@@ -152,10 +144,13 @@
                 </fieldset>
             </form>
 
-                        <form action="IdeaValidation.php" method="post">
-                        <input type="submit" name="validation" value="Valider"  />
-                        <input type="hidden" name="idValidate" value="1"  />
-                        </form>
+             <form action="IdeaValidation.php" method="post">
+                 <div class="buttonvali" >
+                    <input type="submit" name="validation" value="Valider"  />
+                    <input type="hidden" name="idValidate" value="1"  />
+                 </div>
+
+             </form>
 
 
 
@@ -165,31 +160,39 @@
 
                         if(isset($_POST['vote'])){
 
-                            //$getvote = $bdd->query('SELECT IDEvent,IDUser FROM interest'); $vote = $getvote->fetch();
-                            $bdd->exec('UPDATE interest SET Vote = 1 WHERE IDEvent = 3 AND IDUser = 2 ');
+                           $getEntry =  $bdd->prepare('SELECT * FROM interest WHERE IDEvent =:IDEvent  AND IDUser =:IDUser');
 
+                            $getEntry->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
+                            $getEntry->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
+                            $getEntry->execute();
+                            $entry=$getEntry->fetch();
+
+                            if(isset($entry['IDUser'])){
+
+                           $vote =  $bdd->prepare('UPDATE interest SET Vote = 1 WHERE IDEvent =:IDEvent  AND IDUser =:IDUser ');
+
+                            $vote->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
+                            $vote->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
+                            $vote->execute();
+                            echo $_POST['idEvent'];
+                            echo $_SESSION['Id'];
 
                                 }
+                        else{
+                              $voteAdd =  $bdd->prepare('INSERT INTO interest (Participate,Vote,IDUser,IDEvent) VALUES (0,1,:IDUser,:IDEvent)');
 
-                            ?>
-
+                            $voteAdd->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
+                            $voteAdd->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
+                            $voteAdd->execute();
+                        }
+                        }
+            ?>
 
 
          </section>
-
-        <footer id="bas">
-             <div id="logoContact">
-                <img src="\projetWeb\imagePNG\www.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\mail.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\facebook.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\github.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\twitter.png" alt="logo réseaux sociaux">
-            </div>
-            <p> © BDE Pau - 2018</p>
-            <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-
-        </footer>
+        <?php
+        include('footer.php');
+        ?>
 
     </body>
 </html>
