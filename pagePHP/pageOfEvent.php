@@ -39,26 +39,27 @@ if(isset($_GET['name'])){
     </head>
     <?php include ('nav.php'); ?>
 
-    <body>
-        <section id="corps">
-            <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
-                <fieldset class="event">
-                    <legend class="eventName"><strong>
-                        <?php echo $InfoEvent['NameEvent']?>
-                        </strong></legend>
-                    <div id="eventAndParticipants">
-                        <div class="eventBloc">
-                            <div class="titleAndPhoto">
+<body>
+    <section id="corps">
+        <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
+            <fieldset class="event">
+                <legend class="eventName"><strong>
+                                    <?php echo $InfoEvent['NameEvent']?>
+                                </strong></legend>
+                <div id="eventAndParticipants">
+                    <div class="eventBloc">
+                                                <?php if(isset($urlPhoto['Url'])){
 
-                                <div class="photo">
-                                    <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
-                            </div>
-                            <div class="eventDescription">
-                                <?php echo $InfoEvent['Description'];?>
+            ?>
+                        <div class="titleAndPhoto">
 
-                            </div>
-                            <legend >oui</legend>
-                            <div id="listOfParticipant">ezaezae</div>
+                            <div class="photo">
+                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
+                        </div>
+                                      <?php } ?>
+                        <div class="eventDescription">
+                            <?php echo $InfoEvent['Description'];?>
+
                         </div>
 
                     </div>
