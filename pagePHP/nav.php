@@ -12,7 +12,7 @@
             <li><a href="shop.php" class="bouton">Boutique</a></li>
             <li><a href="IdeaBox.php" class="bouton">Boite à idées</a></li>
             <li><a href="eventOfTheMonth.php" class="bouton">Évènement du mois</a></li>
-            <li><a href="#" class="bouton">Évènements passés</a></li>
+            <li><a href="pastEvent.php" class="bouton">Évènements passés</a></li>
             <?php
             if(isset($_SESSION['Login'])){
             ?>

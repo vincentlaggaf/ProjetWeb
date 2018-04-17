@@ -56,14 +56,6 @@ catch (Exception $e)
                 <?php } ?>
             </div>
 
-
-
-
-
-
-
-
-
             <?php
             $getHappening=$bdd->query('SELECT * FROM Happenings');
             $numberOfEvent=0;
