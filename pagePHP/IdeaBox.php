@@ -30,27 +30,13 @@
     </head>
 
     <body>
+
         <!--        <header> </header> -->
 
-        <img id="exia" src="\projetWeb\imagePNG\exia.png" alt="logo exia">
 
-        <div id="menu">
-            <nav class="table">
-
-
-                <button id ="cc" onclick="document.getElementById('id01').style.display='block'">
-                    <img src="\projetWeb\imagePNG\Menu_icon.png" alt="signIn ">
-                </button>
-            </nav>
-        </div>
-
-
+        <?php include('nav.php');?>
 
         <section id="corps">
-
-
-
-
 
 
             <form class="addNewEvent" action="IdeaBox.php" method="post">
@@ -110,7 +96,7 @@
 
                 ?>
 
-             <form class="addNewEvent" action="ideaValidation.php" method="post" >
+             <form class="addIdea" action="IdeaBox.php" method="post" >
                 <fieldset class="event">
                 <legend class="eventNumber" name="idevent">Idée <?=
                      $happenings['IDEvent'];
@@ -152,10 +138,13 @@
                 </fieldset>
             </form>
 
-                        <form action="IdeaValidation.php" method="post">
-                        <input type="submit" name="validation" value="Valider"  />
-                        <input type="hidden" name="idValidate" value="1"  />
-                        </form>
+             <form action="IdeaValidation.php" method="post">
+                 <div class="buttonvali" >
+                    <input type="submit" name="validation" value="Valider"  />
+                    <input type="hidden" name="idValidate" value="1"  />
+                 </div>
+
+             </form>
 
 
 
@@ -165,31 +154,22 @@
 
                         if(isset($_POST['vote'])){
 
-                            //$getvote = $bdd->query('SELECT IDEvent,IDUser FROM interest'); $vote = $getvote->fetch();
-                            $bdd->exec('UPDATE interest SET Vote = 1 WHERE IDEvent = 3 AND IDUser = 2 ');
 
+                           $vote =  $bdd->prepare('UPDATE interest SET Vote = 1 WHERE IDEvent =:IdEvent  AND IDUser =:IDUser  ');
+
+                            $vote->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
+                            $vote->bindValue(':IDEvent',$_POST['IDEvent'],PDO::PARAM_INT);
+                            $vote->execute();
 
                                 }
-
-                            ?>
+            ?>
 
 
 
          </section>
-
-        <footer id="bas">
-             <div id="logoContact">
-                <img src="\projetWeb\imagePNG\www.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\mail.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\facebook.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\github.png" alt="logo réseaux sociaux">
-                <img src="\projetWeb\imagePNG\twitter.png" alt="logo réseaux sociaux">
-            </div>
-            <p> © BDE Pau - 2018</p>
-            <p> Created and maintained by
-                <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-
-        </footer>
+        <?php
+        include('footer.php');
+        ?>
 
     </body>
 </html>

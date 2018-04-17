@@ -8,5 +8,5 @@
 
 
 
-//header("Location: ../IdeaValidation.php");
+//header("Location:IdeaValidation.php");
 ?>
