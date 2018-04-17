@@ -6,6 +6,7 @@
         header("Location: \ProjetWeb\pagePHP\home.php");
         exit();
     }
+
     require 'BDDConnection.php';
     require 'basket\fillBasket.php';
     require 'basket\BasketBDDInteraction.php';
