@@ -101,7 +101,10 @@ input[type=text], input[type=password] {
     background-color: white;
     font-size: 75%;
 }
-
+.eventName
+{
+  color:    #CF000F;
+}
 .photo
 {
     border: double 2px black;

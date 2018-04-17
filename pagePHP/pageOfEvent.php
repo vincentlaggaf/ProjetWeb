@@ -48,11 +48,15 @@ if(isset($_GET['name'])){
                                 </strong></legend>
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
+                                                <?php if(isset($urlPhoto['Url'])){
+
+            ?>
                         <div class="titleAndPhoto">
 
                             <div class="photo">
                                 <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
                         </div>
+                                      <?php } ?>
                         <div class="eventDescription">
                             <?php echo $InfoEvent['Description'];?>
                         </div>
