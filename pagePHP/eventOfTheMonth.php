@@ -29,9 +29,6 @@ catch (Exception $e)
         <?php include('nav.php');?>
 
         <section id="corps">
-
-
-
             <div id="sidebar">
                 <form action="" method="post">
                     <input type="text" name="research" placeholder="Recherche"/>
@@ -59,14 +56,6 @@ catch (Exception $e)
                 <?php } ?>
             </div>
 
-
-
-
-
-
-
-
-
             <?php
             $getHappening=$bdd->query('SELECT * FROM Happenings');
             $numberOfEvent=0;
@@ -77,7 +66,7 @@ catch (Exception $e)
             // Events passés $currentDate=date("y-m-d");
             //echo ($currentDate);
 
-            while( $happening=$getHappening->fetch() AND $numberOfEvent<18 ){
+            while( $happening=$getHappening->fetch() AND $numberOfEvent<19 ){
 
                 //echo strtotime($title['EventDate']);
                 $monthOfTheEvent=explode("-",$happening['EventDate']);
@@ -93,47 +82,40 @@ catch (Exception $e)
             ?>
             <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
                 <fieldset class="event">
-                    <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> ">Event <?php echo $eventNumber;?></a></legend>
+                    <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> "><strong><?php echo $happening['NameEvent'];?></strong></a></legend>
                     <div class="eventBloc">
+                        <?php if(isset($urlPhoto['Url'])){
 
+            ?>
                         <div class="titleAndPhoto">
-                            <div class="title">
-                                <strong>
-                                    <?php
 
-
-                    echo $happening['NameEvent'];
-
-                                    ?>
-                                </strong>
-
-
-                            </div>
                             <div class="photo">
 
                                 <img src="<?php echo $urlPhoto['Url'] ;?>"alt="" class="thumbnail"></div>
                         </div>
+
+                        <?php } ?>
                         <div class="eventDescription">
                             <?php
 
                     echo $happening['Description'];
 
-                                ?>
-                            </div>
-                            <?php
-                if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
-
-                ?>
-                <div class="inscriptionButton">
-                    <input type="hidden" name="NameEvent" value="<?php echo $happening['NameEvent']?>;">
-                    <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
-                    <input type="submit" value="Je m'inscris !" name="test"/>
-                </div>
-
-                            <?php }
-?>
-
+                            ?>
                         </div>
+                        <?php
+                    if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
+
+                        ?>
+                        <div class="inscriptionButton">
+                            <input type="hidden" name="NameEvent" value="<?php echo $happening['NameEvent']?>;">
+                            <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
+                            <input type="submit" value="Je m'inscris !" name="test"/>
+                        </div>
+
+                        <?php }
+                        ?>
+
+                    </div>
 
                 </fieldset>
             </form>
@@ -143,15 +125,6 @@ catch (Exception $e)
             $getHappening->closeCursor();
             ?>
         </section>
-
-        <script>
-//        alert(document.referrer);
-            if (document.referrer == "http://localhost:8888/projetWeb/pagePHP/eventOfTheMonth.php") {
-                alert ("vous n'êtes pas connecté");
-                document.getElementById('logInModal').style.display='block';
-            }
-        </script>
-
 
         <?php
         include('footer.php');

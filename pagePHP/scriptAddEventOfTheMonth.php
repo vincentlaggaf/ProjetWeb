@@ -47,7 +47,7 @@ $create=$check->fetch();
 
        if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
         {
-            if($_FILES['photoOfTheEvent']['size']<=8000000)
+            if($_FILES['photoOfTheEvent']['size']<=10000000)
             {
                 $infosPhoto = pathinfo($_FILES['photoOfTheEvent']['name']);
                 $namePhoto=str_replace(' ','_',($_FILES['photoOfTheEvent']['name']));
@@ -97,5 +97,5 @@ $create=$check->fetch();
 
 
 
-//header('Location:eventOfTheMonth.php');
+header('Location:eventOfTheMonth.php');
 ?>

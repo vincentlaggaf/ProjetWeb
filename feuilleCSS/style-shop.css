@@ -172,7 +172,7 @@ input
     display: none;
 }
 
-@media screen and (max-width: 750px) {
+@media all and (max-width: 750px) {
     section
     {
         justify-content: center;
