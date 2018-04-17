@@ -120,11 +120,20 @@ catch (Exception $e)
 
                                 ?>
                             </div>
+                            <?php
+                if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
+
+                ?>
                 <div class="inscriptionButton">
                     <input type="hidden" name="NameEvent" value="<?php echo $happening['NameEvent']?>;">
                     <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
                     <input type="submit" value="Je m'inscris !" name="test"/>
                 </div>
+
+                            <?php }
+?>
+
+                        </div>
 
                 </fieldset>
             </form>

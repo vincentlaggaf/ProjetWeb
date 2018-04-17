@@ -13,6 +13,28 @@
 ?>
 
 
+
+<!--<?php
+
+$idEvent = $_POST['IDEvent'];
+$nameEvent= $_POST['NameEvent'];
+$descritpion= $_POST['Descritpion'];
+
+
+         $getIdea = $bdd->prepare('SELECT * FROM happenings WHERE IDEvent =:IDEvent');
+         $getIdea->bindValue(':IDEvent',$idEvent,PDO::PARAM_INT);
+         $getIdea->bindValue(':NameEvent',$nameEvent,PDO::PARAM_INT);
+         $getIdea->bindValue(':Descritpion',$descritpion,PDO::PARAM_INT);
+
+         $getIdea->execute();
+
+
+
+
+
+
+?>-->
+
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +45,6 @@
         <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-IdeaBox.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
-
 
 
 
@@ -49,44 +70,37 @@
         <section id="corps">
 
 
-
-
-
-
-             <form class="addNewEvent" >
-                <fieldset class="event">
-                <legend class="eventNumber">Idée
-
-                    </legend>
+            <form class="addNewEvent" action="IdeaBox.php" method="post">
+            <fieldset class="event">
+                <legend class="eventNumber">Idée </legend>
 
                     <div class="eventBloc">
 
                     <div class="titleAndPhoto">
 
                     <div class="title">
+                        <input   type="text" name="title"  maxlength="20"  />
                     </div>
 
                     <div class="photo">
-
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail">
-                    </div>
-
-                    <div><p>Nombre de vote:
-                        </p>
-                        <input type="submit" name="validation" value="Valider" OnClick="javascript:document.location.href='IdeaBox.php'" />
                     </div>
 
                     </div>
 
                     <div class="eventDescription">
+                        <textarea style="resize:none" name="description" rows="12" cols="50" value="$_POST[description]"></textarea>
                     </div>
 
+                    <div class="inscriptionButton">
+                        <input type="submit" name="go" value="Publier" />
                     </div>
-                </fieldset>
+
+
+                    </div>
+
+            </fieldset>
             </form>
-
-
-
 
 
 

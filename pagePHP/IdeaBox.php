@@ -110,10 +110,10 @@
 
                 ?>
 
-             <form class="addNewEvent" >
+             <form class="addNewEvent" action="ideaValidation.php" method="post" >
                 <fieldset class="event">
-                <legend class="eventNumber">Idée <?php
-                    echo $happenings['IDEvent'];
+                <legend class="eventNumber" name="idevent">Idée <?=
+                     $happenings['IDEvent'];
                     ?>
                     </legend>
 
@@ -130,11 +130,12 @@
                     <img src="/projetWeb/imagePNG/" alt="" class="thumbnail">
                     </div>
 
-                    <div><p>Nombre de vote:
+                    <div><p>Nombre de vote:<!--<?php
+                    echo $happenings['Vote'];
+                    ?>-->
                         </p>
-                        <input type="submit" name="validation" value="Valider" OnClick="window.location.href='IdeaValidation.php';" />
-                    </div>
 
+                    </div>
                     </div>
 
                     <div class="eventDescription"><?php
@@ -143,6 +144,7 @@
 
 
                     <div class="voteButton">
+                        <input type="hidden" name="idEvent" value="<?php $happenings['IDEvent'];?>">
                         <input type="submit" name="vote" value="Voter !" />
                     </div>
 
@@ -150,19 +152,21 @@
                 </fieldset>
             </form>
 
+                        <form action="IdeaValidation.php" method="post">
+                        <input type="submit" name="validation" value="Valider"  />
+                        <input type="hidden" name="idValidate" value="1"  />
+                        </form>
 
 
 
                 <?php   } $gethappenings->closeCursor();?>
 
                   <?php
-                        echo '123';
 
-                            if(isset($_POST['vote'])){
+                        if(isset($_POST['vote'])){
 
-                               echo '456';
-
-                                $bdd->exec('UPDATE interest SET Vote = 1 WHERE IDEvent = 3 AND IDUser = 2 ');
+                            //$getvote = $bdd->query('SELECT IDEvent,IDUser FROM interest'); $vote = $getvote->fetch();
+                            $bdd->exec('UPDATE interest SET Vote = 1 WHERE IDEvent = 3 AND IDUser = 2 ');
 
 
                                 }
