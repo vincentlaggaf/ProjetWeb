@@ -66,6 +66,7 @@
 
 
                     <div class="photo">
+                        <p id="warningPhoto">Attention le nom de fichier doit faire au maximum 10 Mo</p>
                         <input type="file" name="photoOfTheEvent" id="choosePhoto"/>
 
                     </div>

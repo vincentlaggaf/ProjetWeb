@@ -43,25 +43,22 @@ if(isset($_GET['name'])){
     <section id="corps">
         <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
             <fieldset class="event">
-                <legend class="eventNumber">Oui</legend>
+                <legend class="eventName"><strong>
+                                    <?php echo $InfoEvent['NameEvent']?>
+                                </strong></legend>
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
                         <div class="titleAndPhoto">
-                            <div class="title">
-                                <strong>
-                                    <?php echo $InfoEvent['NameEvent']?>
-                                </strong>
-                            </div>
+
                             <div class="photo">
                                 <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
                         </div>
                         <div class="eventDescription">
-                            <?php echo $InfoEvent['Description']?>
+                            <?php echo $InfoEvent['Description'];?>
                         </div>
                     </div>
-                    <legend >oui</legend>
-                    <div id="listOfParticipant">ezaezae</div>
                 </div>
+
             </fieldset>
         </form>
     </section>

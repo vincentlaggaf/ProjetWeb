@@ -1,4 +1,6 @@
 <?php include ('modals.php'); ?>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-nav.css">
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-dropdownMenu.css">
 
@@ -38,7 +40,9 @@
 
 
 <div class="dropdown">
-    <button onclick="dropdownFunction()" class="dropbtn">MENU</button>
+    <button onclick="dropdownFunction()" class="dropbtn">
+        <img src="/projetWeb/imagePNG/menuIcon.png" alt="menuIcon">
+    </button>
     <div id="myDropdown" class="dropdown-content">
         <a href="home.php">Accueil</a>
         <a href="shop.php">Boutique</a>

@@ -19,15 +19,18 @@
             <section>
                 <?php
                 if (isset($_SESSION['Id'])){
-
-                basket($_SESSION['Id']);
+                    if(isset($_POST['changed']) AND isset($_POST['quantity']))
+                    {
+                        setBasket($_SESSION['Id'], $_POST['changed'], $_POST['quantity']);
+                    }
+                    getBasket($_SESSION['Id']);
+                    $price = getTotalPrice($_SESSION['Id']);
                 }
+                echo $price;
                 ?>
             </section>
         </div>
 
-        <?php include 'footer.php';  ?>
-
-        <script src="\projetWeb\scriptsJS\script-shop.js"></script>
+        <?php include 'footer.php'; ?>
     </body>
 </html>

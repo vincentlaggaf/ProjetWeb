@@ -77,7 +77,7 @@ catch (Exception $e)
             // Events passés $currentDate=date("y-m-d");
             //echo ($currentDate);
 
-            while( $happening=$getHappening->fetch() AND $numberOfEvent<6 ){
+            while( $happening=$getHappening->fetch() AND $numberOfEvent<19 ){
 
                 //echo strtotime($title['EventDate']);
                 $monthOfTheEvent=explode("-",$happening['EventDate']);
@@ -93,26 +93,19 @@ catch (Exception $e)
             ?>
             <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
                 <fieldset class="event">
-                    <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> ">Event <?php echo $eventNumber;?></a></legend>
+                    <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> "><strong><?php echo $happening['NameEvent'];?></strong></a></legend>
                     <div class="eventBloc">
+                        <?php if(isset($urlPhoto['Url'])){
 
+            ?>
                         <div class="titleAndPhoto">
-                            <div class="title">
-                                <strong>
-                                    <?php
 
-
-                    echo $happening['NameEvent'];
-
-                                    ?>
-                                </strong>
-
-
-                            </div>
                             <div class="photo">
 
                                 <img src="<?php echo $urlPhoto['Url'] ;?>"alt="" class="thumbnail"></div>
                         </div>
+
+                        <?php } ?>
                         <div class="eventDescription">
                             <?php
 

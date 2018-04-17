@@ -15,7 +15,11 @@ body {
     color: #22313F;
 }
 
-
+#warningPhoto
+{
+    color: red;
+    text-align: center;
+}
 
 .photo{
     display: flex;
@@ -59,6 +63,7 @@ body {
     background-color: #F2F1EF;
 
 }
+
 section {
     margin: 3%;
     margin-left: 10%;
