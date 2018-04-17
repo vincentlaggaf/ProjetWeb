@@ -14,9 +14,13 @@ $IDEvent= $_POST['IDEvent'];
 $NameEvent=$_POST['NameEvent'];
 $EventPath=str_replace(';','',$NameEvent);
 
+<<<<<<< HEAD
 
 
 if(isset($_POST['IDEvent'])AND isset($_POST['NameEvent'])){
+=======
+if(isset($_SESSION['Id']) AND isset($IDEvent)){
+>>>>>>> origin/master
 
 
 
@@ -76,9 +80,5 @@ if(isset($_POST['IDEvent'])AND isset($_POST['NameEvent'])){
     header('Location:http://localhost/projetWeb/pagePHP/eventOfTheMonth.php');
 
 }
-
-
-
-
 
 ?>

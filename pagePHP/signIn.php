@@ -21,15 +21,7 @@ $pseudo = $reponse->fetch();
 
 if($Login == $pseudo['Login']){
     echo '<script> alert ("pseudo déjà utilisé");</script>';
-//    if (document.referrer == "http://localhost:8888/projetWeb/pagePHP/home.php") {
-//        echo '<script> document.location.replace(window.history.back());</script>';
-//    }
-//    else if (document.referrer == "http://localhost:8888/projetWeb/pagePHP/modalLogin.php") {
-//        echo '<script> document.location.replace(window.history.back(-3));</script>';
-//    }
-//    else {
-//        echo '<script> document.location.replace(window.history.back(-2));</script>';
-//    }
+    echo '<script> document.location.replace(window.history.back());</script>';
 }
 
 else {
@@ -40,14 +32,6 @@ else {
     $requete->bindValue(':LastName', $LastName, PDO::PARAM_STR);
     $requete->bindValue(':FirstName', $FirstName, PDO::PARAM_STR);
     $requete->execute();
-//    if (document.referrer == "http://localhost:8888/projetWeb/pagePHP/home.php") {
-//        echo '<script> document.location.replace(window.history.back());</script>';
-//    }
-//    else if (document.referrer == "http://localhost:8888/projetWeb/pagePHP/modalLogin.php") {
-//        echo '<script> document.location.replace(window.history.back(-3));</script>';
-//    }
-//    else {
-//        echo '<script> document.location.replace(window.history.back(-2));</script>';
-//    }
+    echo '<script> document.location.replace(window.history.back());</script>';
 }
 ?>
