@@ -14,7 +14,7 @@ catch (Exception $e)
 
             //$getNumberVote = $bdd->prepare('SELECT COUNT(DISTINCT Vote) as nVote FROM interest WHERE IDEvent =:IDEvent');
 
-           // $donnees=mysql_fetch_array($getNumberVote);
+           //$donnees=mysql_fetch_array($getNumberVote);
             //$getNumberVote->execute();
 
 ?>
@@ -82,7 +82,7 @@ catch (Exception $e)
             <?php
 
 
-            $requete = $bdd->prepare('INSERT INTO happenings(NameEvent, Description, Validate) VALUES(?,?,?)');
+            $requete = $bdd->prepare('INSERT INTO Happenings(NameEvent, Description, Validate) VALUES(?,?,?)');
 
                 if(isset($_POST['go'])){
 
@@ -98,7 +98,7 @@ catch (Exception $e)
 
 
             <?php
-            $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM happenings WHERE Validate=0');
+            $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate=0');
                 while( $happenings = $gethappenings->fetch()){
 
                 ?>
@@ -160,7 +160,7 @@ catch (Exception $e)
 
                         if(isset($_POST['vote'])){
 
-                           $getEntry =  $bdd->prepare('SELECT * FROM interest WHERE IDEvent =:IDEvent  AND IDUser =:IDUser');
+                           $getEntry =  $bdd->prepare('SELECT * FROM Interest WHERE IDEvent =:IDEvent  AND IDUser =:IDUser');
 
                             $getEntry->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
                             $getEntry->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
@@ -169,7 +169,7 @@ catch (Exception $e)
 
                             if(isset($entry['IDUser'])){
 
-                           $vote =  $bdd->prepare('UPDATE interest SET Vote = 1 WHERE IDEvent =:IDEvent  AND IDUser =:IDUser ');
+                           $vote =  $bdd->prepare('UPDATE Interest SET Vote = 1 WHERE IDEvent =:IDEvent  AND IDUser =:IDUser ');
 
                             $vote->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
                             $vote->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
@@ -179,7 +179,7 @@ catch (Exception $e)
 
                                 }
                         else{
-                              $voteAdd =  $bdd->prepare('INSERT INTO interest (Participate,Vote,IDUser,IDEvent) VALUES (0,1,:IDUser,:IDEvent)');
+                              $voteAdd =  $bdd->prepare('INSERT INTO Interest (Participate,Vote,IDUser,IDEvent) VALUES (0,1,:IDUser,:IDEvent)');
 
                             $voteAdd->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
                             $voteAdd->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
