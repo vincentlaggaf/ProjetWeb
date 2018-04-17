@@ -9,8 +9,6 @@ catch (Exception $e)
     die ('Erreur : ' . $e->getMessage());
 }
 ?>
-
-
 <!DOCTYPE html>
 <html id="top">
 

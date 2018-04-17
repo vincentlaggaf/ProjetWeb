@@ -25,6 +25,11 @@ if(isset($_GET['name'])){
     $getPhotoEvent->execute();
     $photoEvent=$getPhotoEvent->fetch();
 
+    $getDone=$bdd->prepare('SELECT EventDate FROM Happenings WHERE NameEvent= :nameEvent');
+    $getDone->bindValue(':nameEvent',$eventName,PDO::PARAM_STR);
+    $getDone->execute();
+    $IsItPassed=$getDone->fetch();
+
 ?>
 <!DOCTYPE html>
 <html id="top">
@@ -39,39 +44,41 @@ if(isset($_GET['name'])){
     </head>
     <?php include ('nav.php'); ?>
 
-<body>
-    <section id="corps">
-        <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
+    <body>
+        <section id="corps">
+
             <fieldset class="event">
                 <legend class="eventName"><strong>
-                                    <?php echo $InfoEvent['NameEvent']?>
-                                </strong></legend>
+                    <?php echo $InfoEvent['NameEvent']?>
+                    </strong></legend>
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
-                                                <?php if(isset($urlPhoto['Url'])){
-
-            ?>
+                        <?php if(isset($urlPhoto['Url'])){ ?>
                         <div class="titleAndPhoto">
-
-                            <div class="photo">
-                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
+                            <div class="photo"><img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
                         </div>
-                                      <?php } ?>
-                        <div class="eventDescription">
-                            <?php echo $InfoEvent['Description'];?>
-
-                        </div>
-
+                        <?php } ?>
+                        <div class="eventDescription"><?php echo $InfoEvent['Description'];?></div>
                     </div>
+                </div>
+            </fieldset>
 
-                </fieldset>
-            </form>
+            <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now")){ ?>
+
+
+            <div class="addPhotos">
+
+                <?php echo "lalalalla" ;?>
+            </div>
+
+            <?php } ?>
+
+
         </section>
-
         <?php include('footer.php');?>
-        <?php
-}
-else{
+
+
+        <?php } else {
     header('Location:eventOfTheMonth.php');
     exit();
 }?>
