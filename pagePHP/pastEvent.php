@@ -66,46 +66,62 @@ catch (Exception $e)
                     $getPhoto->execute();
                     $urlPhoto=$getPhoto->fetch();
             ?>
-            <!-- <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >-->
+
+
+            <!--            <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >-->
             <fieldset class="event">
-                <legend class="eventNumber">
-                    <a class="linkToEvent"
-                       href="pageOfEvent.php?name=<?php echo $happened['NameEvent'];?>">
-                        Event <?php echo $eventNumber;?>
-                    </a>
-                </legend>
+                <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happened['NameEvent'];?> "><strong><?php echo $happened['NameEvent'];?></strong></a></legend>
                 <div class="eventBloc">
+                    <?php if(isset($urlPhoto['Url'])){
+
+                    ?>
                     <div class="titleAndPhoto">
-                        <div class="title"><strong><?php echo $happened['NameEvent'];?></strong></div>
-                        <div class="photo"><img src="<?php echo $urlPhoto['Url'];?>"alt="" class="thumbnail"></div>
+
+                        <div class="photo">
+
+                            <img src="<?php echo $urlPhoto['Url'] ;?>"alt="" class="thumbnail"></div>
                     </div>
-                    <div class="eventDescription"><?php echo $happened['Description'];?></div>
 
-                    <button class="inscriptionButton" onclick="openPage()"> + </button>
-                    <!--
-<div class="inscriptionButton">
-<input type="hidden" name="NameEvent" value="<?php echo $happened['NameEvent']?>;">
-<input type="hidden" name="IDEvent" value="<?php echo $happened['IDEvent'];?>"/>
-<input type="submit" value="+" name="test"/>
-</div>
--->
+                    <?php } ?>
+                    <div class="eventDescription">
+                        <?php
+
+                    echo $happened['Description'];
+
+                        ?>
+                    </div>
+                    <?php
+                    if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
+
+                    ?>
+                    <div class="inscriptionButton">
+                        <input type="hidden" name="NameEvent" value="<?php echo $happened['NameEvent']?>;">
+                        <input type="hidden" name="IDEvent" value="<?php echo $happened['IDEvent'];?>"/>
+                        <input type="submit" value="Je m'inscris !" name="test"/>
+                    </div>
+
+                    <?php }
+                    ?>
+
                 </div>
-            </fieldset>
-            <!--            </form>-->
 
-            <?php }
+            </fieldset>
+            </form>
+
+
+        <?php }
                 $eventNumber++;
                 $numberOfEvent++;}
             $getHappened->closeCursor();
 
-            ?>
+        ?>
         </section>
-        <?php include('footer.php'); ?>
+    <?php include('footer.php'); ?>
 
-        <script>
-            function openPage() {
-                location.href = "pageOfEvent.php?name=<?php echo $happened['NameEvent'];?>"
-            }
-        </script>
+    <script>
+        function openPage() {
+            location.href = "pageOfEvent.php?name=<?php echo $happened['NameEvent'];?>"
+        }
+    </script>
     </body>
 </html>
