@@ -30,72 +30,77 @@ $create=$check->fetch();
         echo "Cet évènement existe déjà";
     }
 
-  else{  $requete = $bdd->prepare("INSERT INTO Happenings (Validate,NameEvent,Free,Recurrent, Description,IDUser,NameEventCategory,EventDate) VALUES( 1,:eventName,:eventFreeOrNot,:eventRecurrentOrNot,:eventDescription,:idUser,:nameEventCategory,:dateOfTheEvent)");
+    else
+    {
+        $requete = $bdd->prepare("INSERT INTO Happenings (Validate,NameEvent,Free,Recurrent, Description,IDUser,NameEventCategory,EventDate) VALUES( 1,:eventName,:eventFreeOrNot,:eventRecurrentOrNot,:eventDescription,:idUser,:nameEventCategory,:dateOfTheEvent)");
 
 
-    $requete->bindValue(':eventName', $eventName, PDO::PARAM_STR);
-    $requete->bindValue(':eventDescription', $eventDescription, PDO::PARAM_STR);
-    $requete->bindValue(':eventFreeOrNot',$eventFreeOrNot,PDO::PARAM_INT);
-    $requete->bindValue(':eventRecurrentOrNot',$eventRecurrentOrNot,PDO::PARAM_INT);
-    $requete->bindValue(':dateOfTheEvent',$eventDate,PDO::PARAM_STR);
-    $requete->bindValue(':idUser',$idUser,PDO::PARAM_INT);
-    $requete->bindValue(':nameEventCategory',$eventCategory,PDO::PARAM_STR);
-
-    $requete->execute();
-      //echo "Création d'évènement réussie !";
+        $requete->bindValue(':eventName', $eventName, PDO::PARAM_STR);
+        $requete->bindValue(':eventDescription', $eventDescription, PDO::PARAM_STR);
+        $requete->bindValue(':eventFreeOrNot',$eventFreeOrNot,PDO::PARAM_INT);
+        $requete->bindValue(':eventRecurrentOrNot',$eventRecurrentOrNot,PDO::PARAM_INT);
+        $requete->bindValue(':dateOfTheEvent',$eventDate,PDO::PARAM_STR);
+        $requete->bindValue(':idUser',$idUser,PDO::PARAM_INT);
+        $requete->bindValue(':nameEventCategory',$eventCategory,PDO::PARAM_STR);
+        $requete->execute();
 
 
-       if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
+
+        if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
         {
             if($_FILES['photoOfTheEvent']['size']<=10000000)
             {
                 $infosPhoto = pathinfo($_FILES['photoOfTheEvent']['name']);
                 $namePhoto=str_replace(' ','_',($_FILES['photoOfTheEvent']['name']));
-                echo $namePhoto;
-                echo "ARG";
+
+                $checkUrl=$bdd->prepare("SELECT Url FROM Photo WHERE Url=:UrlNewPhoto");
+                $checkUrl->bindValue(':UrlNewPhoto',$urlPhoto,PDO::PARAM_STR);
+                $checkUrl->execute();
+                while($getUrl=$checkUrl->fetch()){
+                    $nameOfPhotoFromBdd=explode('/',$getUrl['Url'])
+
+                }
+
+
+
                 $extensionPhoto = $infosPhoto['extension'];
                 $extensionsAllowed = array('jpg', 'jpeg', 'png','PNG','JPG','JPEG');
                 if (in_array($extensionPhoto, $extensionsAllowed))
                 {
-
-
                     $getId=$bdd->prepare("SELECT IDEvent FROM Happenings WHERE NameEvent= :eventName");
                     $getId->bindValue(':eventName',$eventName,PDO::PARAM_STR);
                     $getId->execute();
                     $id=$getId->fetch();
-
                     $idToLookFor=$id['IDEvent'];
-                  //  echo $idToLookFor;
-
                     move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.basename($namePhoto));
+                    $urlPhoto='../imagePNG/events/'.'1-'.basename($namePhoto);
+                    echo $namePhoto;
 
-                    $urlPhoto='../imagePNG/events/'.basename($namePhoto);
-                 //   echo "Photo bien reçue";
+
+
+//
+//                    if($urlPhoto==$getUrl['Url'])
+//                    {
+//                        $urlPhoto=$urlPhoto .
+//
+//                    }
+//                    else{
+//
+//                    }
 
                     $saveUrl=$bdd->prepare("INSERT INTO Photo (Url,IDEvent)VALUES (:url,:IDEvent) ");
                     $saveUrl->bindValue(':url',$urlPhoto,PDO::PARAM_STR);
                     $saveUrl->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_INT);
                     $saveUrl->execute();
-
                 }
-
-
-            }else{
+            }
+           else
+            {
                 echo "<script>alert('Une erreur s'est produite lors de l'envoi de la photo,veuillez réduire la taille de celle-ci!');</script>";
-        echo '<script> document.location.replace(/projetWeb/pagePHP/addNewEventOfTheMonth.php);</script>';
-
-      }
-       }
-
-
-
-
+                echo '<script> document.location.replace(/projetWeb/pagePHP/addNewEventOfTheMonth.php);</script>';
+           }
         }
+    }
 
-
-
-
-
-
-header('Location:eventOfTheMonth.php');
+//header('Location:eventOfTheMonth.php');
 ?>

@@ -13,10 +13,13 @@ catch (Exception $e)
     die ('Erreur : ' . $e->getMessage());
 }
 
-//$getNumberVote = $bdd->prepare('SELECT COUNT(DISTINCT Vote) as nVote FROM interest WHERE IDEvent =:IDEvent');
 
-// $donnees=mysql_fetch_array($getNumberVote);
-//$getNumberVote->execute();
+
+            //$getNumberVote = $bdd->prepare('SELECT COUNT(DISTINCT Vote) as nVote FROM interest WHERE IDEvent =:IDEvent');
+
+           //$donnees=mysql_fetch_array($getNumberVote);
+            //$getNumberVote->execute();
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +30,7 @@ catch (Exception $e)
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-IdeaBox.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <!--        <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">-->
+
     </head>
 
     <body>
@@ -36,7 +39,15 @@ catch (Exception $e)
 
         <section id="corps">
 
+            <?php
 
+             $getIDUser = $bdd->query('SELECT IDUser FROM Users');
+             $iduser = $getIDUser->fetch();
+
+                    if($_SESSION['Id']==$iduser['IDUser']){
+
+
+            ?>
             <form class="addNewEvent" action="IdeaBox.php" method="post">
                 <fieldset class="event">
                     <legend class="eventNumber">Proposez votre idée</legend>
@@ -68,20 +79,25 @@ catch (Exception $e)
 
                 </fieldset>
             </form>
+           <?php }
 
-
-            <?php
-
-
-            $requete = $bdd->prepare('INSERT INTO happenings(NameEvent, Description, Validate) VALUES(?,?,?)');
-
-            if(isset($_POST['go'])){
-
-                $requete->execute(array($_POST['title'],$_POST['description'],0));
-            }
+                else{
 
             ?>
+            <form class="addNewEvent" action="IdeaBox.php" method="post">
+                <fieldset class="event">
+                    <legend class="eventNumber">Connexion requise</legend>
 
+                    <div class="eventBloc">
+                        <div>Vous devez être connecter pour pouvoir proposer une idée!
+                        </div>
+
+                    </div>
+
+                </fieldset>
+            </form>
+
+            <?php }?>
 
 
             <div><p class="bar">Dernières Idées</p>
@@ -89,79 +105,75 @@ catch (Exception $e)
 
 
             <?php
-            $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate=0');
-            while( $happenings = $gethappenings->fetch()){
+
+
+            $requete = $bdd->prepare('INSERT INTO Happenings(NameEvent, Description, Validate,IDUser,NameEventCategory) VALUES(?,?,?,?,?)');
+
+
+            if(isset($_POST['go'])){
+
+
+                $requete->execute(array($_POST['title'],$_POST['description'],0,$_SESSION['Id'],'Idea'));
+            }
 
             ?>
+
+
+            <?php
+            $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate=0');
+
+                while( $happenings = $gethappenings->fetch()){
+
+            ?>
+
 
 
             <form class="addIdea" action="IdeaBox.php" method="post" >
 
                 <fieldset class="event">
-                    <legend class="eventNumber" name="idevent">Idée <?=
-                $happenings['IDEvent'];
-                        ?>
+                    <legend class="eventNumber" name="idevent">Idée <?=$happenings['IDEvent'];?>
                     </legend>
 
                     <div class="eventBloc">
 
                         <div class="titleAndPhoto">
 
-                            <div class="title"><?php
-                echo $happenings['NameEvent'];?>
+                            <div class="title"><?php echo $happenings['NameEvent'];?>
                             </div>
 
                             <div class="photo">
-
                                 <img src="/projetWeb/imagePNG/" alt="" class="thumbnail">
                             </div>
 
 
-                            <div><p>Nombre de vote:<?php echo $donnees[0];
-                                ?>
+                            <div><p>Nombre de vote:
                                 </p>
+                                <input class="buttonVali" type="button" onClick="window.location ='IdeaValidation.php'" name="validation" value="Valider"  />
 
                             </div>
                         </div>
 
-                        <div class="eventDescription"><?php
-                echo $happenings['Description'];?>
+                        <div class="eventDescription"><?php echo $happenings['Description'];?>
                         </div>
-
-
 
                         <div class="voteButton">
                             <input type="hidden" name="idEvent" value="<?php echo $happenings['IDEvent'];?>">
                             <input type="submit" name="vote" value="Voter !" />
                         </div>
-
-
                     </div>
                 </fieldset>
             </form>
 
 
-            <form action="IdeaValidation.php" method="post">
-                <div class="buttonvali" >
-                    <input type="submit" name="validation" value="Valider"  />
-                    <input type="hidden" name="idValidate" value="1"  />
-                </div>
-
-            </form>
-
             <?php
             }
-            $gethappenings->closeCursor();
+                    $gethappenings->closeCursor();
             ?>
 
             <?php
 
             if(isset($_POST['vote'])){
 
-                //$getvote = $bdd->query('SELECT IDEvent,IDUser FROM interest'); $vote = $getvote->fetch();
-                $bdd->exec('UPDATE interest SET Vote = 1 WHERE IDEvent = 3 AND IDUser = 2 ');
-
-            }
 
             $getEntry =  $bdd->prepare('SELECT * FROM interest WHERE IDEvent =:IDEvent  AND IDUser =:IDUser');
 
@@ -170,15 +182,18 @@ catch (Exception $e)
             $getEntry->execute();
             $entry=$getEntry->fetch();
 
+
             if(isset($entry['IDUser'])){
 
             $vote =  $bdd->prepare('UPDATE interest SET Vote = 1 WHERE IDEvent =:IDEvent  AND IDUser =:IDUser ');
+
 
             $vote->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
             $vote->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
             $vote->execute();
             echo $_POST['idEvent'];
             echo $_SESSION['Id'];
+
 
             }
             else{
@@ -187,12 +202,15 @@ catch (Exception $e)
             $voteAdd->bindValue(':IDUser', $_SESSION['Id'],PDO::PARAM_INT);
             $voteAdd->bindValue(':IDEvent',$_POST['idEvent'],PDO::PARAM_INT);
             $voteAdd->execute();
-            }
+                                }
+                                }
+
 
             ?>
 
 
         </section>
+
         <?php
         include('footer.php');
         ?>

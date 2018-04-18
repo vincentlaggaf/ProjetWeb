@@ -28,7 +28,7 @@ width: 100%;
 }
 .addIdea
 {
-    margin: 1%;
+
 }
 .titre
 {
@@ -130,13 +130,17 @@ width: 100%;
     align-self: flex-end;
 }
 
-.buttonvali{
 
-    margin-left: 100px;
-}
+
+/*Validation*/
+
+
+
 .buttonValidation{
 
-   align-self: flex-end;
+
+    align-self: flex-end;
+
 
 }
 
