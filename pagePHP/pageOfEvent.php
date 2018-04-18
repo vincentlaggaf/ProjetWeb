@@ -13,6 +13,8 @@ catch (Exception $e)
 <?php
 
 if(isset($_GET['name'])){
+
+
     $eventName=$_GET['name'];
 
     $getInfoEvent=$bdd->prepare('SELECT * FROM Happenings WHERE NameEvent= :nameEvent');
@@ -20,7 +22,7 @@ if(isset($_GET['name'])){
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
 
-    $getPhotoEvent=$bdd->prepare('SELECT Url FROM Photo WHERE IDEvent =:IDEvent');
+    $getPhotoEvent=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
     $getPhotoEvent->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
     $getPhotoEvent->execute();
     $photoEvent=$getPhotoEvent->fetch();
@@ -84,7 +86,7 @@ if(isset($_GET['name'])){
 
                     <?php
         $nbOfPhoto=0;
-        $getPhotos=$bdd->prepare('SELECT Url FROM Photo WHERE IDEvent =:IDEvent');
+        $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
         $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
         $getPhotos->execute();
                     ?>
@@ -92,7 +94,7 @@ if(isset($_GET['name'])){
                         <?php while($photos=$getPhotos->fetch()AND $nbOfPhoto<4){
                         ?>
                         <!-- <form action="" method="post">-->
-                        <td><img class="myImg" src="<?php echo $photos['Url'];?>" alt="oui"></td>
+                        <td><img class="myImg" value="<?php echo $photos['IDPhoto'];?>" src="<?php echo $photos['Url'];?>" alt="oui"></td>
                         <!-- </form>-->
                         <?php
                         $nbOfPhoto++;
@@ -118,79 +120,114 @@ if(isset($_GET['name'])){
                         <input type="text" name="comment">
                         <button type="submit" class="btn">Envoyer</button>
                     </form>
+
                     <div>
                         <p> Les commentaires : </p>
 
+
                         <?php
 
-        $getComments=$bdd->prepare('SELECT CommentContent FROM Photo WHERE IDEvent =:IDEvent');
-        $getComments->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
+        $getComments=$bdd->prepare('SELECT CommentContent FROM Comments WHERE IDPhoto =:IDPhoto');
+        $getComments->bindValue(':IDPhoto',$_GET['IDphotoClicked'],PDO::PARAM_INT);
         $getComments->execute();
-
-        <fieldset>comment 1</fieldset>
-            <fieldset>comment 2</fieldset>
-
+        while($comments=$getComments->fetch())
+        {?>
+                        <fieldset class="comment">
+                            <?php echo $comments['CommentContent'];?>
+                        </fieldset>
+                        <?php
+        }?>
+                    </div>
+                </div>
             </div>
 
-            </div>
-            </div>
-            <?php
-    } ?>
-                        </section>
-                    <?php include('footer.php');?>
+
+            <?php } ?>
+        </section>
+        <?php include('footer.php');?>
 
 
 
 
-                    <script>
+        <script>
 
-                        var img = document.getElementsByClassName('myImg');
-                        for(i=0; i<img.length; i++){
-                            img[i].addEventListener('click',function(e){
+            var img = document.getElementsByClassName('myImg');
+            for(i=0; i<img.length; i++){
+                img[i].addEventListener('click',function(e){
 
-                                var modal = document.getElementById('myModal');
-                                modal.style.display = "flex";
+                    var modal = document.getElementById('myModal');
+                    modal.style.display = "flex";
 
-                                var modalImg = document.getElementById('img02');
-                                modalImg.src = e.target.getAttribute('src');
-                                // alert(e.target.getAttribute('src'));
+                    var modalImg = document.getElementById('img02');
+                    modalImg.src = e.target.getAttribute('src');
+                    // alert(e.target.getAttribute('src'));
 
-                                // Get the <span> element that closes the modal
-                                var span = document.getElementsByClassName("close")[0];
-                                // When the user clicks on <span> (x), close the modal
-                                span.onclick = function() {
-                                    modal.style.display = "none";
-                                }
-                            });
+                    var modalidPhoto = e.target.getAttribute('value');
+                    //                                        alert(modalidPhoto);
+
+
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+
+                    $.ajax({
+                        url : 'pageOfEvent.php?name='+<?php echo $eventName; ?>, // La ressource ciblée
+                        type : 'GET', // Le type de la requête HTTP.
+                        data : 'IDphotoClicked=' + modalidPhoto,
+                        dataType : 'html', // On désire recevoir du HTML
+
+                        success : function(code_html, statut){
+
+                        alert ("succès");
+
+                    },
+
+                           error : function(resultat, statut, erreur){
+                        alert ("erreur");
+
+                    },
+
+                        complete : function(resultat, statut){
+                            alert ("complet");
+
                         }
+                });
 
-                        //            function displayModalCommentaire(this){
-                        //                var modal = document.getElementById('myModal');
-                        //                modal.style.display = "flex";
-                        //                var modalImg = document.getElementById('img02');
-                        //                // Get the image and insert it inside the modal
-                        //                //                var img = document.getElementById(idImg);
-                        //                //                alert($i);
-                        //                //                 modalImg.src = this.src;
-                        //                //                    "../imagePNG/events/cochon.png"
-                        //                //                    this.src;
-                        //                //                captionText.innerHTML = this.alt;
-                        //                //                commentaires.display = "block";
-                        //                // Get the <span> element that closes the modal
-                        //                var span = document.getElementsByClassName("close")[0];
-                        //                // When the user clicks on <span> (x), close the modal
-                        //                span.onclick = function() {
-                        //                    modal.style.display = "none";
-                        //                }
-                        //            }
+            });
+            }
 
-                        function likePhoto() {
-                            alert ("il faut encore faire la gestion des likes.");
-                        }
-                    </script>
-                    </body>
-                </html>
-            <?php
+            //            function displayModalCommentaire(this){
+            //                var modal = document.getElementById('myModal');
+            //                modal.style.display = "flex";
+            //                var modalImg = document.getElementById('img02');
+            //                // Get the image and insert it inside the modal
+            //                //                var img = document.getElementById(idImg);
+            //                //                alert($i);
+            //                //                 modalImg.src = this.src;
+            //                //                    "../imagePNG/events/cochon.png"
+            //                //                    this.src;
+            //                //                captionText.innerHTML = this.alt;
+            //                //                commentaires.display = "block";
+            //                // Get the <span> element that closes the modal
+            //                var span = document.getElementsByClassName("close")[0];
+            //                // When the user clicks on <span> (x), close the modal
+            //                span.onclick = function() {
+            //                    modal.style.display = "none";
+            //                }
+            //            }
+
+            function likePhoto() {
+                alert ("il faut encore faire la gestion des likes.");
+            }
+        </script>
+    </body>
+</html>
+<?php
 
 
     // $nbOfPhoto=0;
