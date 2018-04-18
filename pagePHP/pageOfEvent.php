@@ -124,19 +124,6 @@ if(isset($_GET['name'])){
                     <div>
                         <p> Les commentaires : </p>
 
-
-                        <?php
-
-        $getComments=$bdd->prepare('SELECT CommentContent FROM Comments WHERE IDPhoto =:IDPhoto');
-        $getComments->bindValue(':IDPhoto',$_GET['IDphotoClicked'],PDO::PARAM_INT);
-        $getComments->execute();
-        while($comments=$getComments->fetch())
-        {?>
-                        <fieldset class="comment">
-                            <?php echo $comments['CommentContent'];?>
-                        </fieldset>
-                        <?php
-        }?>
                     </div>
                 </div>
             </div>
@@ -146,10 +133,8 @@ if(isset($_GET['name'])){
         </section>
         <?php include('footer.php');?>
 
-
-
-
-        <script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+        <script type="text/javascript">
 
             var img = document.getElementsByClassName('myImg');
             for(i=0; i<img.length; i++){
@@ -160,10 +145,8 @@ if(isset($_GET['name'])){
 
                     var modalImg = document.getElementById('img02');
                     modalImg.src = e.target.getAttribute('src');
-                    // alert(e.target.getAttribute('src'));
 
                     var modalidPhoto = e.target.getAttribute('value');
-                    //                                        alert(modalidPhoto);
 
 
 
@@ -176,50 +159,33 @@ if(isset($_GET['name'])){
 
 
                     $.ajax({
-                        url : 'pageOfEvent.php?name='+<?php echo $eventName; ?>, // La ressource ciblée
-                        type : 'GET', // Le type de la requête HTTP.
-                        data : 'IDphotoClicked=' + modalidPhoto,
-                        dataType : 'html', // On désire recevoir du HTML
+                        url : '/projetWeb/pagePHP/comments.php',
+                        dataType: 'text',
+                        type : 'post',
+                        data : 'IDphotoClicked=' + modalidPhoto
 
-                        success : function(code_html, statut){
+                    });
+                })
 
-                        alert ("succès");
-
-                    },
-
-                           error : function(resultat, statut, erreur){
-                        alert ("erreur");
-
-                    },
-
-                        complete : function(resultat, statut){
-                            alert ("complet");
-
-                        }
-                });
-
-            });
+                //            function displayModalCommentaire(this){
+                //                var modal = document.getElementById('myModal');
+                //                modal.style.display = "flex";
+                //                var modalImg = document.getElementById('img02');
+                //                // Get the image and insert it inside the modal
+                //                //                var img = document.getElementById(idImg);
+                //                //                alert($i);
+                //                //                 modalImg.src = this.src;
+                //                //                    "../imagePNG/events/cochon.png"
+                //                //                    this.src;
+                //                //                captionText.innerHTML = this.alt;
+                //                //                commentaires.display = "block";
+                //                // Get the <span> element that closes the modal
+                //                var span = document.getElementsByClassName("close")[0];
+                //                // When the user clicks on <span> (x), close the modal
+                //                span.onclick = function() {
+                //                    modal.style.display = "none";
+                //                }
             }
-
-            //            function displayModalCommentaire(this){
-            //                var modal = document.getElementById('myModal');
-            //                modal.style.display = "flex";
-            //                var modalImg = document.getElementById('img02');
-            //                // Get the image and insert it inside the modal
-            //                //                var img = document.getElementById(idImg);
-            //                //                alert($i);
-            //                //                 modalImg.src = this.src;
-            //                //                    "../imagePNG/events/cochon.png"
-            //                //                    this.src;
-            //                //                captionText.innerHTML = this.alt;
-            //                //                commentaires.display = "block";
-            //                // Get the <span> element that closes the modal
-            //                var span = document.getElementsByClassName("close")[0];
-            //                // When the user clicks on <span> (x), close the modal
-            //                span.onclick = function() {
-            //                    modal.style.display = "none";
-            //                }
-            //            }
 
             function likePhoto() {
                 alert ("il faut encore faire la gestion des likes.");
