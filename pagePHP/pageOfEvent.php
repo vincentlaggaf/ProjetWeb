@@ -12,7 +12,10 @@ catch (Exception $e)
 
 <?php
 
+
 if(isset($_GET['name'])){
+
+
     $eventName=$_GET['name'];
 
     $getInfoEvent=$bdd->prepare('SELECT * FROM Happenings WHERE NameEvent= :nameEvent');
@@ -20,12 +23,18 @@ if(isset($_GET['name'])){
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
 
-    $getPhotoEvent=$bdd->prepare('SELECT Url FROM Photo WHERE IDEvent =:IDEvent');
+    $getPhotoEvent=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
     $getPhotoEvent->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
     $getPhotoEvent->execute();
     $photoEvent=$getPhotoEvent->fetch();
 
+    $getDone=$bdd->prepare('SELECT EventDate FROM Happenings WHERE NameEvent= :nameEvent');
+    $getDone->bindValue(':nameEvent',$eventName,PDO::PARAM_STR);
+    $getDone->execute();
+    $IsItPassed=$getDone->fetch();
+
 ?>
+
 <!DOCTYPE html>
 <html id="top">
 
@@ -34,44 +43,209 @@ if(isset($_GET['name'])){
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-pastEventCommentPhoto.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
+
+        <style>
+            table img {
+                width: 100%;
+                height: auto;
+            }
+
+
+        </style>
     </head>
     <?php include ('nav.php'); ?>
 
-<body>
-    <section id="corps">
-        <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
+    <body>
+        <section id="corps">
+
             <fieldset class="event">
                 <legend class="eventName"><strong>
-                                    <?php echo $InfoEvent['NameEvent']?>
-                                </strong></legend>
+                    <?php echo $InfoEvent['NameEvent']?>
+                    </strong></legend>
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
-                                                <?php if(isset($urlPhoto['Url'])){
-
-            ?>
+                        <?php if(isset($urlPhoto['Url'])){ ?>
                         <div class="titleAndPhoto">
-
-                            <div class="photo">
-                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
+                            <div class="photo"><img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
                         </div>
-                                      <?php } ?>
-                        <div class="eventDescription">
-                            <?php echo $InfoEvent['Description'];?>
+                        <?php } ?>
+                        <div class="eventDescription"><?php echo $InfoEvent['Description'];?></div>
+                    </div>
+                </div>
+            </fieldset>
 
-                        </div>
+            <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now"))
+    { ?>
+            <div>
+                <table>
+                    <tr>
+                        <th>Galerie photo</th>
+                    </tr>
+
+                    <?php
+        $nbOfPhoto=0;
+        $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
+        $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
+        $getPhotos->execute();
+                    ?>
+                    <tr>
+                        <?php while($photos=$getPhotos->fetch()AND $nbOfPhoto<4){
+                        ?>
+                        <!-- <form action="" method="post">-->
+                        <td><img class="myImg" value="<?php echo $photos['IDPhoto'];?>" src="<?php echo $photos['Url'];?>" alt="oui"></td>
+                        <!-- </form>-->
+                        <?php
+                        $nbOfPhoto++;
+                    }
+                        ?>
+                    </tr>
+
+                </table>
+            </div>
+
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+                <!-- The Close Button -->
+                <span class="close">&times;</span>
+                <!-- Modal Content (The Image) -->
+                <img class="modal-content" id="img02">
+                <!-- Modal Caption (Image Text) -->
+                <div class="commentaire" id="commentaires">
+                    <h1>Aimer la photo : </h1>
+                    <button onclick="likePhoto()" class="btn">J'aime</button>
+                    <form action="">
+                        <h1>Commentaires :</h1>
+                        <input type="text" name="comment">
+                        <button type="submit" class="btn">Envoyer</button>
+                    </form>
+
+                    <div>
+                        <p id="comments"> Les commentaires : </p>
+
 
                     </div>
+                </div>
+            </div>
 
-                </fieldset>
-            </form>
+
+            <?php } ?>
         </section>
-
         <?php include('footer.php');?>
-        <?php
+
+
+
+        <script src="jquery.js"></script>
+        <script>
+
+            var img = document.getElementsByClassName('myImg');
+            for(i=0; i<img.length; i++){
+                img[i].addEventListener('click',function(e){
+
+                    var modal = document.getElementById('myModal');
+                    modal.style.display = "flex";
+
+                    var modalImg = document.getElementById('img02');
+                    modalImg.src = e.target.getAttribute('src');
+                    // alert(e.target.getAttribute('src'));
+
+                    var modalidPhoto = e.target.getAttribute('value');
+                    //                                       alert(modalidPhoto);
+
+
+                    //
+                    //                        success : function(code_html, statut){
+                    //
+                    //                        alert ("succès");
+                    //
+                    //                    },
+                    //
+                    //                           error : function(resultat, statut, erreur){
+                    //                        alert ("erreur");
+                    //
+                    //                    },
+                    //
+                    //                        complete : function(resultat, statut){
+                    //                            alert ("complet");
+                    //
+                    //                        }
+                    //                });
+
+                    // Get the <span> element that closes the modal
+                    var span = document.getElementsByClassName("close")[0];
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+                    $.ajax({
+                        url: 'alertAjax.php',// La ressource ciblée
+                        type : 'POST', // Le type de la requête HTTP.
+                        data : 'IDphotoClicked=' + modalidPhoto,
+                         // On désire recevoir du HTML},
+                        success : function(data){
+
+                            document.getElementById("comments").innerHTML= (data);
+
+                        },
+
+                        error : function(resultat, statut, erreur){
+                           // alert ("erreur");
+
+                        },
+
+                        complete : function(resultat, statut){
+
+                           //alert ("ca marche");
+
+                        }
+                    });
+
+
+
+
+                });
+            }
+
+            //            function displayModalCommentaire(this){
+            //                var modal = document.getElementById('myModal');
+            //                modal.style.display = "flex";
+            //                var modalImg = document.getElementById('img02');
+            //                // Get the image and insert it inside the modal
+            //                //                var img = document.getElementById(idImg);
+            //                //                alert($i);
+            //                //                 modalImg.src = this.src;
+            //                //                    "../imagePNG/events/cochon.png"
+            //                //                    this.src;
+            //                //                captionText.innerHTML = this.alt;
+            //                //                commentaires.display = "block";
+            //                // Get the <span> element that closes the modal
+            //                var span = document.getElementsByClassName("close")[0];
+            //                // When the user clicks on <span> (x), close the modal
+            //                span.onclick = function() {
+            //                    modal.style.display = "none";
+            //                }
+            //            }
+
+            function likePhoto() {
+                alert ("il faut encore faire la gestion des likes.");
+            }
+        </script>
+    </body>
+</html>
+<?php
+
+
+    // $nbOfPhoto=0;
+    $getInfoEvent->closeCursor();
+    $getPhotoEvent->closeCursor();
+    $getDone->closeCursor();
+    $getPhotos->closeCursor();
+
 }
-else{
-    header('Location:eventOfTheMonth.php');
+else {
+    header('Location:pastEvent.php');
     exit();
 }?>

@@ -1,14 +1,14 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['Role']) OR (isset($_SESSION['Role']) AND ($_SESSION['Role'] == "Inactif" OR $_SESSION['Role'] == "Student")))
-    {
-        header("Location: \ProjetWeb\pagePHP\home.php");
-        exit();
-    }
+if(!isset($_SESSION['Role']) OR ((isset($_SESSION['Role']) AND $_SESSION['Role'] != "BDEMember")))
+{
+    header("Location: \ProjetWeb\pagePHP\home.php");
+    exit();
+}
 
-    require 'BDDConnection.php';
-    require 'GoodiesCategory/BDDGoodiesCategory.php';
+require 'BDDConnection.php';
+require 'GoodiesCategory/BDDGoodiesCategory.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,16 +31,16 @@
                 }
                 else if(isset($_POST['newCategory']))
                 {
-                    ?>
-                    <p>Cette catégorie existe déjà!</p>
-                    <?php
+                ?>
+                <p>Cette catégorie existe déjà!</p>
+                <?php
                 }
                 ?>
                 <p>Voici la liste des catégories disponibles.<br/>Merci de vérifier que celle que vous souhaitez ajouter n'existe pas encore.</p>
 
                 <div id="categoryDisplay">
                     <?php
-                        getGoodiesCategory();
+                    getGoodiesCategory();
                     ?>
                 </div>
 

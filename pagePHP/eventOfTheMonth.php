@@ -9,8 +9,6 @@ catch (Exception $e)
     die ('Erreur : ' . $e->getMessage());
 }
 ?>
-
-
 <!DOCTYPE html>
 <html id="top">
 
@@ -64,14 +62,14 @@ catch (Exception $e)
             </div>
 
             <?php
-                $getHappening=$bdd->query('SELECT * FROM Happenings');
-                $numberOfEvent=0;
-                $currentMonth=date("m");
+            $getHappening=$bdd->query('SELECT * FROM Happenings');
+            $numberOfEvent=0;
+            $currentMonth=date("m");
 
-                while( $happening=$getHappening->fetch() ){
-                    if($happening['Validate']==1){
+            while( $happening=$getHappening->fetch() ){
+                if($happening['Validate']==1){
 
-                        $monthOfTheEvent=explode("-",$happening['EventDate']);
+                    $monthOfTheEvent=explode("-",$happening['EventDate']);
 
                     if ($currentMonth==$monthOfTheEvent[1]){
                         $idToLookFor=$happening['IDEvent'];
@@ -87,7 +85,7 @@ catch (Exception $e)
                     <div class="eventBloc">
                         <?php if(isset($urlPhoto['Url'])){
 
-            ?>
+                        ?>
                         <div class="titleAndPhoto">
 
                             <div class="photo">
@@ -100,13 +98,13 @@ catch (Exception $e)
 
                         <div class="eventDescription">
                             <?php
-                                echo $happening['Description'];
+                        echo $happening['Description'];
                             ?>
                         </div>
 
                         <?php
 
-                    if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
+                        if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
 
                         ?>
                         <div class="inscriptionButton">
@@ -124,7 +122,7 @@ catch (Exception $e)
             </form>
             <?php }
 
-                $numberOfEvent++;}}
+                    $numberOfEvent++;}}
             $getHappening->closeCursor();
             ?>
         </section>

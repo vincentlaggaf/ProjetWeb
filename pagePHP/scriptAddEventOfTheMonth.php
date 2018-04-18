@@ -53,13 +53,7 @@ $create=$check->fetch();
                 $infosPhoto = pathinfo($_FILES['photoOfTheEvent']['name']);
                 $namePhoto=str_replace(' ','_',($_FILES['photoOfTheEvent']['name']));
 
-                $checkUrl=$bdd->prepare("SELECT Url FROM Photo WHERE Url=:UrlNewPhoto");
-                $checkUrl->bindValue(':UrlNewPhoto',$urlPhoto,PDO::PARAM_STR);
-                $checkUrl->execute();
-                while($getUrl=$checkUrl->fetch()){
-                    $nameOfPhotoFromBdd=explode('/',$getUrl['Url'])
 
-                }
 
 
 
@@ -70,26 +64,43 @@ $create=$check->fetch();
                     $getId=$bdd->prepare("SELECT IDEvent FROM Happenings WHERE NameEvent= :eventName");
                     $getId->bindValue(':eventName',$eventName,PDO::PARAM_STR);
                     $getId->execute();
-                    $id=$getId->fetch();
+                    $id=$getId->fetch();//Déplacer cette partie : $id=requete->fetch();
                     $idToLookFor=$id['IDEvent'];
-                    move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.basename($namePhoto));
+                    echo $idToLookFor;
                     $urlPhoto='../imagePNG/events/'.'1-'.basename($namePhoto);
-                    echo $namePhoto;
+                    $sent=0;
 
 
 
-//
-//                    if($urlPhoto==$getUrl['Url'])
-//                    {
-//                        $urlPhoto=$urlPhoto .
-//
-//                    }
-//                    else{
-//
-//                    }
+
+                    while($sent==0)
+                    {
+
+                        $checkUrl=$bdd->prepare("SELECT Url FROM Photo WHERE Url=:UrlNewPhoto");
+                        $checkUrl->bindValue(':UrlNewPhoto',$urlPhoto,PDO::PARAM_STR);
+                        $checkUrl->execute();
+                        $getUrl=$checkUrl->fetch();
+                            if($urlPhoto==$getUrl['Url'])
+                            {
+                                $nameOfPhotoFromBdd=explode('/',$getUrl['Url']);
+                                //echo $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)];
+                                $numberPhoto=explode('-', $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)]);
+                                //echo $numberPhoto[0];
+                                $newNumberPhoto=$numberPhoto[0]+1;
+                                $urlPhoto='../imagePNG/events/'.$newNumberPhoto.'-'.basename($namePhoto);
+
+                            }
+                            else
+                            {
+                                $sent=1;
+                            }
+                    }
+                    move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.$newNumberPhoto.'-'.basename($namePhoto));
+                }
 
                     $saveUrl=$bdd->prepare("INSERT INTO Photo (Url,IDEvent)VALUES (:url,:IDEvent) ");
                     $saveUrl->bindValue(':url',$urlPhoto,PDO::PARAM_STR);
+                echo $idToLookFor;
                     $saveUrl->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_INT);
                     $saveUrl->execute();
                 }
@@ -100,7 +111,7 @@ $create=$check->fetch();
                 echo '<script> document.location.replace(/projetWeb/pagePHP/addNewEventOfTheMonth.php);</script>';
            }
         }
-    }
+
 
 //header('Location:eventOfTheMonth.php');
 ?>
