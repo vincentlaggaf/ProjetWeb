@@ -1,0 +1,101 @@
+html {
+    background-color: #CF000F;
+}
+
+body {
+    background-color: #CF000F;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    color: #22313F;
+}
+
+#addGoodieDiv
+{
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    margin: 3%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #FFF;
+    width: 70%;
+}
+
+.goodieBloc{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1%;
+    margin: auto;
+    align-items: center;
+}
+
+.titleAndPhoto{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    width: 30%;
+    padding: auto;
+}
+
+.inputText
+{
+    resize: none;
+}
+
+.photo
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: double 2px black;
+    height: 100%;
+    margin-top: 10%;
+}
+
+#warningPhoto
+{
+    color: red;
+    text-align: center;
+}
+
+#choosePhoto
+{
+   align-self: center;
+}
+
+#price
+{
+    width: 10%;
+    height: 5%;
+    padding: 1%;
+}
+
+/*
+#test{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+*/
+
+.textOfSelect{
+    font-size: 0.7em;
+}
+
+.thumbnail{
+    height: 100%;
+    width: 100%;
+}
+
+@media screen and (max-width:720px){
+
+    .eventBloc{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    }
+}

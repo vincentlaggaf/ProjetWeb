@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(!isset($_SESSION['Role']) OR (isset($_SESSION['Role']) AND ($_SESSION['Role'] == "Inactif" OR $_SESSION['Role'] == "Student")))
+     if(!isset($_SESSION['Role']) OR ((isset($_SESSION['Role']) AND $_SESSION['Role'] != "BDEMember")))
     {
         header("Location: \ProjetWeb\pagePHP\home.php");
         exit();
