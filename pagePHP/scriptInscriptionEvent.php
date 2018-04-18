@@ -16,7 +16,6 @@ $EventPath=str_replace(';','',$NameEvent);
 
 
 
-
 if(isset($_POST['IDEvent'])AND isset($_POST['NameEvent'])){
 
 

@@ -1,7 +1,8 @@
 <?php include ('modals.php'); ?>
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
+<!--<link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">-->
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-nav.css">
+<link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-dropdownMenu.css">
 
 <div class="menu">
@@ -10,9 +11,9 @@
             <li><img id="exia" src="/projetWeb/imagePNG/exia.png" alt="logo exia"></li>
             <li><a href="home.php" class="bouton">Accueil</a></li>
             <li><a href="shop.php" class="bouton">Boutique</a></li>
-            <li><a href="#" class="bouton">Boite à idées</a></li>
+            <li><a href="IdeaBox.php" class="bouton">Boite à idées</a></li>
             <li><a href="eventOfTheMonth.php" class="bouton">Évènement du mois</a></li>
-            <li><a href="#" class="bouton">Évènements passés</a></li>
+            <li><a href="pastEvent.php" class="bouton">Évènements passés</a></li>
             <?php
             if(isset($_SESSION['Login'])){
             ?>
