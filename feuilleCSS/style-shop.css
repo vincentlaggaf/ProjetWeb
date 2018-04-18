@@ -128,6 +128,11 @@ button:hover {
     overflow: auto;
 }
 
+.inputNumber
+{
+    width: 93.5%;
+}
+
 #sidebar
 {
     display: flex;

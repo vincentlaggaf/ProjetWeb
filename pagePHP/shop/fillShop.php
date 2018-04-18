@@ -117,11 +117,11 @@ function displayGoodies($answer){
         </div>
         <div class="goodies_information_part">
 
-            <div class="info_goodies info_goodie_description info_goodies_margin">Description :<br/><?php echo $data['Description']; ?></div>
+            <div class="info_goodies info_goodie_description">Description :<br/><?php echo $data['Description']; ?></div>
 
             <form action="\projetWeb\pagePHP\shop.php" method="post">
                 <input type="hidden" name="buy" value="<?php echo $data['NameGoodies']; ?>">
-                <input type="number" name="quantity" min="1" value="1">
+                <input type="number" name="quantity" min="1" value="1" class="inputNumber">
                 <input type="submit" value="Acheter">
             </form>
 
