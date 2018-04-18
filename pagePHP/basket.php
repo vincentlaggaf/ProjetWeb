@@ -10,6 +10,7 @@
     require 'BDDConnection.php';
     require 'basket\fillBasket.php';
     require 'basket\BasketBDDInteraction.php';
+    require 'sendMail\sendMail.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -37,7 +38,17 @@
 
                 if(isset($_POST['validate']))
                 {
-                    validateBasket($_SESSION['Id']);
+                    $totalPrice = getTotalPrice($_SESSION['Id']);
+                    try{
+                        fillOrderMail(getBasketQuery($_SESSION['Id']), $_SESSION['Mail'], $_SESSION['FirstName'], $_SESSION['LastName'], $totalPrice);
+
+                        validateBasket($_SESSION['Id']);
+                    }
+                    catch(Exception $e){
+                        echo 'Exception reçue : ',  $e->getMessage(), "\n";
+                    }
+
+
                      ?>
                     <p>Votre commande a été validée, un membre du BDE vous contacteras prochaînement.<br/>En attendant vous pouvez continuer votre navigation sur <a href="\projetWeb\pagePHP\home.php">notre site</a>.<br/>Bonne visite!</p>
                     <?php
@@ -50,7 +61,7 @@
                 }
                 else
                 {
-                    getBasket($_SESSION['Id']);
+                    getAndDisplayBasket($_SESSION['Id']);
                     $price = getTotalPrice($_SESSION['Id']);
                     ?>
                     <p id="price">Prix total : <?php  echo $price; ?>€</p>

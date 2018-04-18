@@ -1,9 +1,15 @@
 <?php
-    function getBasket($IDUser){
+    function getAndDisplayBasket($IDUser){
         $basket = getBasketQuery($IDUser);
-        $price = displayBasket($basket);
+        displayBasket($basket);
         $basket->closeCursor();
-        return $price;
+    }
+
+    function getBasket($IDUser){
+        $getBasket = getBasketQuery($IDUser);
+        $basketContent = $getBasket;
+        $getBasket->closeCursor();
+        return $basketContent;
     }
 
     function setBasket($IDUser, $NameGoodies, $Quantity){
