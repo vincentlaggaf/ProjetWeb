@@ -97,11 +97,6 @@ if(isset($_GET['name'])){
             </div>
 
 
-
-
-
-
-
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- The Close Button -->
@@ -111,36 +106,36 @@ if(isset($_GET['name'])){
                 <!-- Modal Caption (Image Text) -->
                 <div class="commentaire" id="commentaires">
                     <h1>Aimer la photo : </h1>
-
-
-                     <?php
-            if(isset($_SESSION['Id'])){
-            ?>
-            <button id="btn">J'aime</button>
-            <?php }
-            ?>
-                    <form action="">
-                        <h1>Commentaires :</h1>
-                        <input type="text" name="comment">
-                        <button type="submit" class="btn">Envoyer</button>
-                    </form>
-
+                    <?php
+        if(isset($_SESSION['Id'])){
+                    ?>
+                    <button id="btn">J'aime</button>
+                    <?php }
+                    ?>
                     <div>
+                        <h1>Commentaires :</h1>
+                        <!--
+<form action="">
+<input type="text" name="comment">
+<button type="submit" class="btn">Envoyer</button>
+</form>
+-->
+                        <!--
+<form method="POST" action="commentEventPhoto.php" id="form" >
+<input type="text" name="comment" id="monCommentaire">
+<input type="submit" value="Submit" id="submit">
 
-                        <p id="comments"> Les commentaires : </p>
-
+</form>
+-->
+                        <form action="commentEventPhoto.php" method="post">
+                            <input type="text" id="monCommentaire"/>
+                            <button type="reset" value="reset" id="submit"> envoyer </button>
+                            <!--<button type="reset" value="Reset" id="submit"> envoyer </button>-->
+                        </form>
                     </div>
+                    <div><p id="comments"> Les commentaires : </p></div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
 
             <?php } ?>
         </section>
@@ -150,14 +145,12 @@ if(isset($_GET['name'])){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
 
-
-
-
-
-
         <script>
+
+
             var img = document.getElementsByClassName('myImg');
-            for(i=0; i<img.length; i++){
+            for(i=0; i<img.length; i++)
+            {
                 img[i].addEventListener('click',function(e){
 
                     var modal = document.getElementById('myModal');
@@ -175,31 +168,6 @@ if(isset($_GET['name'])){
                         modal.style.display = "none";
                     }
 
-                    btn.onclick = function(){
-                        $.ajax({
-                            url: 'likePhotoEvent.php',// La ressource ciblée
-                            type : 'POST', // Le type de la requête HTTP.
-                            data :'IDphotoClicked=' + modalidPhoto,
-
-                            // On désire recevoir du HTML},
-                            success : function(data){
-                                alert (data);
-                            },
-
-                            error : function(resultat, statut, erreur){
-//                                 alert ("erreur");
-                            },
-                            complete : function(resultat, statut){
-//                                alert ("ca marche");
-                            }
-                        });
-
-                    }
-
-                    //                    var likeBtn = document.getElementById('btn').addEventListener('click',function(e){
-                    //                        alert (modalidPhoto);
-                    //                        modalidPhoto = null;
-                    //                    });
                     $.ajax({
                         url: 'alertAjax.php',// La ressource ciblée
                         type : 'POST', // Le type de la requête HTTP.
@@ -217,17 +185,56 @@ if(isset($_GET['name'])){
                         }
                     });
 
+
+                    btn.onclick = function(){
+                        $.ajax({
+                            url: 'likePhotoEvent.php',// La ressource ciblée
+                            type : 'POST', // Le type de la requête HTTP.
+                            data :'IDphotoClicked=' + modalidPhoto,
+
+                            // On désire recevoir du HTML},
+                            success : function(data){
+                                alert (data);
+                            },
+
+                            error : function(resultat, statut, erreur){
+                                //                                 alert ("erreur");
+                            },
+                            complete : function(resultat, statut){
+                                //                                alert ("ca marche");
+                            }
+                        });
+
+                    }
+
+                    submit.onclick = function(){
+                    var commentaire = document.getElementById('monCommentaire').value;
+//                        alert (commentaire);
+                        $.ajax({
+                            url: 'commentEventPhoto.php',
+                            type : 'POST',
+                            data :
+                            {
+                                "IDphotoClicked": modalidPhoto,
+                                "comment": commentaire,
+                            },
+
+                            success : function(data){
+                                alert(data);
+                            },
+                            error : function(resultat, statut, erreur){
+                                alert ("erreur");
+                            },
+                            complete : function(resultat, statut){
+//                                alert ("ca marche");
+                            }
+                        });
+                    }
+
+
+
                 });
-
-
             }
-
-
-
-
-            //            function likePhoto() {
-            //                alert(modal);
-            //            }
 
         </script>
     </body>
