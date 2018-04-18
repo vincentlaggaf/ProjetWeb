@@ -112,7 +112,10 @@
                 if($role == "BDEMember")
                 {
                 ?>
-                    <p>Ajouter un Goodie</p>
+                    <p>Ajouter un Article</p>
+                    <form action="\projetWeb\pagePHP\addGoodies.php" method="post">
+                        <input type="submit" value="Ajouter">
+                    </form>
                     <p>Ajouter une Catégorie :</p>
                     <form action="\projetWeb\pagePHP\addGoodiesCategory.php" method="post">
                         <input type="submit" value="Ajouter">

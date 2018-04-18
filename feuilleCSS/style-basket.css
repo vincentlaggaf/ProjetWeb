@@ -85,18 +85,6 @@ section {
 
 }
 
-/*
-input[type=text]
-{
-    width: 100%;
-    padding: 3%;
-    margin: 3% 0;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-size: 100%;
-}
-*/
-
 .change
 {
     width: 55%;
