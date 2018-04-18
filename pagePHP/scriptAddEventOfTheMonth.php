@@ -64,7 +64,7 @@ $create=$check->fetch();
                     $getId=$bdd->prepare("SELECT IDEvent FROM Happenings WHERE NameEvent= :eventName");
                     $getId->bindValue(':eventName',$eventName,PDO::PARAM_STR);
                     $getId->execute();
-                    $id=$getId->fetch();
+                    $id=$getId->fetch();//Déplacer cette partie : $id=requete->fetch();
                     $idToLookFor=$id['IDEvent'];
                     echo $idToLookFor;
                     $urlPhoto='../imagePNG/events/'.'1-'.basename($namePhoto);

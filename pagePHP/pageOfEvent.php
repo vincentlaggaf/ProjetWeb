@@ -12,6 +12,7 @@ catch (Exception $e)
 
 <?php
 
+
 if(isset($_GET['name'])){
 
 
@@ -122,21 +123,9 @@ if(isset($_GET['name'])){
                     </form>
 
                     <div>
-                        <p> Les commentaires : </p>
+                        <p id="comments"> Les commentaires : </p>
 
 
-                        <?php
-
-        $getComments=$bdd->prepare('SELECT CommentContent FROM Comments WHERE IDPhoto =:IDPhoto');
-        $getComments->bindValue(':IDPhoto',$_GET['IDphotoClicked'],PDO::PARAM_INT);
-        $getComments->execute();
-        while($comments=$getComments->fetch())
-        {?>
-                        <fieldset class="comment">
-                            <?php echo $comments['CommentContent'];?>
-                        </fieldset>
-                        <?php
-        }?>
                     </div>
                 </div>
             </div>
@@ -148,7 +137,7 @@ if(isset($_GET['name'])){
 
 
 
-
+        <script src="jquery.js"></script>
         <script>
 
             var img = document.getElementsByClassName('myImg');
@@ -163,9 +152,26 @@ if(isset($_GET['name'])){
                     // alert(e.target.getAttribute('src'));
 
                     var modalidPhoto = e.target.getAttribute('value');
-                    //                                        alert(modalidPhoto);
+                    //                                       alert(modalidPhoto);
 
 
+                    //
+                    //                        success : function(code_html, statut){
+                    //
+                    //                        alert ("succès");
+                    //
+                    //                    },
+                    //
+                    //                           error : function(resultat, statut, erreur){
+                    //                        alert ("erreur");
+                    //
+                    //                    },
+                    //
+                    //                        complete : function(resultat, statut){
+                    //                            alert ("complet");
+                    //
+                    //                        }
+                    //                });
 
                     // Get the <span> element that closes the modal
                     var span = document.getElementsByClassName("close")[0];
@@ -174,31 +180,33 @@ if(isset($_GET['name'])){
                         modal.style.display = "none";
                     }
 
-
                     $.ajax({
-                        url : 'pageOfEvent.php?name='+<?php echo $eventName; ?>, // La ressource ciblée
-                        type : 'GET', // Le type de la requête HTTP.
+                        url: 'alertAjax.php',// La ressource ciblée
+                        type : 'POST', // Le type de la requête HTTP.
                         data : 'IDphotoClicked=' + modalidPhoto,
-                        dataType : 'html', // On désire recevoir du HTML
+                         // On désire recevoir du HTML},
+                        success : function(data){
 
-                        success : function(code_html, statut){
+                            document.getElementById("comments").innerHTML= (data);
 
-                        alert ("succès");
+                        },
 
-                    },
+                        error : function(resultat, statut, erreur){
+                           // alert ("erreur");
 
-                           error : function(resultat, statut, erreur){
-                        alert ("erreur");
-
-                    },
+                        },
 
                         complete : function(resultat, statut){
-                            alert ("complet");
+
+                           //alert ("ca marche");
 
                         }
-                });
+                    });
 
-            });
+
+
+
+                });
             }
 
             //            function displayModalCommentaire(this){

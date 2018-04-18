@@ -1,5 +1,5 @@
 <?php
-    session_start();
+  session_start();
     try
         {
              $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -18,6 +18,8 @@
 
 <!DOCTYPE html>
 <html>
+
+
 
     <head>
         <title>Validation</title>
@@ -42,14 +44,14 @@
 
             <form action="" method="post">
             <fieldset class="event">
-                <legend class="eventNumber">Validation de l'Idée </legend>
+                <legend class="eventNumber">Validation de l'Idée <?=$_POST['idEvent'];?> </legend>
 
                     <div class="eventBloc">
 
                     <div class="titleAndPhoto">
 
                     <div class="title">
-                        <input   type="text" name="titleval"  value=""  />
+                        <textarea class="area"   style="resize:none" name="titleval"><?php echo $_POST['titleIdea']; ?></textarea>
                     </div>
 
                     <div class="photo">
@@ -62,7 +64,7 @@
                     </div>
 
                     <div class="eventDescription">
-                        <textarea style="resize:none" name="descriptionval" rows="12" cols="50" value=""></textarea>
+                        <textarea style="resize:none" name="descriptionval" rows="12" cols="50" ><?php echo $_POST['desCription']?></textarea>
                        <div class="buttonValidation"> <label for="eventCategory">Quel est le type de l'événement?</label>
 
                         <select  name="eventCategory">
@@ -115,7 +117,7 @@
 
             <?php
 
-                echo $_POST['freeOrNot'];
+
 
                 if(isset($_POST['Validate'])){
 
@@ -128,7 +130,7 @@
 
 
               $validation->execute();
-              echo $_POST['dateValidaiton'];
+
 
           }
 
