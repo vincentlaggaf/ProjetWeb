@@ -96,7 +96,7 @@ catch (Exception $e)
 
 
             <form class="addIdea" action="IdeaBox.php" method="post" >
-                >>>>>>> origin/master
+
                 <fieldset class="event">
                     <legend class="eventNumber" name="idevent">Idée <?=
                 $happenings['IDEvent'];
