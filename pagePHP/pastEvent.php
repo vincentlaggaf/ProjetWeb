@@ -22,7 +22,7 @@ catch (Exception $e)
     <body>
         <?php include('nav.php');?>
         <section id="corps">
-            <div id="sidebar">
+                    <div id="sidebar">
                 <form action="" method="post">
                     <input type="text" name="research" placeholder="Recherche"/>
                     <input type="submit" value="Valider" />
@@ -47,6 +47,18 @@ catch (Exception $e)
                 </form>
                 <?php } ?>
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
             <?php
             $getHappened=$bdd->query('SELECT * FROM Happenings');
@@ -92,6 +104,13 @@ catch (Exception $e)
                 $numberOfEvent++; }
             $getHappened->closeCursor();
         ?>
+
+
+
+
+
+
+
         </section>
     <?php include('footer.php'); ?>
 

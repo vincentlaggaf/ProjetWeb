@@ -99,13 +99,7 @@ if(isset($_GET['name'])){
                     }
                         ?>
                     </tr>
-                    <?php
-        // $nbOfPhoto=0;
-        $getInfoEvent->closeCursor();
-        $getPhotoEvent->closeCursor();
-        $getDone->closeCursor();
-        $getPhotos->closeCursor();
-                    ?>
+
                 </table>
             </div>
 
@@ -124,67 +118,87 @@ if(isset($_GET['name'])){
                         <input type="text" name="comment">
                         <button type="submit" class="btn">Envoyer</button>
                     </form>
-                    <p> récupérer commentaires blablabla</p>
-                </div>
+                    <div>
+                        <p> Les commentaires : </p>
+
+                        <?php
+
+        $getComments=$bdd->prepare('SELECT CommentContent FROM Photo WHERE IDEvent =:IDEvent');
+        $getComments->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
+        $getComments->execute();
+
+        <fieldset>comment 1</fieldset>
+            <fieldset>comment 2</fieldset>
+
+            </div>
+
+            </div>
             </div>
             <?php
     } ?>
-        </section>
-        <?php include('footer.php');?>
+                        </section>
+                    <?php include('footer.php');?>
 
 
 
 
-        <script>
+                    <script>
 
-            var img = document.getElementsByClassName('myImg');
-            for(i=0; i<img.length; i++){
-                img[i].addEventListener('click',function(e){
+                        var img = document.getElementsByClassName('myImg');
+                        for(i=0; i<img.length; i++){
+                            img[i].addEventListener('click',function(e){
 
-                    var modal = document.getElementById('myModal');
-                    modal.style.display = "flex";
+                                var modal = document.getElementById('myModal');
+                                modal.style.display = "flex";
 
-                    var modalImg = document.getElementById('img02');
-                    modalImg.src = e.target.getAttribute('src');
-                    // alert(e.target.getAttribute('src'));
+                                var modalImg = document.getElementById('img02');
+                                modalImg.src = e.target.getAttribute('src');
+                                // alert(e.target.getAttribute('src'));
 
-                    // Get the <span> element that closes the modal
-                    var span = document.getElementsByClassName("close")[0];
-                    // When the user clicks on <span> (x), close the modal
-                    span.onclick = function() {
-                        modal.style.display = "none";
-                    }
-                });
-            }
+                                // Get the <span> element that closes the modal
+                                var span = document.getElementsByClassName("close")[0];
+                                // When the user clicks on <span> (x), close the modal
+                                span.onclick = function() {
+                                    modal.style.display = "none";
+                                }
+                            });
+                        }
 
-            //            function displayModalCommentaire(this){
-            //                var modal = document.getElementById('myModal');
-            //                modal.style.display = "flex";
-            //                var modalImg = document.getElementById('img02');
-            //                // Get the image and insert it inside the modal
-            //                //                var img = document.getElementById(idImg);
-            //                //                alert($i);
-            ////                                modalImg.src = this.src;
-            //                //                    "../imagePNG/events/cochon.png"
-            //                //                    this.src;
-            //
-            //                //                captionText.innerHTML = this.alt;
-            //                //                commentaires.display = "block";
-            //                // Get the <span> element that closes the modal
-            //                var span = document.getElementsByClassName("close")[0];
-            //                // When the user clicks on <span> (x), close the modal
-            //                span.onclick = function() {
-            //                    modal.style.display = "none";
-            //                }
-            //            }
+                        //            function displayModalCommentaire(this){
+                        //                var modal = document.getElementById('myModal');
+                        //                modal.style.display = "flex";
+                        //                var modalImg = document.getElementById('img02');
+                        //                // Get the image and insert it inside the modal
+                        //                //                var img = document.getElementById(idImg);
+                        //                //                alert($i);
+                        //                //                 modalImg.src = this.src;
+                        //                //                    "../imagePNG/events/cochon.png"
+                        //                //                    this.src;
+                        //                //                captionText.innerHTML = this.alt;
+                        //                //                commentaires.display = "block";
+                        //                // Get the <span> element that closes the modal
+                        //                var span = document.getElementsByClassName("close")[0];
+                        //                // When the user clicks on <span> (x), close the modal
+                        //                span.onclick = function() {
+                        //                    modal.style.display = "none";
+                        //                }
+                        //            }
 
-            function likePhoto() {
-                alert ("il faut encore faire la gestion des likes.");
-            }
-        </script>
-    </body>
-</html>
-<?php
+                        function likePhoto() {
+                            alert ("il faut encore faire la gestion des likes.");
+                        }
+                    </script>
+                    </body>
+                </html>
+            <?php
+
+
+    // $nbOfPhoto=0;
+    $getInfoEvent->closeCursor();
+    $getPhotoEvent->closeCursor();
+    $getDone->closeCursor();
+    $getPhotos->closeCursor();
+
 }
 else {
     header('Location:pastEvent.php');
