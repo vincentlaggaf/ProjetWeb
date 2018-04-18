@@ -7,9 +7,9 @@ function chooseCategory(){
 
     while($data = $chooseCategory->fetch())
     {
-?>
-<option value="<?php echo $data['NameGoodiesCategory'] ?>"><?php echo $data['NameGoodiesCategory'] ?></option>
-<?php
+        ?>
+        <option value="<?php echo $data['NameGoodiesCategory'] ?>"><?php echo $data['NameGoodiesCategory'] ?></option>
+        <?php
     }
 
     $chooseCategory->closeCursor();

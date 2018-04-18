@@ -71,7 +71,7 @@ require 'addGoodies/scriptAddGoodies.php';
                         <textarea rows="10" cols="51" placeholder="Description de l'article" name="goodieDescription" class="inputText"></textarea>
 
 
-                        <select name="goodieCategory">
+                        <select name="goodieCategory"e id="goodieCategory">
                             <?php
                             chooseCategory();
                             ?>
@@ -80,8 +80,8 @@ require 'addGoodies/scriptAddGoodies.php';
                         <input type="number" name="price"  min="1" placeholder="Prix de l'article" id="price"/>
 
 
-                        <div class="inscriptionButton">
-                            <input type="submit" value="Ajouter l'article" name="submit"/>
+                        <div>
+                            <input type="submit" value="Ajouter l'article" name="submit" id="inscriptionButton"/>
                         </div>
 
                     </div>

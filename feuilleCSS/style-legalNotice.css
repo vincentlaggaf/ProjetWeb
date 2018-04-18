@@ -1,0 +1,39 @@
+html {
+    background-color: #CF000F;
+}
+
+body {
+    background-color: #CF000F;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#legalNoticeDiv
+{
+    display: flex;
+    justify-content: center;
+}
+
+section {
+    background-color: #FFF;
+    padding: 2%;
+    margin: auto;
+    margin-top: 3%;
+    width: 60%;
+    border: 2px black groove;
+}
+
+.mention_titre
+{
+    text-align: center;
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.mention_txt
+{
+    text-align: justify;
+    margin-bottom: 3%;
+}

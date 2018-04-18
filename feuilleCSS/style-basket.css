@@ -126,7 +126,7 @@ button:hover
         justify-content: center;
     }
 
-    input[type=text], input[type=password] {
+    input[type=text]{
         width: 100%;
         padding: 3%;
         margin: 3% 0;
