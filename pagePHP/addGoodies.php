@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+//this refuse the access of the page for all the visitors who aren't BDE members even with the link of this page and send them to the home page
 if(!isset($_SESSION['Role']) OR ((isset($_SESSION['Role']) AND $_SESSION['Role'] != "BDEMember")))
 {
     header("Location: \ProjetWeb\pagePHP\home.php");
@@ -23,14 +25,17 @@ require 'addGoodies/scriptAddGoodies.php';
         <div id=addGoodieDiv>
             <section>
                 <?php
-                try{
+                try
+                {
                     if(isset($_POST['submit']) AND $_POST['goodieName'] != "" AND $_POST['price'] != "" AND $_POST['goodieDescription'] != "")
                     {
                         if(checkNewGoodieName($_POST['goodieName']))
                         {
+                            //get the file sent by the BDE member
                             $fileURL = getFile();
                             if(isset($fileURL))
                             {
+                                //add the new goodie with all the informations
                                 addNewGoodie($_POST['goodieName'], $fileURL, $_POST['goodieDescription'], $_POST['goodieCategory'], $_POST['price']);
                             }
                             else
@@ -53,6 +58,7 @@ require 'addGoodies/scriptAddGoodies.php';
                     echo 'Exception reçue : ',  $e->getMessage(), "\n";
                 }
                 ?>
+<!--                display the form to fill with all the informations for the new goodie-->
                 <form class="addNewGoodie" action="\ProjetWeb\pagePHP\addGoodies.php" method="post" enctype="multipart/form-data">
 
                     <div class="goodieBloc">
@@ -71,8 +77,9 @@ require 'addGoodies/scriptAddGoodies.php';
                         <textarea rows="10" cols="51" placeholder="Description de l'article" name="goodieDescription" class="inputText"></textarea>
 
 
-                        <select name="goodieCategory">
+                        <select name="goodieCategory"e id="goodieCategory">
                             <?php
+                            //get all the existing categories
                             chooseCategory();
                             ?>
                         </select>
@@ -80,8 +87,8 @@ require 'addGoodies/scriptAddGoodies.php';
                         <input type="number" name="price"  min="1" placeholder="Prix de l'article" id="price"/>
 
 
-                        <div class="inscriptionButton">
-                            <input type="submit" value="Ajouter l'article" name="submit"/>
+                        <div>
+                            <input type="submit" value="Ajouter l'article" name="submit" id="inscriptionButton"/>
                         </div>
 
                     </div>

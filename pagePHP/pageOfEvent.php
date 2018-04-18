@@ -47,19 +47,16 @@ if(isset($_GET['name'])){
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
-        <style>
-            table img {
-                width: 100%;
-                height: auto;
-            }
-
-
-        </style>
     </head>
     <?php include ('nav.php'); ?>
 
     <body>
         <section id="corps">
+
+
+
+
+
 
             <fieldset class="event">
                 <legend class="eventName"><strong>
@@ -69,7 +66,9 @@ if(isset($_GET['name'])){
                     <div class="eventBloc">
                         <?php if(isset($urlPhoto['Url'])){ ?>
                         <div class="titleAndPhoto">
-                            <div class="photo"><img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail"></div>
+                            <div class="photo">
+                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
+                            </div>
                         </div>
                         <?php } ?>
                         <div class="eventDescription"><?php echo $InfoEvent['Description'];?></div>
@@ -77,45 +76,49 @@ if(isset($_GET['name'])){
                 </div>
             </fieldset>
 
+
+
+
+
+
             <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now"))
     { ?>
-            <div>
-                <table>
-                    <tr>
-                        <th>Galerie photo</th>
-                    </tr>
 
-                    <?php
-        $nbOfPhoto=0;
+            <div class="eventPhotos">
+                <?php
         $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
         $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
         $getPhotos->execute();
-                    ?>
-                    <tr>
-                        <?php while($photos=$getPhotos->fetch()AND $nbOfPhoto<4){
-                        ?>
-                        <!-- <form action="" method="post">-->
-                        <td><img class="myImg" value="<?php echo $photos['IDPhoto'];?>" src="<?php echo $photos['Url'];?>" alt="oui"></td>
-                        <!-- </form>-->
-                        <?php
-                        $nbOfPhoto++;
-                    }
-                        ?>
-                    </tr>
-
-                </table>
+                ?>
+                <?php while($photos=$getPhotos->fetch()){
+                ?>
+                <img class="myImg" value="<?php echo $photos['IDPhoto'];?>" src="<?php echo $photos['Url'];?>" alt="oui">
+                <?php } ?>
             </div>
+
+
+
+
+
+
 
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- The Close Button -->
                 <span class="close">&times;</span>
                 <!-- Modal Content (The Image) -->
-                <img class="modal-content" id="img02">
+                <img class="modal-content" id="imgModal">
                 <!-- Modal Caption (Image Text) -->
                 <div class="commentaire" id="commentaires">
                     <h1>Aimer la photo : </h1>
-                    <button onclick="likePhoto()" class="btn">J'aime</button>
+
+
+                     <?php
+            if(isset($_SESSION['Id'])){
+            ?>
+            <button id="btn">J'aime</button>
+            <?php }
+            ?>
                     <form action="">
                         <h1>Commentaires :</h1>
                         <input type="text" name="comment">
@@ -123,12 +126,20 @@ if(isset($_GET['name'])){
                     </form>
 
                     <div>
-                        <p id="comments"> Les commentaires : </p>
 
+                        <p id="comments"> Les commentaires : </p>
 
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
 
 
             <?php } ?>
@@ -136,10 +147,15 @@ if(isset($_GET['name'])){
         <?php include('footer.php');?>
 
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 
-        <script src="jquery.js"></script>
+
+
+
+
+
+
         <script>
-
             var img = document.getElementsByClassName('myImg');
             for(i=0; i<img.length; i++){
                 img[i].addEventListener('click',function(e){
@@ -147,31 +163,10 @@ if(isset($_GET['name'])){
                     var modal = document.getElementById('myModal');
                     modal.style.display = "flex";
 
-                    var modalImg = document.getElementById('img02');
+                    var modalImg = document.getElementById('imgModal');
                     modalImg.src = e.target.getAttribute('src');
-                    // alert(e.target.getAttribute('src'));
 
                     var modalidPhoto = e.target.getAttribute('value');
-                    //                                       alert(modalidPhoto);
-
-
-                    //
-                    //                        success : function(code_html, statut){
-                    //
-                    //                        alert ("succès");
-                    //
-                    //                    },
-                    //
-                    //                           error : function(resultat, statut, erreur){
-                    //                        alert ("erreur");
-                    //
-                    //                    },
-                    //
-                    //                        complete : function(resultat, statut){
-                    //                            alert ("complet");
-                    //
-                    //                        }
-                    //                });
 
                     // Get the <span> element that closes the modal
                     var span = document.getElementsByClassName("close")[0];
@@ -180,58 +175,60 @@ if(isset($_GET['name'])){
                         modal.style.display = "none";
                     }
 
+                    btn.onclick = function(){
+                        $.ajax({
+                            url: 'likePhotoEvent.php',// La ressource ciblée
+                            type : 'POST', // Le type de la requête HTTP.
+                            data :'IDphotoClicked=' + modalidPhoto,
+
+                            // On désire recevoir du HTML},
+                            success : function(data){
+                                alert (data);
+                            },
+
+                            error : function(resultat, statut, erreur){
+//                                 alert ("erreur");
+                            },
+                            complete : function(resultat, statut){
+//                                alert ("ca marche");
+                            }
+                        });
+
+                    }
+
+                    //                    var likeBtn = document.getElementById('btn').addEventListener('click',function(e){
+                    //                        alert (modalidPhoto);
+                    //                        modalidPhoto = null;
+                    //                    });
                     $.ajax({
                         url: 'alertAjax.php',// La ressource ciblée
                         type : 'POST', // Le type de la requête HTTP.
                         data : 'IDphotoClicked=' + modalidPhoto,
-                         // On désire recevoir du HTML},
+                        // On désire recevoir du HTML},
                         success : function(data){
-
                             document.getElementById("comments").innerHTML= (data);
-
                         },
 
                         error : function(resultat, statut, erreur){
-                           // alert ("erreur");
-
+                            // alert ("erreur");
                         },
-
                         complete : function(resultat, statut){
-
-                           //alert ("ca marche");
-
+                            //alert ("ca marche");
                         }
                     });
 
-
-
-
                 });
+
+
             }
 
-            //            function displayModalCommentaire(this){
-            //                var modal = document.getElementById('myModal');
-            //                modal.style.display = "flex";
-            //                var modalImg = document.getElementById('img02');
-            //                // Get the image and insert it inside the modal
-            //                //                var img = document.getElementById(idImg);
-            //                //                alert($i);
-            //                //                 modalImg.src = this.src;
-            //                //                    "../imagePNG/events/cochon.png"
-            //                //                    this.src;
-            //                //                captionText.innerHTML = this.alt;
-            //                //                commentaires.display = "block";
-            //                // Get the <span> element that closes the modal
-            //                var span = document.getElementsByClassName("close")[0];
-            //                // When the user clicks on <span> (x), close the modal
-            //                span.onclick = function() {
-            //                    modal.style.display = "none";
-            //                }
+
+
+
+            //            function likePhoto() {
+            //                alert(modal);
             //            }
 
-            function likePhoto() {
-                alert ("il faut encore faire la gestion des likes.");
-            }
         </script>
     </body>
 </html>

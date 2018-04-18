@@ -1,5 +1,5 @@
 <?php
-
+//get a goodies in the basket of the visitor
 function checkBasketQuery($IDUser, $NameGoodie){
     $bdd = getBDD();
 
@@ -13,6 +13,7 @@ function checkBasketQuery($IDUser, $NameGoodie){
     return $checkBasketQuery;
 }
 
+//change the quantity of a goodie in a basket
 function changeQuantityOnBasketGoodies($IDUser, $NameGoodie, $Quantity){
     $bdd = getBDD();
 
@@ -27,6 +28,7 @@ function changeQuantityOnBasketGoodies($IDUser, $NameGoodie, $Quantity){
     return $changeQuantityOnBasketGoodies;
 }
 
+//add a goodie in a basket
 function addGoodieToBasketQuery($IDUser, $NameGoodie, $Quantity){
     $bdd = getBDD();
 
@@ -41,6 +43,7 @@ function addGoodieToBasketQuery($IDUser, $NameGoodie, $Quantity){
     return $addGoodieToBasketQuery;
 }
 
+//gets all the goodies
 function getGoodiesQuery(){
     $bdd = getBDD();
     $goodiesQuery = $bdd->prepare('CALL `GoodiesQuery`()') or die(print_r($bdd->errorInfo()));
@@ -48,13 +51,15 @@ function getGoodiesQuery(){
     return $goodiesQuery;
 }
 
-function getPopulargoodiesQuery(){
+//gets the three most popular goodies
+function getPopularGoodiesQuery(){
     $bdd = getBDD();
     $getPopulargoodiesQuery = $bdd->prepare('CALL `PopularGoodiesQuery`()') or die(print_r($bdd->errorInfo()));
     $getPopulargoodiesQuery->execute();
     return $getPopulargoodiesQuery;
 }
 
+//delete a goodie in the database
 function deleteGoodieQuery($goodie){
     $bdd = getBDD();
     $deleteGoodieQuery = $bdd->prepare('CALL `DeleteGoodie`(:goodie)') or die(print_r($bdd->errorInfo()));
@@ -63,6 +68,7 @@ function deleteGoodieQuery($goodie){
     return $deleteGoodieQuery;
 }
 
+//gets the goodies corresponding to the research
 function getGoodiesByResearch($research){
     $bdd = getBDD();
     $goodiesQuery = $bdd->prepare('CALL `GoodiesByResearch`(:research)') or die(print_r($bdd->errorInfo()));
@@ -71,6 +77,7 @@ function getGoodiesByResearch($research){
     return $goodiesQuery;
 }
 
+//gets the goodies sorted by category
 function getGoodiesByCategory(){
     $bdd = getBDD();
     $goodiesQuery = $bdd->prepare('CALL `GoodiesByCategory`()') or die(print_r($bdd->errorInfo()));
@@ -78,6 +85,7 @@ function getGoodiesByCategory(){
     return $goodiesQuery;
 }
 
+//gets the goodies sorted by price
 function getGoodiesByPrice(){
     $bdd = getBDD();
     $goodiesQuery = $bdd->prepare('CALL `GoodiesByPrice`()') or die(print_r($bdd->errorInfo()));
@@ -85,6 +93,7 @@ function getGoodiesByPrice(){
     return $goodiesQuery;
 }
 
+//gets the goodies sorted by popularity
 function getGoodiesByPopularityQuery(){
     $bdd = getBDD();
     $getGoodiesByPopularityQuery = $bdd->prepare('CALL `GoodiesByPopularity`()') or die(print_r($bdd->errorInfo()));

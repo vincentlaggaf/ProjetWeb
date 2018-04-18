@@ -3,9 +3,21 @@
     border-radius: 5px;
     cursor: pointer;
     transition: 0.3s;
+    max-height: 220px;
+    width: auto;
 }
 
 .myImg:hover {opacity: 0.7;}
+
+
+
+.eventPhotos{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: space-around;
+}
+
+
 
 /* The Modal (background) */
 .modal {
@@ -24,6 +36,7 @@
     /* Black w/ opacity */
 /*     background-color: aqua;*/
 }
+
 
 /* Modal Content (Image) */
 .modal-content {

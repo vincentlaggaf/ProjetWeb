@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//this refuse the access of the page for all the visitors who aren't BDE members even with the link of this page and send them to the home page
 if(!isset($_SESSION['Role']) OR ((isset($_SESSION['Role']) AND $_SESSION['Role'] != "BDEMember")))
 {
     header("Location: \ProjetWeb\pagePHP\home.php");
@@ -23,10 +24,10 @@ require 'GoodiesCategory/BDDGoodiesCategory.php';
         <?php include 'nav.php'; ?>
         <div id="addGoodiesCategoryDiv">
             <section>
-
                 <?php
                 if(isset($_POST['newCategory']) AND checkCategory($_POST['newCategory']))
                 {
+                    //create a new goodies category
                     insertNewCategory($_POST['newCategory']);
                 }
                 else if(isset($_POST['newCategory']))
@@ -40,11 +41,12 @@ require 'GoodiesCategory/BDDGoodiesCategory.php';
 
                 <div id="categoryDisplay">
                     <?php
+                    //gets all the existing category and displays them
                     getGoodiesCategory();
                     ?>
                 </div>
 
-                <div >
+                <div>
                     <form action="\projetWeb\pagePHP\addGoodiesCategory.php" method="post" id="categoryChange">
                         <input type="text" name="newCategory" placeholder="Catégorie" id="newCategory">
                         <input type="submit" value="Valider" id="validation">

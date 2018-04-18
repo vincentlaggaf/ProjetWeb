@@ -1,4 +1,5 @@
 <?php
+//return the role of the visitor
 function roleCheck(){
     if(isset($_SESSION['Role']) AND $_SESSION['Role'] == "BDEMember")
     {
@@ -23,6 +24,7 @@ function roleCheck(){
     return $role;
 }
 
+//add the goodie to the basket, if this goodie was already in it, it increase the quantity
 function addGoodieToBasket($IDUser, $NameGoodie, $Quantity){
     $addGoodieToBasket = checkBasketQuery($IDUser, $NameGoodie);
     $row = $addGoodieToBasket->rowCount();
@@ -36,37 +38,42 @@ function addGoodieToBasket($IDUser, $NameGoodie, $Quantity){
     $addGoodieToBasket->closeCursor();
 }
 
+//delete a goodie
 function deleteGoodie($NameGoodie){
     $deleteGoodie = deleteGoodieQuery($NameGoodie);
     $deleteGoodie->closeCursor();
 }
 
+//get and display all the goodies
 function normalShop(){
     $normalShop = getGoodiesQuery();
     displayGoodies($normalShop);
     $normalShop->closeCursor();
 }
 
+//get the three most popular goodies and display them
 function getPopularGoodies(){
     $getPopularGoodies = getPopularGoodiesQuery();
     displayGoodies($getPopularGoodies);
     $getPopularGoodies->closeCursor();
 }
 
+//get and display the goodies by popularity
 function getGoodiesByPopularity(){
     $getGoodiesByPopularity = getGoodiesByPopularityQuery();
     displayGoodies($getGoodiesByPopularity);
     $getGoodiesByPopularity->closeCursor();
 }
 
+//look if the research had a response
 function researchCheck($research){
     $researchedShop = getGoodiesByResearch($research);
     $row = $researchedShop->rowCount();
     if($row == 0)
     {
-?>
-<p>Votre recherche ne donne rien, veuillez essayer quelque chose d'autre.</p>
-<?php
+        ?>
+        <p>Votre recherche ne donne rien, veuillez essayer quelque chose d'autre.</p>
+        <?php
         $check = false;
     }
     else
@@ -77,24 +84,28 @@ function researchCheck($research){
     return $check;
 }
 
+//get the results of the research and display them
 function researchedShop($research){
     $researchedShop = getGoodiesByResearch($research);
     displayGoodies($researchedShop);
     $researchedShop->closeCursor();
 }
 
+//get and display the goodies by category
 function categorisedShop(){
     $categorisedShop = getGoodiesByCategory();
     displayGoodies($categorisedShop);
     $categorisedShop->closeCursor();
 }
 
+//get and display the goodies by price
 function priceShop(){
     $priceShop = getGoodiesByPrice();
     displayGoodies($priceShop);
     $priceShop->closeCursor();
 }
 
+//display the selected goodies
 function displayGoodies($answer){
     while ($data = $answer->fetch())
     {
@@ -117,24 +128,24 @@ function displayGoodies($answer){
         </div>
         <div class="goodies_information_part">
 
-            <div class="info_goodies info_goodie_description info_goodies_margin">Description :<br/><?php echo $data['Description']; ?></div>
+            <div class="info_goodies info_goodie_description">Description :<br/><?php echo $data['Description']; ?></div>
 
             <form action="\projetWeb\pagePHP\shop.php" method="post">
                 <input type="hidden" name="buy" value="<?php echo $data['NameGoodies']; ?>">
-                <input type="number" name="quantity" min="1" value="1">
+                <input type="number" name="quantity" min="1" value="1" class="inputNumber">
                 <input type="submit" value="Acheter">
             </form>
 
             <?php
-     if(roleCheck() == "BDEMember")
-     {
-            ?>
-            <form action="\projetWeb\pagePHP\shop.php" method="post">
-                <input type="hidden" name="delete" value="<?php echo $data['NameGoodies']; ?>">
-                <input type="submit" value="Supprimer">
-            </form>
-            <?php
-     }
+             if(roleCheck() == "BDEMember")
+             {
+                    ?>
+                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                        <input type="hidden" name="delete" value="<?php echo $data['NameGoodies']; ?>">
+                        <input type="submit" value="Supprimer">
+                    </form>
+                    <?php
+             }
             ?>
         </div>
     </div>
