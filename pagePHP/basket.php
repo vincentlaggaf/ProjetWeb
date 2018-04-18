@@ -1,16 +1,16 @@
 <?php
-    session_start();
+session_start();
 
-    if(!isset($_SESSION['Role']) OR (isset($_SESSION['Role']) AND $_SESSION['Role'] == "Inactif"))
-    {
-        header("Location: \ProjetWeb\pagePHP\home.php");
-        exit();
-    }
+if(!isset($_SESSION['Role']) OR (isset($_SESSION['Role']) AND $_SESSION['Role'] == "Inactif"))
+{
+    header("Location: \ProjetWeb\pagePHP\home.php");
+    exit();
+}
 
-    require 'BDDConnection.php';
-    require 'basket\fillBasket.php';
-    require 'basket\BasketBDDInteraction.php';
-    require 'sendMail\sendMail.php';
+require 'BDDConnection.php';
+require 'basket\fillBasket.php';
+require 'basket\BasketBDDInteraction.php';
+require 'sendMail\sendMail.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,32 +49,32 @@
                     }
 
 
-                     ?>
-                    <p>Votre commande a été validée, un membre du BDE vous contacteras prochaînement.<br/>En attendant vous pouvez continuer votre navigation sur <a href="\projetWeb\pagePHP\home.php">notre site</a>.<br/>Bonne visite!</p>
-                    <?php
+                ?>
+                <p>Votre commande a été validée, un membre du BDE vous contacteras prochaînement.<br/>En attendant vous pouvez continuer votre navigation sur <a href="\projetWeb\pagePHP\home.php">notre site</a>.<br/>Bonne visite!</p>
+                <?php
                 }
                 else if(!checkBasket($_SESSION['Id']))
                 {
-                    ?>
-                    <p>Votre panier est vide mais vous pouvez le remplir en retourant à <a href="\projetWeb\pagePHP\shop.php">la boutique</a>!</p>
-                    <?php
+                ?>
+                <p>Votre panier est vide mais vous pouvez le remplir en retourant à <a href="\projetWeb\pagePHP\shop.php">la boutique</a>!</p>
+                <?php
                 }
                 else
                 {
                     getAndDisplayBasket($_SESSION['Id']);
                     $price = getTotalPrice($_SESSION['Id']);
-                    ?>
-                    <p id="price">Prix total : <?php  echo $price; ?>€</p>
-                    <div id="choiceDiv">
-                        <form action="\projetWeb\pagePHP\basket.php" method="post">
-                            <input type="hidden" name="delete" value="<?php echo $_SESSION['Id']; ?>">
-                            <input type="submit" value="Supprimer" class="choice" id="delete">
-                        </form>
-                        <form action="\projetWeb\pagePHP\basket.php" method="post">
-                            <input type="hidden" name="validate" value="<?php echo $_SESSION['Id']; ?>">
-                            <input type="submit" value="Valider" class="choice" id="validate">
-                        </form>
-                    </div>
+                ?>
+                <p id="price">Prix total : <?php  echo $price; ?>€</p>
+                <div id="choiceDiv">
+                    <form action="\projetWeb\pagePHP\basket.php" method="post">
+                        <input type="hidden" name="delete" value="<?php echo $_SESSION['Id']; ?>">
+                        <input type="submit" value="Supprimer" class="choice" id="delete">
+                    </form>
+                    <form action="\projetWeb\pagePHP\basket.php" method="post">
+                        <input type="hidden" name="validate" value="<?php echo $_SESSION['Id']; ?>">
+                        <input type="submit" value="Valider" class="choice" id="validate">
+                    </form>
+                </div>
                 <?php
                 }
                 ?>

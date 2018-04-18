@@ -1,30 +1,30 @@
 <?php
-    function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $totalPrice){
-        $text = "Une commande a été effectué par ".$firstName." ".$lastName.".\n\nCette personne à commandé :\n";
+function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $totalPrice){
+    $text = "Une commande a été effectué par ".$firstName." ".$lastName.".\n\nCette personne à commandé :\n";
 
-        while($data = $basket->fetch()){
-            $text = $text.$data['Quantity']." ".$data['NameGoodies']." au prix de ".$data['Price']."€.\n";
-        }
-
-        $text = $text."\nPour un prix total de ".$totalPrice."€\n\nCette personne a pour adresse mail : ".$destinationEmail;
-        sendMail("bde.exia.pau@gmail.com", $text);
+    while($data = $basket->fetch()){
+        $text = $text.$data['Quantity']." ".$data['NameGoodies']." au prix de ".$data['Price']."€.\n";
     }
 
-    function sendMail($destination, $text){
-        ini_set( 'display_errors', 1 );
+    $text = $text."\nPour un prix total de ".$totalPrice."€\n\nCette personne a pour adresse mail : ".$destinationEmail;
+    sendMail("bde.exia.pau@gmail.com", $text);
+}
 
-        error_reporting( E_ALL );
+function sendMail($destination, $text){
+    ini_set( 'display_errors', 1 );
 
-        $from = "bde.exia.pau@gmail.com";
+    error_reporting( E_ALL );
 
-        $to = $destination;
+    $from = "bde.exia.pau@gmail.com";
 
-        $subject = "Vérification PHP mail";
+    $to = $destination;
 
-        $message = $text;
+    $subject = "Vérification PHP mail";
 
-        $headers = "From:" . $from;
+    $message = $text;
 
-        mail($to, $subject, $message, $headers);
-    }
+    $headers = "From:" . $from;
+
+    mail($to, $subject, $message, $headers);
+}
 ?>

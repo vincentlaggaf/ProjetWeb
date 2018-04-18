@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    require 'shop/BDDInteraction.php';
-    require 'BDDConnection.php';
-    require 'shop/fillShop.php';
+session_start();
+require 'shop/BDDInteraction.php';
+require 'BDDConnection.php';
+require 'shop/fillShop.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,7 +42,7 @@
                 </div>
                 <p>Voici la liste des articles que nous proposons dans notre boutique :</p>
                 <article>
-                <?php
+                    <?php
                     if (isset($check) AND $check)
                     {
                         researchedShop($_POST['research']);
@@ -79,13 +79,13 @@
             if($role != "Visitor" AND $role != "Inactif")
             {
             ?>
-                <a href="basket.php"><img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/></a>
+            <a href="basket.php"><img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/></a>
             <?php
             }
             else
             {
             ?>
-                <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
+            <img src="\projetWeb\imagePNG\boutique\chariot.jpg" alt="Le panier d'achat" title="Le panier" id="basket"/>
             <?php
             }
             ?>
@@ -96,14 +96,14 @@
                     <input type="submit" value="Valider" />
                 </form>
                 <p>Filtres :</p>
-                    <form action="\projetWeb\pagePHP\shop.php" method="post">
+                <form action="\projetWeb\pagePHP\shop.php" method="post">
                     <input type="hidden" name="category" value="1">
                     <input type="submit" value="Catégorie">
-                    </form>
+                </form>
                 <form action="\projetWeb\pagePHP\shop.php" method="post">
                     <input type="hidden" name="price" value="1">
                     <input type="submit" value="Prix">
-                    </form>
+                </form>
                 <form action="\projetWeb\pagePHP\shop.php" method="post">
                     <input type="hidden" name="popularity" value="1">
                     <input type="submit" value="Popularité">
@@ -112,14 +112,14 @@
                 if($role == "BDEMember")
                 {
                 ?>
-                    <p>Ajouter un Article</p>
-                    <form action="\projetWeb\pagePHP\addGoodies.php" method="post">
-                        <input type="submit" value="Ajouter">
-                    </form>
-                    <p>Ajouter une Catégorie :</p>
-                    <form action="\projetWeb\pagePHP\addGoodiesCategory.php" method="post">
-                        <input type="submit" value="Ajouter">
-                    </form>
+                <p>Ajouter un Article</p>
+                <form action="\projetWeb\pagePHP\addGoodies.php" method="post">
+                    <input type="submit" value="Ajouter">
+                </form>
+                <p>Ajouter une Catégorie :</p>
+                <form action="\projetWeb\pagePHP\addGoodiesCategory.php" method="post">
+                    <input type="submit" value="Ajouter">
+                </form>
                 <?php
                 }
                 ?>

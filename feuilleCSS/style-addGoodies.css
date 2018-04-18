@@ -20,8 +20,10 @@ section {
     margin: 3%;
     margin-left: 10%;
     margin-right: 10%;
+    padding: 1%;
     background-color: #FFF;
     width: 70%;
+    align-content: center;
 }
 
 .goodieBloc{
@@ -52,8 +54,9 @@ section {
     flex-direction: column;
     justify-content: center;
     border: double 2px black;
-    height: 100%;
+    height: 12%;
     margin-top: 10%;
+    padding-bottom: 3%;
 }
 
 #warningPhoto
@@ -64,7 +67,7 @@ section {
 
 #choosePhoto
 {
-   align-self: center;
+    align-self: center;
 }
 
 #price
@@ -76,9 +79,9 @@ section {
 
 /*
 #test{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
 }
 */
 
@@ -94,8 +97,8 @@ section {
 @media screen and (max-width:720px){
 
     .eventBloc{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
 }
