@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+//this refuse the access of the page for all the visitors who aren't connected even with the link of this page and send them to the home page
 if(!isset($_SESSION['Role']) OR (isset($_SESSION['Role']) AND $_SESSION['Role'] == "Inactif"))
 {
     header("Location: \ProjetWeb\pagePHP\home.php");
@@ -14,7 +15,6 @@ require 'sendMail\sendMail.php';
 ?>
 <!DOCTYPE html>
 <html>
-
     <head>
         <title> Panier </title>
         <meta charset="UTF-8">
@@ -23,25 +23,31 @@ require 'sendMail\sendMail.php';
 
     <body>
         <?php include 'nav.php'; ?>
+
         <div id="basketDiv">
             <section>
                 <?php
                 if(isset($_POST['changed']) AND isset($_POST['quantity']))
                 {
+                    //change the quantity of a goodie
                     setBasket($_SESSION['Id'], $_POST['changed'], $_POST['quantity']);
                 }
                 else if(isset($_POST['delete']))
                 {
+                    //delete the whole basket of a visitor
                     deleteBasket($_SESSION['Id']);
                 }
 
+                //get the price of all the goodies in the basket
+                $totalPrice = getTotalPrice($_SESSION['Id']);
 
                 if(isset($_POST['validate']))
                 {
-                    $totalPrice = getTotalPrice($_SESSION['Id']);
                     try{
+                        //send a mail to the BDE members
                         fillOrderMail(getBasketQuery($_SESSION['Id']), $_SESSION['Mail'], $_SESSION['FirstName'], $_SESSION['LastName'], $totalPrice);
 
+                        //put the basket in the order table
                         validateBasket($_SESSION['Id']);
                     }
                     catch(Exception $e){
@@ -61,10 +67,11 @@ require 'sendMail\sendMail.php';
                 }
                 else
                 {
+                    //display the basket of the visitor
                     getAndDisplayBasket($_SESSION['Id']);
-                    $price = getTotalPrice($_SESSION['Id']);
                 ?>
-                <p id="price">Prix total : <?php  echo $price; ?>€</p>
+                <p id="price">Prix total : <?php  echo $totalPrice; ?>€</p>
+<!--                display the button for the validation or the suppression of the basket-->
                 <div id="choiceDiv">
                     <form action="\projetWeb\pagePHP\basket.php" method="post">
                         <input type="hidden" name="delete" value="<?php echo $_SESSION['Id']; ?>">

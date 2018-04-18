@@ -1,4 +1,5 @@
 <?php
+//initialize a connection with the database
 function getBDD(){
     try
     {

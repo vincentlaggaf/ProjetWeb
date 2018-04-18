@@ -53,6 +53,7 @@ section
     margin: 5%;
     padding: 2%;
     width: 10%;
+    min-width: 150px;
     font-size: 1.5em;
 }
 
@@ -60,8 +61,10 @@ section
 {
     display: flex;
     flex-direction: column;
-    margin: auto;
     width: 20%;
+    margin: auto;
+    padding: auto;
+
 }
 
 #newCategory
@@ -83,4 +86,30 @@ section
 button:hover
 {
     opacity: 0.8;
+}
+
+@media screen and (max-width: 750px)
+{
+    #categoryDisplay
+    {
+        flex-direction: column;
+    }
+
+    .nameGoodiesCategory
+    {
+        margin: auto;
+        margin-bottom: 5%;
+        width: 30%;
+        min-width: 170px;
+    }
+
+    #newCategory
+    {
+        min-width: 100px;
+    }
+
+    #validation
+    {
+        min-width: 60px;
+    }
 }

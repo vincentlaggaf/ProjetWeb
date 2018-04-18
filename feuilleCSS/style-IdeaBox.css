@@ -60,7 +60,7 @@ width: 100%;
 
 .title{
     font-size: 20px;
-    border: black 1px solid;
+    border: black 2px solid;
     margin: 2px;
     margin-top: 4%;
     background-color: white;
@@ -142,6 +142,11 @@ width: 100%;
     align-self: flex-end;
 
 
+}
+.area{
+     height: 100%;
+    width: 100%;
+    font-size: 13px;
 }
 
 

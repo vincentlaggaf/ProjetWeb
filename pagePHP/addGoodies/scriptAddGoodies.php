@@ -1,4 +1,5 @@
 <?php
+//get all the existing categories and display them
 function chooseCategory(){
     $bdd = getBDD();
     $chooseCategory = $bdd->prepare('CALL `GetGoodiesCategory`()') or die(print_r($bdd->errorInfo()));
@@ -7,14 +8,15 @@ function chooseCategory(){
 
     while($data = $chooseCategory->fetch())
     {
-?>
-<option value="<?php echo $data['NameGoodiesCategory'] ?>"><?php echo $data['NameGoodiesCategory'] ?></option>
-<?php
+        ?>
+        <option value="<?php echo $data['NameGoodiesCategory'] ?>"><?php echo $data['NameGoodiesCategory'] ?></option>
+        <?php
     }
 
     $chooseCategory->closeCursor();
 }
 
+//look if the name of the new goodie already exists
 function checkNewGoodieName ($name){
     $bdd = getBDD();
     $checkNewGoodieName = $bdd->prepare('CALL `CheckNewGoodieName`(:NameGoodies)') or die(print_r($bdd->errorInfo()));
@@ -37,6 +39,7 @@ function checkNewGoodieName ($name){
     }
 }
 
+//add the new goodie with all the informations
 function addNewGoodie($name, $URL, $description, $category, $price){
     $bdd = getBDD();
     $addNewGoodie = $bdd->prepare('CALL `AddNewGoodie`(:NameGoodies, :Price, :URL, :NameGoodiesCategory, :Description)') or die(print_r($bdd->errorInfo()));
@@ -52,6 +55,7 @@ function addNewGoodie($name, $URL, $description, $category, $price){
     $addNewGoodie->closeCursor();
 }
 
+//looks if the URL arleady exists in the database
 function checkFileURL($urlPhoto){
     $bdd=getBDD();
     $checkUrl=$bdd->prepare('CALL `CheckFileURL`(:UrlNewPhoto)') or die(print_r($bdd->errorInfo()));
@@ -60,6 +64,7 @@ function checkFileURL($urlPhoto){
     return $checkUrl;
 }
 
+//get the file sent by the BDE member, looks for errors, the size, the extension, if a file had already the same name and finally put it in the right folder
 function getFile(){
     if(isset($_FILES['photoOfTheGoodie']) AND $_FILES['photoOfTheGoodie']['error']==0)
     {

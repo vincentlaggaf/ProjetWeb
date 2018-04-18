@@ -30,7 +30,7 @@
             <p> © BDE Pau - 2018</p>
             <p> Mentions légales :
                 <a href=mailto:bde.pau@viacesi.fr> bde.pau@viacesi.fr </a>
-                <a href="https://www.service-public.fr/professionnels-entreprises/vosdroits/F31228"> <br>à faire</br> </a>
+                <a href="legalNotice.php"> <br/>Mentions légales </a>
 
 
             </p>
