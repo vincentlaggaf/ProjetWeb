@@ -1,4 +1,5 @@
 <?php
+//gets all the existing category and displays them
 function getGoodiesCategory(){
     $bdd = getBDD();
 
@@ -11,6 +12,7 @@ function getGoodiesCategory(){
     $getGoodiesCategory->closeCursor();
 }
 
+//insert a new goodies category in the database
 function insertNewCategory($newCategory){
     $bdd = getBDD();
 
@@ -23,6 +25,7 @@ function insertNewCategory($newCategory){
     $insertNewCategory->closeCursor();
 }
 
+//check if the new category already exists
 function checkCategory($newCategory){
     $bdd = getBDD();
 
@@ -46,6 +49,7 @@ function checkCategory($newCategory){
     }
 }
 
+//displays the goodies category
 function displayGoodiesCategory($Categories){
     while($data = $Categories->fetch())
     {

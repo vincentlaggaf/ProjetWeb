@@ -61,8 +61,10 @@ section
 {
     display: flex;
     flex-direction: column;
-    margin: auto;
     width: 20%;
+    margin: auto;
+    padding: auto;
+
 }
 
 #newCategory

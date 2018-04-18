@@ -1,15 +1,10 @@
-/*
-justify-content: center;
-align-content: center;
-align-items: center;
-align-self: center;
-*/
-
-html {
+html
+{
     background-color: #CF000F;
 }
 
-body {
+body
+{
     background-color: #CF000F;
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
@@ -24,7 +19,8 @@ body {
     justify-content: center;
 }
 
-section {
+section
+{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -50,7 +46,8 @@ section {
     margin-bottom: 5%;
 }
 
-article {
+article
+{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -61,7 +58,8 @@ article {
 
 }
 
-input[type=text]{
+input[type=text]
+{
     width: 100%;
     padding: 3%;
     margin: 3% 0;
@@ -70,7 +68,8 @@ input[type=text]{
     font-size: 100%;
 }
 
-button:hover {
+button:hover
+{
     opacity: 0.8;
 }
 

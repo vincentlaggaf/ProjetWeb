@@ -1,4 +1,5 @@
 <?php
+//fill a string with the informations of the customer and the informations about the order
 function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $totalPrice){
     $text = "Une commande a été effectué par ".$firstName." ".$lastName.".\n\nCette personne à commandé :\n";
 
@@ -10,6 +11,7 @@ function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $total
     sendMail("bde.exia.pau@gmail.com", $text);
 }
 
+//send a mail to the BDE member with all the informations filled above
 function sendMail($destination, $text){
     ini_set( 'display_errors', 1 );
 
