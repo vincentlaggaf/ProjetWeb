@@ -85,10 +85,10 @@
         return $goodiesQuery;
     }
 
-    function getGoodiesByPopularity(){
+    function getGoodiesByPopularityQuery(){
         $bdd = getBDD();
-        $goodiesQuery = $bdd->prepare('CALL `GoodiesByPopularity`()') or die(print_r($bdd->errorInfo()));
-        $goodiesQuery->execute();
-        return $goodiesQuery;
+        $getGoodiesByPopularityQuery = $bdd->prepare('CALL `GoodiesByPopularity`()') or die(print_r($bdd->errorInfo()));
+        $getGoodiesByPopularityQuery->execute();
+        return $getGoodiesByPopularityQuery;
     }
 ?>

@@ -48,9 +48,15 @@
     }
 
     function getPopularGoodies(){
-        $getPopulargoodies = getPopulargoodiesQuery();
-        displayGoodies($getPopulargoodies);
-        $getPopulargoodies->closeCursor();
+        $getPopularGoodies = getPopularGoodiesQuery();
+        displayGoodies($getPopularGoodies);
+        $getPopularGoodies->closeCursor();
+    }
+
+    function getGoodiesByPopularity(){
+        $getGoodiesByPopularity = getGoodiesByPopularityQuery();
+        displayGoodies($getGoodiesByPopularity);
+        $getGoodiesByPopularity->closeCursor();
     }
 
     function researchCheck($research){

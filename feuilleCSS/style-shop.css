@@ -46,9 +46,8 @@ section {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-
-/*    height: 300px;*/
-/*    height: 100%;*/
+    width: 100%;
+    margin-bottom: 5%;
 }
 
 article {
@@ -78,7 +77,6 @@ button:hover {
 .shop
 {
     margin: 3%;
-    height: 200px;
 }
 
 .shop-picture
@@ -176,7 +174,6 @@ input
     section
     {
         justify-content: center;
-        background-color: black;
     }
 
     input[type=text]{

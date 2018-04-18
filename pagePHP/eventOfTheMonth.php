@@ -30,54 +30,55 @@ catch (Exception $e)
 
         <section id="corps">
             <div id="sidebar">
+
                 <form action="" method="post">
                     <input type="text" name="research" placeholder="Recherche"/>
                     <input type="submit" value="Valider" />
                 </form>
+
                 <p>Filtres :</p>
+
                 <form action="" method="post">
                     <input type="hidden" name="category" value="1">
                     <input type="submit" value="Catégorie">
                 </form>
+
                 <form action="" method="post">
                     <input type="hidden" name="price" value="1">
                     <input type="submit" value="Prix">
                 </form>
+
                 <form action="" method="post">
                     <input type="hidden" name="popularity" value="1">
                     <input type="submit" value="Popularité">
                 </form>
+
                 <?php if (isset($_SESSION['Role']) AND $_SESSION['Role']=='BDEMember'){
                 ?>
 
                 <form action="addNewEventOfMonth.php">
                     <input type="submit" value="Ajouter un nouvel événement">
                 </form>
+
                 <?php } ?>
             </div>
 
             <?php
-            $getHappening=$bdd->query('SELECT * FROM Happenings');
-            $numberOfEvent=0;
-            $currentMonth=date("m");
-            $eventNumber=1;
+                $getHappening=$bdd->query('SELECT * FROM Happenings');
+                $numberOfEvent=0;
+                $currentMonth=date("m");
 
+                while( $happening=$getHappening->fetch() ){
+                    if($happening['Validate']==1){
 
-            // Events passés $currentDate=date("y-m-d");
-            //echo ($currentDate);
+                        $monthOfTheEvent=explode("-",$happening['EventDate']);
 
-            while( $happening=$getHappening->fetch() AND $numberOfEvent<19 ){
-
-                //echo strtotime($title['EventDate']);
-                $monthOfTheEvent=explode("-",$happening['EventDate']);
-                // echo $monthOfTheEvent[1];
-                //if (strtotime($title['EventDate])<strtotime($currentDate))
-                if ($currentMonth==$monthOfTheEvent[1]){
-                    $idToLookFor=$happening['IDEvent'];
-                    $getPhoto=$bdd->prepare("SELECT Url FROM Photo WHERE IDEvent =:IDEvent");
-                    $getPhoto->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_STR);
-                    $getPhoto->execute();
-                    $urlPhoto=$getPhoto->fetch();
+                    if ($currentMonth==$monthOfTheEvent[1]){
+                        $idToLookFor=$happening['IDEvent'];
+                        $getPhoto=$bdd->prepare("SELECT Url FROM Photo WHERE IDEvent =:IDEvent");
+                        $getPhoto->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_STR);
+                        $getPhoto->execute();
+                        $urlPhoto=$getPhoto->fetch();
 
             ?>
             <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
@@ -90,19 +91,21 @@ catch (Exception $e)
                         <div class="titleAndPhoto">
 
                             <div class="photo">
+                                <img src="<?php echo $urlPhoto['Url'] ;?>"alt="" class="thumbnail">
+                            </div>
 
-                                <img src="<?php echo $urlPhoto['Url'] ;?>"alt="" class="thumbnail"></div>
                         </div>
 
                         <?php } ?>
+
                         <div class="eventDescription">
                             <?php
-
-                    echo $happening['Description'];
-
+                                echo $happening['Description'];
                             ?>
                         </div>
+
                         <?php
+
                     if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
 
                         ?>
@@ -120,8 +123,8 @@ catch (Exception $e)
                 </fieldset>
             </form>
             <?php }
-                $eventNumber++;
-                $numberOfEvent++;}
+
+                $numberOfEvent++;}}
             $getHappening->closeCursor();
             ?>
         </section>

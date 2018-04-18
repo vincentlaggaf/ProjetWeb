@@ -20,6 +20,7 @@
         <div id="shopDiv">
             <section>
                 <?php
+                $role = roleCheck();
                 if (isset($_POST['research']) AND $_POST['research'] != '')
                 {
                     $check = researchCheck($_POST['research']);
@@ -32,18 +33,14 @@
                 {
                     addGoodieToBasket($_SESSION['Id'], $_POST['buy'], $_POST['quantity']);
                 }
-                $role = roleCheck();
                 ?>
-<!--
-                <p>Voici une sélection de nos articles les plus vendu :</p>
+                <p>Voici une sélection de nos articles les plus vendus :</p>
                 <div id="popularGoodies">
-
                     <?php
                     getPopularGoodies();
                     ?>
                 </div>
--->
-
+                <p>Voici la liste des articles que nous proposons dans notre boutique :</p>
                 <article>
                 <?php
                     if (isset($check) AND $check)
@@ -59,12 +56,13 @@
                     else if (isset($_POST['price']) AND $_POST['price'] == 1)
                     {
                         priceShop();
-                        $_POST['price']= 0;
+                        $_POST['price'] = 0;
                     }
-    //                else if (isset($_POST['popularity'])AND $_POST['popularity'] == 1)
-    //                {
-    //                    getGoodiesByCategory();
-    //                }
+                    else if (isset($_POST['popularity'])AND $_POST['popularity'] == 1)
+                    {
+                        getGoodiesByPopularity();
+                        $_POST['popularity'] = 0;
+                    }
                     else
                     {
                         normalShop();
@@ -114,7 +112,11 @@
                 if($role == "BDEMember")
                 {
                 ?>
-                    <p>Ajouter</p>
+                    <p>Ajouter un Goodie</p>
+                    <p>Ajouter une Catégorie :</p>
+                    <form action="\projetWeb\pagePHP\addGoodiesCategory.php" method="post">
+                        <input type="submit" value="Ajouter">
+                    </form>
                 <?php
                 }
                 ?>
