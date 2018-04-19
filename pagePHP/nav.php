@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style.css">
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-dropdownMenu.css">
 
+
 <div class="menu">
     <nav>
         <ul class="table">
@@ -22,11 +23,11 @@
                 </a></li>
             <?php
             }
-                if(isset($_SESSION['Login'])){
+            if(isset($_SESSION['Login'])){
             ?>
             <li><a href="/projetWeb/pagePHP/destroySession.php" class="bouton">Déconnexion</a> </li>
             <?php }
-                else {
+            else {
             ?>
             <button class="authentificationBtn" onclick="document.getElementById('signInModal').style.display='block'">
                 <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
@@ -35,7 +36,7 @@
                 <img src="/projetWeb/imagePNG/logIn.png" alt="logIn ">
             </button>
             <?php }
-                if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'BDEMember') {
+            if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'BDEMember') {
             ?>
             <a href="/projetWeb/pagePHP/administration.php" class="bouton">
                 <img src="/projetWeb/imagePNG/reglage.png" alt="reglage">

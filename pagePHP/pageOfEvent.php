@@ -106,6 +106,8 @@ if(isset($_GET['name'])){
             </div>
 
 
+
+
             <!-- The Modal -->
             <div id="myModal" class="modal">
                 <!-- The Close Button -->
@@ -114,6 +116,10 @@ if(isset($_GET['name'])){
                 <img class="modal-content" id="imgModal">
                 <!-- Modal Caption (Image Text) -->
                 <div class="commentaire" id="commentaires">
+
+
+
+
                     <?php
                             if((!isset($_SESSION['Id']))||($_SESSION['Role'] == 'Inactif'))
                             {
@@ -122,14 +128,49 @@ if(isset($_GET['name'])){
                     <?php
                             }
 
-                            else if(isset($_SESSION['Id']))
+
+                            else if((isset($_SESSION['Id']))AND($_SESSION['Role'] != 'Inactif'))
                             {
+
+                                if($_SESSION['Role'] == 'CESIMember') {
+                    ?>
+                    <div>
+                        <p>Signaler cette photo :</p>
+                        <form action="report.php" method="post">
+                            <input type="hidden" id="category" value="photo"/>
+                            <button type="reset" value="reset" id="signaler"> signaler </button>
+                            <!--                            <button type="button" id="signaler"> signaler </button>-->
+                            <!--<button type="reset" value="Reset" id="submit"> envoyer </button>-->
+                        </form>
+                    </div>
+                    <?php
+                                }
+
                     ?>
 
-                    <h1>Aimer la photo : </h1>
 
+
+
+
+
+
+
+
+
+
+
+                    <h1>Aimer la photo : </h1>
                     <!-- <button id="btn">J'aime</button>-->
-                    <input id="btn" type="image" src="/projetWeb/imagePNG/like.png" />
+                    <input id="btn" type="image" src="/projetWeb/imagePNG/like.png"/>
+
+
+
+
+
+
+
+
+
 
                     <div>
                         <h1>Commentez :</h1>
@@ -140,7 +181,16 @@ if(isset($_GET['name'])){
                         </form>
                     </div>
 
-                    <?php }
+
+
+
+
+
+
+
+                    <?php
+                            }
+
                     ?>
 
                     <div>
@@ -152,17 +202,19 @@ if(isset($_GET['name'])){
 
             <?php
 
+
                             $getInfoEvent->closeCursor();
                             $getPhotoEvent->closeCursor();
                             $getDone->closeCursor();
                             $getPhotos->closeCursor();
-
-
-
                         }
 
 
+
             ?>
+
+
+
 
             <?php
     if((isset($_SESSION['Role']))AND (($_SESSION['Role'] == 'CESIMember')||($_SESSION['Role'] == 'BDEMember'))){
@@ -177,6 +229,8 @@ if(isset($_GET['name'])){
             </div>
 
             <?php } ?>
+
+
 
 
 
@@ -248,6 +302,8 @@ if(isset($_GET['name'])){
 
                     }
 
+
+
                     submit.onclick = function(){
                         var commentaire = document.getElementById('monCommentaire').value;
                         //                        alert (commentaire);
@@ -273,6 +329,36 @@ if(isset($_GET['name'])){
                         });
                     }
 
+
+
+                    signaler.onclick = function() {
+                        var category = document.getElementById('category').value;
+                        var IDUser = <?php echo $_SESSION['Id']; ?>;
+                        var contentId = modalidPhoto;
+                        alert (category+IDUser+contentId);
+                        //                        alert (<?php echo $_SESSION['Id']; ?>);
+                        //                        alert (category);
+                        $.ajax({
+                            url: 'report.php',
+                            type : 'POST',
+                            data :
+                            {
+                                "contentId": contentId,
+                                "category": category,
+                                "IDUser": IDUser,
+                            },
+
+                            success : function(data){
+                                alert(data);
+                            },
+                            error : function(resultat, statut, erreur){
+                                alert ("erreur");
+                            },
+                            complete : function(resultat, statut){
+                                alert ("ca marche");
+                            }
+                        });
+                    }
 
 
                 });

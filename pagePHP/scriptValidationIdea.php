@@ -13,6 +13,7 @@ catch (Exception $e)
 $eventFreeOrNot=$_POST['freeOrNot'];
 $recurrentOrNot=$_POST['recurrentOrNot'];
 $eventCategory=$_POST['eventCategory'];
+$photo="../imagePNG/events/".$_POST['photo'];
 $idevent= $_SESSION['idevent'];
 
 
@@ -28,12 +29,12 @@ $idevent= $_SESSION['idevent'];
                     $validation->bindValue(':description',$_POST['descriptionval'],PDO::PARAM_STR);
                     $validation->bindValue(':Category',$eventCategory,PDO::PARAM_STR);
                     $validation->execute();
+                    $validation->closeCursor();
 
-//                  $addPhoto = $bdd->prepare('INSERT INTO Photo(Url,IDEvent) VALUES(:photo,:idEvent)');
-//                  $addPhoto->bindValue(':photo',$_POST['photo'],PDO::PARAM_STR);
-//                  $addPhoto->bindValue(':idEvent',$_POST['idEvent'],PDO::PARAM_INT);
-//
-//                  $addPhoto->execute();
+                    $addPhoto = $bdd->prepare('INSERT INTO Photo (Url,IDEvent) VALUES(:photo,:IDEvent)');
+                    $addPhoto->bindValue(':photo',$photo,PDO::PARAM_STR);
+                    $addPhoto->bindValue(':IDEvent',$idevent,PDO::PARAM_INT);
+                    $addPhoto->execute();
           ?>
             <?php
             header('Location:http://localhost/projetWeb/pagePHP/IdeaBox.php');
