@@ -1,16 +1,4 @@
-html {
-    margin: 0;
-    background-color: #CF000F;
-}
 
-body {
-    background-color: #CF000F;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    margin: 0;
-    padding: 0;
-    color: #22313F;
-}
 #sidebar
 {
     display: flex;
