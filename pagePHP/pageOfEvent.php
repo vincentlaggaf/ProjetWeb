@@ -8,9 +8,9 @@ catch (Exception $e)
 {
     die ('Erreur : ' . $e->getMessage());
 }
-?>
+require 'BDDConnection.php';
+require 'addEventPicture/scriptAddEventPicture.php';
 
-<?php
 
 
 if(isset($_GET['name'])){
@@ -22,6 +22,11 @@ if(isset($_GET['name'])){
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
 
+    if(isset($_POST['validation']))
+    {
+        getFile($InfoEvent['IDEvent']);
+    }
+
     $getPhotoEvent=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
     $getPhotoEvent->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
     $getPhotoEvent->execute();
@@ -31,6 +36,8 @@ if(isset($_GET['name'])){
     $getDone->bindValue(':nameEvent',$eventName,PDO::PARAM_STR);
     $getDone->execute();
     $IsItPassed=$getDone->fetch();
+
+
 
 ?>
 
@@ -60,19 +67,29 @@ if(isset($_GET['name'])){
                 <legend class="eventName"><strong>
                     <?php echo $InfoEvent['NameEvent']?>
                     </strong></legend>
+
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
                         <?php if(isset($urlPhoto['Url'])){ ?>
-                        <div class="titleAndPhoto">
-                            <div class="photo">
-                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
-                            </div>
+                        <div class="photo">
+                            <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
                         </div>
-                        <?php } ?>
+                        <?php }
+
+                        ?>
+
                         <div class="eventDescription"><?php echo $InfoEvent['Description'];?></div>
                     </div>
                 </div>
+
             </fieldset>
+            <div class="photo">
+                <p id="warningPhoto">Attention le fichier doit faire au maximum 10 Mo!</p>
+                <form action="pageOfEvent.php?name=<?php echo $eventName; ?>" method="post" enctype="multipart/form-data">
+                    <input type="file" name="eventPicture"/>
+                    <input type="submit" value="Valider" name="validation">
+                </form>
+            </div>
             <br/><br/>
 
 
@@ -81,13 +98,13 @@ if(isset($_GET['name'])){
 
 
             <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now"))
-    { ?>
+                        { ?>
 
             <div class="eventPhotos">
                 <?php
-        $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
-        $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
-        $getPhotos->execute();
+                            $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
+                            $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
+                            $getPhotos->execute();
                 ?>
                 <?php while($photos=$getPhotos->fetch()){
                 ?>
@@ -105,15 +122,15 @@ if(isset($_GET['name'])){
                 <!-- Modal Caption (Image Text) -->
                 <div class="commentaire" id="commentaires">
                     <?php
-        if((!isset($_SESSION['Id']))||($_SESSION['Role'] == 'Inactif'))
-        {
+                            if((!isset($_SESSION['Id']))||($_SESSION['Role'] == 'Inactif'))
+                            {
                     ?>
                     <p> Connectez-vous pour pouvoir aimer et commenter! </p>
                     <?php
-        }
+                            }
 
-        else if(isset($_SESSION['Id']))
-        {
+                            else if(isset($_SESSION['Id']))
+                            {
                     ?>
 
                     <h1>Aimer la photo : </h1>
@@ -142,14 +159,14 @@ if(isset($_GET['name'])){
 
             <?php
 
-        $getInfoEvent->closeCursor();
-        $getPhotoEvent->closeCursor();
-        $getDone->closeCursor();
-        $getPhotos->closeCursor();
+                            $getInfoEvent->closeCursor();
+                            $getPhotoEvent->closeCursor();
+                            $getDone->closeCursor();
+                            $getPhotos->closeCursor();
 
 
 
-    }
+                        }
 
 
             ?>
