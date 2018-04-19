@@ -11,13 +11,14 @@ catch (Exception $e)
 
 if(isset($_POST['IDphotoClicked'])){
 
-    $getLikes=$bdd->prepare('SELECT * FROM Likes WHERE IDPhoto =:IDPhoto');
+    $getLikes=$bdd->prepare('SELECT * FROM Likes WHERE IDPhoto =:IDPhoto AND IDUser = :IDUser');
     $getLikes->bindValue(':IDPhoto',$_POST['IDphotoClicked'],PDO::PARAM_INT);
+    $getLikes->bindValue(':IDUser', $_SESSION['Id'], PDO::PARAM_INT);
     $getLikes->execute();
     $likes=$getLikes->fetch();
 
     if ($_SESSION['Id']==$likes['IDUser']){
-        if (($likes['LikeOrNot']==0)){
+        if ($likes['LikeOrNot']==0){
             $Like = $bdd-> prepare("UPDATE Likes SET LikeOrNot=1 WHERE IDUser = :IDUser;");
             $Like->bindValue(':IDUser', $_SESSION['Id'], PDO::PARAM_INT);
             $Like->execute();
@@ -36,12 +37,14 @@ if(isset($_POST['IDphotoClicked'])){
         }
     }
     else {
-        echo "je vous rajoute!";
-        $addLike=$bdd->prepare('INSERT INTO Likes (LikeOrNot,IDUser,IDPhoto) VALUES(1,:IDUser,:IDPhoto)');
+
+        $addLike=$bdd->prepare('INSERT INTO Likes (LikeOrNot,IDUser,IDPhoto) VALUES (1, :IDUser, :IDPhoto);');
         $addLike->bindValue(':IDUser', $_SESSION['Id'], PDO::PARAM_INT);
         $addLike->bindValue(':IDPhoto', $_POST['IDphotoClicked'], PDO::PARAM_INT);
         $addLike->execute();
         $addLike->closeCursor();
+        echo "je vous rajoute!";
     }
+    $likes->closeCursor();
 }
 ?>

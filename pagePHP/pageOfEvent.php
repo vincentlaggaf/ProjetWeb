@@ -293,10 +293,10 @@ if(isset($_GET['name'])){
                             },
 
                             error : function(resultat, statut, erreur){
-                                //                                 alert ("erreur");
+                                                                 alert ("erreur");
                             },
                             complete : function(resultat, statut){
-                                //                                alert ("ca marche");
+                                                                alert ("ca marche");
                             }
                         });
 
@@ -317,11 +317,11 @@ if(isset($_GET['name'])){
                             },
 
                             success : function(data){
-                                alert(data);
+//                                alert(data);
                                 getComment();
                             },
                             error : function(resultat, statut, erreur){
-                                alert ("erreur");
+//                                alert ("erreur");
                             },
                             complete : function(resultat, statut){
                                 //                                alert ("ca marche");
@@ -349,13 +349,13 @@ if(isset($_GET['name'])){
                             },
 
                             success : function(data){
-                                alert(data);
+//                                alert(data);
                             },
                             error : function(resultat, statut, erreur){
-                                alert ("erreur");
+//                                alert ("erreur");
                             },
                             complete : function(resultat, statut){
-                                alert ("ca marche");
+//                                alert ("ca marche");
                             }
                         });
                     }
