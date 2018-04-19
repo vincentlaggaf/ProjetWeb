@@ -80,11 +80,12 @@ else
                     $checkUrl->bindValue(':UrlNewPhoto',$urlPhoto,PDO::PARAM_STR);
                     $checkUrl->execute();
                     $getUrl=$checkUrl->fetch();
+                    $numberPhoto = 0;
                     if($urlPhoto==$getUrl['Url'])
                     {
                         $nameOfPhotoFromBdd=explode('/',$getUrl['Url']);
-                        //echo $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)];
-                        $newNumberPhoto=explode('-', $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)]);
+                        //echo $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)];$happened
+                        $numberPhoto=explode('-', $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)]);
                         //echo $numberPhoto[0];
                         $numberPhoto=$numberPhoto[0]+1;
                         $urlPhoto='../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto);
