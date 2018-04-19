@@ -335,7 +335,7 @@ if(isset($_GET['name'])){
                         var category = document.getElementById('category').value;
                         var IDUser = <?php echo $_SESSION['Id']; ?>;
                         var contentId = modalidPhoto;
-                        alert (category+IDUser+IDElement);
+                        alert (category+IDUser+contentId);
                         //                        alert (<?php echo $_SESSION['Id']; ?>);
                         //                        alert (category);
                         $.ajax({

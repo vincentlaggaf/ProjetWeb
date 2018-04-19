@@ -36,7 +36,7 @@ if(isset($_POST['IDphotoClicked'])){
     <form action="report.php" method="post">
         <input type="hidden" name="category" value="comment"/>
         <input type="hidden" name="IDUser" value="<?php echo $comments['IDUser'];?>"/>
-        <input type="hidden" name="contentId" value="<?php echo $comments['contentId'];?>"/>
+        <input type="hidden" name="contentId" value="<?php echo $comments['IDComment'];?>"/>
         <button type="submit" value="submit"> signaler </button>
 
     </form>
