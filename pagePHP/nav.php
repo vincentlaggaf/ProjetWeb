@@ -17,9 +17,9 @@
             <?php
             if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'CESIMember') {
             ?>
-            <a href="/projetWeb/pagePHP/download.php" class="bouton">
+            <li><a href="/projetWeb/pagePHP/download.php" class="bouton">
                 Téléchargement
-            </a>
+                </a></li>
             <?php
             }
                 if(isset($_SESSION['Login'])){

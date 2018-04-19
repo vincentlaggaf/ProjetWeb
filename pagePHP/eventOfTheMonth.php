@@ -16,7 +16,7 @@ catch (Exception $e)
         <title> Evènement du mois </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-eventOfTheMonth.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
@@ -99,8 +99,8 @@ catch (Exception $e)
                         </form>
                         <form action="report.php" method="post" class="reportForm">
                             <div class="reportDiv">
-                            <img src="\projetWeb\imagePNG\report.png" alt="Signaler" title="Signaler" class="report" />
-                            <input type=hidden value="<?php echo $happening['IDEvent'] ?>"name="contentId">
+                            <img src="/projetWeb/imagePNG/report.png" alt="Signaler" title="Signaler" class="report" />
+                            <input type=hidden value="<?php echo $happening['IDEvent'] ?>" name="contentId">
                             <input type=hidden value="event" name="category">
                             <input type=submit value="Signaler" class="reportButton" title="Signaler l'événement"/>
                                 </div>
