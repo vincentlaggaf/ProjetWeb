@@ -34,6 +34,12 @@
                 <img src="/projetWeb/imagePNG/reglage.png" alt="reglage">
             </a>
             <?php }
+            if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'CESIMember') {
+            ?>
+            <a href="/projetWeb/pagePHP/download.php" class="bouton">
+                <img src="/projetWeb/imagePNG/reglage.png" alt="reglage">
+            </a>
+            <?php }
             ?>
         </ul>
     </nav>
