@@ -54,6 +54,7 @@ input[type=text], input[type=password] {
     justify-content: space-between;
 
 
+
 }
 #eventAndParticipants{
     display: flex;
@@ -100,6 +101,8 @@ input[type=text], input[type=password] {
     margin-left: 1%;
     margin-right: 2%;
     width: 75%;
+    border: 1px black solid;
+    padding: 0.4%;
 
 }
 
