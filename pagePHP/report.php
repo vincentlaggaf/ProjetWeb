@@ -15,9 +15,8 @@ if (isset($_POST['category']) AND isset($_POST['contentId'])){
 
         case 'photo':
             $photo= getPhotoInfos($_POST['contentId']);
-            echo $photo['Url'];
-            writeReport($photo['IDPhoto'], $photo['Url'], $_POST['category'], $_SESSION['LastName'],  $_SESSION['FirstName']);
-            echo "ok photo";
+
+            writeReport($photo['IDPhoto'], $photo['Url'], $_POST['category'], $_SESSION['LastName'], $_SESSION['FirstName']);
             break;
 
         case'event' :
@@ -26,16 +25,17 @@ if (isset($_POST['category']) AND isset($_POST['contentId'])){
             header('Location:eventOfTheMonth.php');
             exit();
 
-            echo "ok event";
+
 
             break;
 
 
         case 'comment':
             $comment= getCommentInfos($_POST['contentId']);
-            echo $comment['CommentContent'];
+
             writeReport($comment['IDComment'], $comment['CommentContent'], $_POST['category'], $_SESSION['LastName'],  $_SESSION['FirstName']);
-            echo "ok comment";
+            header('Location:pastEvent.php');
+            exit();
             break;
 
     }
@@ -44,6 +44,6 @@ else{
 
 }
 
-//header('Location:home.php');
+header('Location:home.php');
 
 ?>
