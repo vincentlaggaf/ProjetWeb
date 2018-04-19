@@ -42,10 +42,9 @@ if(isset($_GET['name'])){
         <title> <?php echo $_GET['name'];?> </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-pastEventCommentPhoto.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-pastEvent.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
     </head>
     <?php include ('nav.php'); ?>
@@ -75,6 +74,7 @@ if(isset($_GET['name'])){
                     </div>
                 </div>
             </fieldset>
+            <br/><br/>
 
 
 
@@ -116,6 +116,7 @@ if(isset($_GET['name'])){
         else if(isset($_SESSION['Id']))
         {
                     ?>
+
                     <h1>Aimer la photo : </h1>
 
                     <!-- <button id="btn">J'aime</button>-->
@@ -150,9 +151,22 @@ if(isset($_GET['name'])){
 
                     <div>
                         <h1>Commentaires :</h1>
-                        <p id="comments"> </p>
+                        <p id="comments"></p>
                     </div>
                 </div>
+            </div>
+
+
+            <div>
+                <h4> télécharger la liste des membres de l'activité : </h4>
+                <!--
+<form action="getParticipantsList.php" method="post">
+<input
+-->
+                <button onclick="getList()" > télécharger </button>
+                <!--                <input onclick="getList()" id="downloadBtn" type="image" src="/projetWeb/imagePNG/download.png"/>-->
+                <!--                </form>-->
+
             </div>
 
             <?php } ?>
@@ -161,9 +175,86 @@ if(isset($_GET['name'])){
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-
-
         <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            function getList(){
+                alert("o&def");
+
+                <?php
+    $getIDParticipant=$bdd->prepare('SELECT IDUser FROM Interest WHERE IDEvent=9;');
+    //    $getIDParticipant->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
+    $getIDParticipant->execute();
+
+    //    while ($IDParticipant=$getIDParticipant->fetch()){
+    //        $getNameParticipant=$bdd->prepare('SELECT LastName, FirstName FROM Users WHERE IDUser= :IDUser;');
+    //        $getNameParticipant->bindValue(':IDUser',$IDParticipant['IDUser'],PDO::PARAM_INT);
+    //        $getNameParticipant->execute();
+    //        $listParticipants=$getNameParticipant->fetchAll(PDO::FETCH_ASSOC);
+
+    $IDParticipant = $getIDParticipant->fetchAll();
+    //
+    //    $columnNames = array();
+    //    if(!empty($IDParticipant)){
+    //        $firstRow = $IDParticipant[0];
+    //        foreach($firstRow as $colName => $val){
+    //            $columnNames[] = $colName;
+    //        }
+    //    }
+
+    header('Content-Description: File Transfer');
+        header('Content-Type: application/excel');
+//    header('Content-Type: application/csv');
+    header("Content-Disposition: attachment; filename=test.csv");
+//    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+
+    $fp = fopen('php://output', 'w');
+//    ob_clean(); // clean slate
+
+    //    fputcsv($fp, $columnNames);
+
+    foreach ($IDParticipant as $IDParticipant) {
+        fputcsv($fp, $IDParticipant);
+    }
+
+//    ob_flush();
+    fclose($fp);
+    //        $getNameParticipant->closeCursor();
+    //    }
+//    die();
+//    $getIDParticipant->closeCursor();
+    $test = "ljazldezhfm";
+                ?>
+                alert(<?php echo $test ?>);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             var img = document.getElementsByClassName('myImg');
