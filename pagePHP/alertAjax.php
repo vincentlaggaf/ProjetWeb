@@ -1,15 +1,11 @@
 <?php
 require 'BDDConnection.php';
 
-
-
-
 function getName($IDuser){
     $bdd=getBdd();
-
-
 }
 
+//If the ID of the photo clicked on is set we select all the info about this photo
 if(isset($_POST['IDphotoClicked'])){
     $bdd=getBdd();
     $getComments=$bdd->prepare('SELECT * FROM Comments WHERE IDPhoto =:IDPhoto');
@@ -18,6 +14,7 @@ if(isset($_POST['IDphotoClicked'])){
     while($comments=$getComments->fetch())
     {?>
 
+<!--And we fill the comment section with the content comments about the photo-->
 <fieldset class="comment">
     <legend class="commentAuthor">
         <strong>
@@ -27,18 +24,18 @@ if(isset($_POST['IDphotoClicked'])){
         $getUserName->execute();
         $userName=$getUserName->fetch();
         echo $userName['LastName'].' '.$userName['FirstName'];
-
-//        ;
+        // ;
             ?>
         </strong>
     </legend>
     <?php echo $comments['CommentContent'];?>
+    <!--  We  create a report comment button that will send the datas -->
+    <!--  (Id user, is comment, etc) to report.php-->
     <form action="report.php" method="post">
         <input type="hidden" name="category" value="comment"/>
         <input type="hidden" name="IDUser" value="<?php echo $comments['IDUser'];?>"/>
         <input type="hidden" name="contentId" value="<?php echo $comments['IDComment'];?>"/>
         <button type="submit" value="submit"> signaler </button>
-
     </form>
 </fieldset>
 

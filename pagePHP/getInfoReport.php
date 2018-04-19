@@ -10,6 +10,8 @@ function getHappeningInfos($idReturned){
 }
 
 
+// function that takes as a parameter the ID of the photo reported
+// this function gets all infos about it from the photo table
 function getPhotoInfos($idReturned){
     $bdd=getBdd();
     $getInfoPhoto=$bdd->prepare('SELECT * FROM Photo WHERE IDPhoto =:IDPhoto');
@@ -20,6 +22,8 @@ function getPhotoInfos($idReturned){
 
 
 
+// function that takes as a parameter the ID of the comment reported
+// this function gets all infos about it from the photo comments
 function getCommentInfos($idReturned){
     $bdd=getBdd();
     $getInfoComment=$bdd->prepare('SELECT * FROM Comments WHERE IDComment =:IDComment');

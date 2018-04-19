@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-modal.css">
 
+<!--div that contains the pop-up for the logIn-->
 <div id="logInModal" class="modal">
     <form class="modal-content animate" action="logIn.php" method="post">
         <div class="container">
@@ -15,6 +16,7 @@
     </form>
 </div>
 
+<!--div that contains the pop-up for the signIn-->
 <div id="signInModal" class="modal">
     <form name="formulaireSignIn" class="modal-content animate" action="signIn.php" onSubmit="return checkformSignIn()" method="post">
         <div class="container">

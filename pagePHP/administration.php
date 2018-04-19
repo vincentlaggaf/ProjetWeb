@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <body>
+
+        <!--  We create a table to make the list of all the users -->
         <table>
             <tr>
                 <th>Nom</th>
@@ -22,11 +24,14 @@
             while($donnees = $reponse->fetch()) {
             ?>
             <tr>
+                <!--    for each line of answer we insert it in a row of the table - in the td  -->
                 <form action="updateUser.php" method="post">
                     <td><input type="text" name="LastName" value="<?php echo $donnees['LastName'];?>"/><br/></td>
                     <td><input type="text" name="FirstName" value="<?php echo $donnees['FirstName'];?>"/><br/></td>
                     <td><input id="role" type="text" name="Role" value="<?php echo $donnees['Role'];?>"/></td>
                     <td><select name="ChooseRole" onchange="changeRole(this.value)">
+
+                        <!-- We create a dropdown menu to select the role we want to give to the user -->
                         <?php $level = $bdd->query('SELECT Role FROM UserRole');
                 while($niveaux = $level->fetch()){
                         ?>
@@ -36,6 +41,7 @@
                         <?php }
                         ?> </select>
                     </td>
+                    <!--    the submit button will send the datas of the same row -->
                     <td><input type="submit" value="Submit"/></td>
                 </form>
             </tr>
@@ -43,12 +49,6 @@
             $reponse->closeCursor();
             ?>
         </table>
-        <button onclick="goBack()">Go Back</button>
-        <script>
-            function goBack() {
-                document.location.replace('/projetWeb/pagePHP/home.php');
-                //if (document.referrer == ""){alert("rien");}else {window.history.back();}
-            }
-        </script>
+        <button onclick="history.back()">Go Back</button>
     </body>
 </html>

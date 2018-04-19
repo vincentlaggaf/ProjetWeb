@@ -20,8 +20,10 @@ $reponse->bindValue(':UserPassword', $UserPassword, PDO::PARAM_STR);
 $reponse->execute();
 $identifiants= $reponse->fetch();
 
+//if the user's login and password are right, we set the values for his session
 if($Login == $identifiants['Login'] AND $UserPassword == $identifiants['UserPassword'])
 {
+
     $_SESSION['Login'] = $identifiants['Login'];
     $_SESSION['Role'] = $identifiants['Role'];
     $_SESSION['Id'] = $identifiants['IDUser'];

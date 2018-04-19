@@ -55,11 +55,7 @@ catch (Exception $e)
                     <?php
                     if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
                     ?>
-                    <div class="inscriptionButton">
-                        <input type="hidden" name="NameEvent" value="<?php echo $happened['NameEvent']?>;">
-                        <input type="hidden" name="IDEvent" value="<?php echo $happened['IDEvent'];?>"/>
-                        <input type="submit" value=" + " name="test"/>
-                    </div>
+
                     <?php } ?>
                 </div>
             </fieldset>
@@ -70,12 +66,6 @@ catch (Exception $e)
                 $numberOfEvent++; }
             $getHappened->closeCursor();
         ?>
-
-
-
-
-
-
 
         </section>
     <?php include('footer.php'); ?>
