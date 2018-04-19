@@ -36,7 +36,12 @@
     /* Black w/ opacity */
 /*     background-color: aqua;*/
 }
-
+.commentAuthor{
+    color:red;
+}
+.comment{
+    margin-bottom: 60px;
+}
 
 /* Modal Content (Image) */
 .modal-content {
