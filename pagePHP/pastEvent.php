@@ -22,31 +22,7 @@ catch (Exception $e)
     <body>
         <?php include('nav.php');?>
         <section id="corps">
-                    <div id="sidebar">
-                <form action="" method="post">
-                    <input type="text" name="research" placeholder="Recherche"/>
-                    <input type="submit" value="Valider" />
-                </form>
-                <p>Filtres :</p>
-                <form action="" method="post">
-                    <input type="hidden" name="category" value="1">
-                    <input type="submit" value="Catégorie">
-                </form>
-                <form action="" method="post">
-                    <input type="hidden" name="price" value="1">
-                    <input type="submit" value="Prix">
-                </form>
-                <form action="" method="post">
-                    <input type="hidden" name="popularity" value="1">
-                    <input type="submit" value="Popularité">
-                </form>
-                <?php if (isset($_SESSION['Role']) AND $_SESSION['Role']=='BDEMember'){
-                ?>
-                <form action="addNewEventOfMonth.php">
-                    <input type="submit" value="Ajouter un nouvel événement">
-                </form>
-                <?php } ?>
-            </div>
+
 
 
             <?php

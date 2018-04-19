@@ -15,11 +15,18 @@
             <li><a href="eventOfTheMonth.php" class="bouton">Évènement du mois</a></li>
             <li><a href="pastEvent.php" class="bouton">Évènements passés</a></li>
             <?php
-            if(isset($_SESSION['Login'])){
+            if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'CESIMember') {
+            ?>
+            <a href="/projetWeb/pagePHP/download.php" class="bouton">
+                Téléchargement
+            </a>
+            <?php
+            }
+                if(isset($_SESSION['Login'])){
             ?>
             <li><a href="/projetWeb/pagePHP/destroySession.php" class="bouton">Déconnexion</a> </li>
             <?php }
-            else {
+                else {
             ?>
             <button class="authentificationBtn" onclick="document.getElementById('signInModal').style.display='block'">
                 <img src="/projetWeb/imagePNG/signIn.png" alt="signIn ">
@@ -28,15 +35,9 @@
                 <img src="/projetWeb/imagePNG/logIn.png" alt="logIn ">
             </button>
             <?php }
-            if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'BDEMember') {
+                if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'BDEMember') {
             ?>
             <a href="/projetWeb/pagePHP/administration.php" class="bouton">
-                <img src="/projetWeb/imagePNG/reglage.png" alt="reglage">
-            </a>
-            <?php }
-            if(isset($_SESSION['Login']) AND $_SESSION['Role'] == 'CESIMember') {
-            ?>
-            <a href="/projetWeb/pagePHP/download.php" class="bouton">
                 <img src="/projetWeb/imagePNG/reglage.png" alt="reglage">
             </a>
             <?php }
@@ -48,10 +49,10 @@
 
 <div class="dropdown">
     <input type="image" onclick="dropdownFunction()" class="dropbtn" src="/projetWeb/imagePNG/menuIcon.png" alt="menuIcon"/>
-<!--
-    <button onclick="dropdownFunction()" class="dropbtn">
-        <img src="/projetWeb/imagePNG/menuIcon.png" alt="menuIcon">
-    </button>
+    <!--
+<button onclick="dropdownFunction()" class="dropbtn">
+<img src="/projetWeb/imagePNG/menuIcon.png" alt="menuIcon">
+</button>
 -->
     <div id="myDropdown" class="dropdown-content">
         <a href="home.php">Accueil</a>

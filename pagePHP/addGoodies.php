@@ -74,7 +74,7 @@ require 'addGoodies/scriptAddGoodies.php';
 
                         </div>
 
-                        <textarea rows="10" cols="51" placeholder="Description de l'article" name="goodieDescription" class="inputText"></textarea>
+                        <textarea placeholder="Description de l'article" name="goodieDescription" class="inputText"></textarea>
 
 
                         <select name="goodieCategory"e id="goodieCategory">

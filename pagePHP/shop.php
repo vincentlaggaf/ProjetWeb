@@ -137,7 +137,6 @@ require 'shop/fillShop.php';
                 }
                 ?>
             </div>
-            <a href="download.php">testetstetstt</a>
         </div>
 
         <?php include 'footer.php';  ?>
