@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require 'sendMail\sendMail.php';
 require 'BDDConnection.php';
 require 'getInfoReport.php';
@@ -15,6 +17,7 @@ if (isset($_POST['category']) AND isset($_POST['contentId'])){
         case'event' :
             $happening= getHappeningInfos($_POST['contentId']);
             echo $happening['NameEvent'];
+            writeReport($happening['IDEvent'], $happening['NameEvent'], $happening['NameEventCategory'], $_SESSION['LastName'],  $_SESSION['FirstName']);
             break;
 
         case 'comment':
