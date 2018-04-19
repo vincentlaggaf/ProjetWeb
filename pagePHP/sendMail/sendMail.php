@@ -14,7 +14,7 @@ function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $total
 
 
 function writeReport($contentId, $contentName, $contentCategory, $lastName, $firstName){
-    $text = "Le contenu suivant a été signalé par ".$firstName .$lastName ." : \n\n Id correspondant :".$contentId ."\n\n Nom du contenu : ".$contentName;
+    $text = "Le contenu suivant a été signalé par ".$firstName .$lastName ." : \n\n Id correspondant :".$contentId ."\n\n Nom du contenu : ".$contentName."\n\n Il s'agit de : ".$contentCategory;
 
     sendMail("bde.exia.pau@gmail.com",$text);
 
