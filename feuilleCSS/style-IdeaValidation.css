@@ -21,19 +21,6 @@ section {
     background-color: #F2F1EF;
 }
 
-.descriptionBox
-{
-width: 100%;
-
-}
-.addIdea
-{
-
-}
-.titre
-{
-    height: 25%;
-}
 
 .titleAndPhoto{
     display: flex;
@@ -66,21 +53,8 @@ width: 100%;
     background-color: white;
 
 }
-.validation{
 
 
-}
-
-
-
-.titleValidation{
-    font-size: 20px;
-    border: black 1px solid;
-    margin: 2px;
-    margin-top: 4%;
-    background-color: white;
-
-}
 
 .photo
 {
@@ -125,21 +99,12 @@ width: 100%;
 
 }
 
-.voteButton
-{
-    align-self: flex-end;
-}
-
-
-
-/*Validation*/
-
-
 
 .buttonValidation{
 
     align-self: flex-end;
 }
+
 .area{
      height: 100%;
     width: 100%;
@@ -156,6 +121,4 @@ width: 100%;
     justify-content: space-between;
 
 }
-
-
 }
