@@ -13,6 +13,11 @@ section {
     border: 2px black groove;
 }
 
+h1
+{
+    font-size: 4em;
+}
+
 .mention_titre
 {
     text-align: center;
@@ -24,4 +29,11 @@ section {
 {
     text-align: justify;
     margin-bottom: 3%;
+}
+
+@media screen and (max-width:750px){
+    h1
+    {
+        font-size: 1.5em;
+    }
 }

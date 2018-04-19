@@ -29,6 +29,12 @@ section
     align-content: center;
 }
 
+h1
+{
+    font-size: 4em;
+    text-align: center;
+}
+
 .goodieBloc{
     display: flex;
     flex-direction: row;
@@ -47,8 +53,8 @@ section
 }
 
 .inputText
-    {
-    }
+{
+}
 
 .photo
 {
@@ -92,6 +98,10 @@ section
 }
 
 @media screen and (max-width:1500px){
+    h1
+    {
+        font-size: 1.5em;
+    }
 
     .goodieBloc
     {
