@@ -25,7 +25,11 @@ body {
 }
 
 
+.addNewEvent
+{
+    align-self: center;
 
+}
 /* Full-width input fields */
 input[type=text], input[type=password] {
     width: 100%;
@@ -36,7 +40,13 @@ input[type=text], input[type=password] {
     font-size: 100%;
 }
 
-
+#addEventButton{
+    min-width: 100%;
+    height: auto;
+    padding: 3%;
+    font-size: 1.2em;
+    color: black;
+}
 
 .eventBloc{
     display: flex;
@@ -59,20 +69,18 @@ input[type=text], input[type=password] {
 }
 #corps {
     margin: 3%;
-    margin-left: 20%;
+    margin-left: 10%;
     margin-right: 10%;
     padding: 1%;
     justify-content: center;
     background-color: #F2F1EF;
     max-width: 80%;
+    display: flex;
+    flex-direction: column;
 }
 
 
-.addNewEvent
-{
-    margin: 1%;
-    border: 1px solid black;
-}
+
 
 .titleAndPhoto{
     display: flex;
@@ -118,17 +126,7 @@ input[type=text], input[type=password] {
     height: 100%;
     width: 100%;
 }
-.filter
-{
 
-    border: 1px black double;
-    position: fixed;
-    height: 60%;
-    left: 3%;
-    margin-top: -1%;
-    background-color: #F2F1EF;
-
-}
 
 .inscriptionButton
 {
@@ -170,4 +168,16 @@ input[type=text], input[type=password] {
         flex-direction: column;
         justify-content: space-between;
     }
+    #addEventButton{
+    width: 50%;
+    font-size: 0.7em;
+    }
+    .eventDescription{
+        font-size: 0.7em;
+    }
+    .linkToEvent{
+    font-size: 0.7em;
+    }
+
+
 }
