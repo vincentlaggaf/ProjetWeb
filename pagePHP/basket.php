@@ -26,6 +26,7 @@ require 'sendMail\sendMail.php';
 
         <div id="basketDiv">
             <section>
+                <h1>Panier</h1>
                 <?php
                 if(isset($_POST['changed']) AND isset($_POST['quantity']))
                 {

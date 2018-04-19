@@ -32,11 +32,17 @@ section {
 
     background-color: #FFF;
     padding: 2%;
-    margin-top: 3%;
+    padding-top: 0px;
+    margin-top: 0px;
     width: 80%;
     border: 2px black groove;
 
     text-align: center;
+}
+
+h1
+{
+    font-size: 4em;
 }
 
 #price
@@ -121,6 +127,11 @@ button:hover
 
 @media screen and (max-width: 900px)
 {
+    h1
+    {
+        font-size: 1.5em;
+    }
+
     .basket_information
     {
         flex-direction: column;

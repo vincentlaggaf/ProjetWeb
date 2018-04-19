@@ -24,6 +24,7 @@ require 'addGoodies/scriptAddGoodies.php';
         <?php  include('nav.php');?>
         <div id=addGoodieDiv>
             <section>
+                <h1>Ajout d'article</h1>
                 <?php
                 try
                 {
