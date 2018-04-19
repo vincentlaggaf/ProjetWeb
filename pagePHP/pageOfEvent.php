@@ -1,17 +1,10 @@
 <?php
 session_start();
-try
-{
-    $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-}
-catch (Exception $e)
-{
-    die ('Erreur : ' . $e->getMessage());
-}
-?>
 
-<?php
+require 'BDDConnection.php';
+require 'addEventPicture/scriptAddEventPicture.php';
 
+$bdd = getBDD();
 
 if(isset($_GET['name'])){
 
@@ -22,6 +15,11 @@ if(isset($_GET['name'])){
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
 
+    if(isset($_POST['validation']))
+    {
+        getFile($InfoEvent['IDEvent']);
+    }
+
     $getPhotoEvent=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
     $getPhotoEvent->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
     $getPhotoEvent->execute();
@@ -31,6 +29,8 @@ if(isset($_GET['name'])){
     $getDone->bindValue(':nameEvent',$eventName,PDO::PARAM_STR);
     $getDone->execute();
     $IsItPassed=$getDone->fetch();
+
+
 
 ?>
 
@@ -60,19 +60,29 @@ if(isset($_GET['name'])){
                 <legend class="eventName"><strong>
                     <?php echo $InfoEvent['NameEvent']?>
                     </strong></legend>
+
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
                         <?php if(isset($urlPhoto['Url'])){ ?>
-                        <div class="titleAndPhoto">
-                            <div class="photo">
-                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
-                            </div>
+                        <div class="photo">
+                            <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
                         </div>
-                        <?php } ?>
+                        <?php }
+
+                        ?>
+
                         <div class="eventDescription"><?php echo $InfoEvent['Description'];?></div>
                     </div>
                 </div>
+
             </fieldset>
+            <div class="photo">
+                <p id="warningPhoto">Attention le fichier doit faire au maximum 10 Mo!</p>
+                <form action="pageOfEvent.php?name=<?php echo $eventName; ?>" method="post" enctype="multipart/form-data">
+                    <input type="file" name="eventPicture"/>
+                    <input type="submit" value="Valider" name="validation">
+                </form>
+            </div>
             <br/><br/>
 
 
@@ -81,34 +91,19 @@ if(isset($_GET['name'])){
 
 
             <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now"))
-    { ?>
+                        { ?>
 
             <div class="eventPhotos">
                 <?php
-        $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
-        $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
-        $getPhotos->execute();
+                            $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
+                            $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
+                            $getPhotos->execute();
                 ?>
                 <?php while($photos=$getPhotos->fetch()){
                 ?>
                 <img class="myImg" value="<?php echo $photos['IDPhoto'];?>" src="<?php echo $photos['Url'];?>" alt="oui">
                 <?php } ?>
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -125,30 +120,19 @@ if(isset($_GET['name'])){
 
 
 
-
-
-
-
                     <?php
-        if((!isset($_SESSION['Id']))||($_SESSION['Role'] == 'Inactif'))
-        {
+                            if((!isset($_SESSION['Id']))||($_SESSION['Role'] == 'Inactif'))
+                            {
                     ?>
                     <p> Connectez-vous pour pouvoir aimer et commenter! </p>
                     <?php
-        }
+                            }
 
 
+                            else if((isset($_SESSION['Id']))AND($_SESSION['Role'] != 'Inactif'))
+                            {
 
-
-
-
-
-
-
-        else if((isset($_SESSION['Id']))AND($_SESSION['Role'] != 'Inactif'))
-        {
-
-            if($_SESSION['Role'] == 'CESIMember') {
+                                if($_SESSION['Role'] == 'CESIMember') {
                     ?>
                     <div>
                         <p>Signaler cette photo :</p>
@@ -160,7 +144,8 @@ if(isset($_GET['name'])){
                         </form>
                     </div>
                     <?php
-            }
+                                }
+
                     ?>
 
 
@@ -204,7 +189,7 @@ if(isset($_GET['name'])){
 
 
                     <?php
-        }
+                            }
 
                     ?>
 
@@ -217,15 +202,16 @@ if(isset($_GET['name'])){
 
             <?php
 
-        $getInfoEvent->closeCursor();
-        $getPhotoEvent->closeCursor();
-        $getDone->closeCursor();
-        $getPhotos->closeCursor();
-    }
+
+                            $getInfoEvent->closeCursor();
+                            $getPhotoEvent->closeCursor();
+                            $getDone->closeCursor();
+                            $getPhotos->closeCursor();
+                        }
+
 
 
             ?>
-
 
 
 
@@ -348,7 +334,7 @@ if(isset($_GET['name'])){
                     signaler.onclick = function() {
                         var category = document.getElementById('category').value;
                         var IDUser = <?php echo $_SESSION['Id']; ?>;
-                        var IDElement = modalidPhoto;
+                        var contentId = modalidPhoto;
                         alert (category+IDUser+IDElement);
                         //                        alert (<?php echo $_SESSION['Id']; ?>);
                         //                        alert (category);
@@ -357,7 +343,7 @@ if(isset($_GET['name'])){
                             type : 'POST',
                             data :
                             {
-                                "IDElement": IDElement,
+                                "contentId": contentId,
                                 "category": category,
                                 "IDUser": IDUser,
                             },
