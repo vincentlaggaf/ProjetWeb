@@ -6,8 +6,6 @@ try
 {
     $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-
-
 }
 catch (Exception $e)
 {
@@ -17,7 +15,9 @@ catch (Exception $e)
 
 
 
+
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -106,7 +106,7 @@ catch (Exception $e)
                         <div class="titleAndPhoto">
 
                             <div class="title">
-                                <input   type="text" name="title"  maxlength="20"  placeholder="Titre"/>
+                                <input   type="text" name="title"  maxlength="50"  placeholder="Titre"/>
                             </div>
 
                             <div class="photo">
@@ -175,7 +175,6 @@ catch (Exception $e)
 
 
                 $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate=0');
-
                 while( $happenings = $gethappenings->fetch()){
 
 
@@ -183,8 +182,7 @@ catch (Exception $e)
 
             <div class="addIdea">
                 <fieldset class="event">
-                    <legend class="eventNumber" name="idevent">Idée <?php echo $happenings['IDEvent'];  $_SESSION['idEvent2']=$happenings['IDEvent']
-                        ?>
+                    <legend class="eventNumber" name="idEvent">Idée <?php echo $happenings['IDEvent'];?>
                     </legend>
 
                     <div class="eventBloc">
@@ -195,17 +193,17 @@ catch (Exception $e)
                             </div>
 
                             <div class="photo">
-                               <img src="/projetWeb/imagePNG/boite_intro.png"  style="width:100%" class="thumbnail">
+                                <img src="/projetWeb/imagePNG/boite_intro.png"  style="width:100%" class="thumbnail">
                             </div>
                             <?php
-                    $getNumberVote = $bdd->query('SELECT COUNT( Vote ) as nVote FROM Interest WHERE IDEvent ='.$happenings['IDEvent'].' AND Participate=0 AND Vote=1' );
-                    $nombreVote=$getNumberVote->fetch();
+                                $getNumberVote = $bdd->query('SELECT COUNT( Vote ) as nVote FROM Interest WHERE IDEvent ='.$happenings['IDEvent'].' AND Participate=0 AND Vote=1' );
+                                $nombreVote=$getNumberVote->fetch();
                             ?>
 
                             <div><p>Nombre de vote: <?= $nombreVote['nVote'] ?>
                                 </p>
                                 <form class="addIdea" action="IdeaValidation.php" method="post">
-                                    <input type="hidden" name="idEvent" value="<?php echo $happenings['IDEvent'];?>">
+                                    <input type="hidden" name="idEvent" value="<?php echo $happenings['IDEvent']; ?>">
                                     <input type="hidden" name="desCription" value="<?php echo $happenings['Description'];?>">
                                     <input type="hidden" name="titleIdea" value="<?php echo $happenings['NameEvent'];?>">
                                     <input class="buttonVali" type="submit" value="Valider"  />
@@ -228,19 +226,17 @@ catch (Exception $e)
             </div>
 
 
-
             <?php
                 }
 
                 //Closes the cursor allowing the query to be executed again
                 $gethappenings->closeCursor();}
 
-            // Display the page for the student and cesi member
-            elseif(isset($_SESSION['Id']) AND $_SESSION['Role']=='Student' || $_SESSION['Role']=='CESIMember'){
+                // Display the page for the student and cesi member
+                elseif(isset($_SESSION['Id']) AND $_SESSION['Role']=='Student' || $_SESSION['Role']=='CESIMember'){
 
 
                 $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate=0');
-
                 while( $happenings = $gethappenings->fetch()){
 
 
@@ -248,7 +244,7 @@ catch (Exception $e)
 
             <div class="addIdea">
                 <fieldset class="event">
-                    <legend class="eventNumber" name="idevent">Idée <?php echo $happenings['IDEvent'];  $_SESSION['idEvent2']=$happenings['IDEvent']?>
+                    <legend class="eventNumber" name="idEvent">Idée <?php echo $happenings['IDEvent'];?>
                     </legend>
 
                     <div class="eventBloc">
@@ -261,8 +257,8 @@ catch (Exception $e)
                                 <img src="/projetWeb/imagePNG/boite_intro.png"  style="width:100%" class="thumbnail">
                             </div>
                             <?php
-                    $getNumberVote = $bdd->query('SELECT COUNT( Vote ) as nVote FROM Interest WHERE IDEvent ='.$happenings['IDEvent'].' AND Participate=0 AND Vote=1' );
-                    $nombreVote=$getNumberVote->fetch();
+                                $getNumberVote = $bdd->query('SELECT COUNT( Vote ) as nVote FROM Interest WHERE IDEvent ='.$happenings['IDEvent'].' AND Participate=0 AND Vote=1' );
+                                $nombreVote=$getNumberVote->fetch();
                             ?>
 
                             <div><p>Nombre de vote: <?= $nombreVote['nVote'] ?></p>
@@ -280,52 +276,41 @@ catch (Exception $e)
                     </div>
                 </fieldset>
             </div>
+
             <?php
                 }
                 $gethappenings->closeCursor();}
 
+
             // Display the page for the disconnected users
             else{
 
-
                 $gethappenings = $bdd->query('SELECT NameEvent,Description,IDEvent FROM Happenings WHERE Validate=0');
-
                 while( $happenings = $gethappenings->fetch()){
 
             ?>
             <div class="addIdea">
                 <fieldset class="event">
-                    <legend class="eventNumber" name="idevent">Idée <?php echo $happenings['IDEvent'];  $_SESSION['idEvent2']=$happenings['IDEvent']
-                        ?>
+                    <legend class="eventNumber" name="idEvent">Idée <?php echo $happenings['IDEvent'];?>
                     </legend>
-
                     <div class="eventBloc">
-
                         <div class="titleAndPhoto">
-
                             <div class="title"><?php echo $happenings['NameEvent'];?>
                             </div>
-
                             <div class="photo">
-                               <img src="/projetWeb/imagePNG/boite_intro.png"  style="width:100%" class="thumbnail">
+                                <img src="/projetWeb/imagePNG/boite_intro.png"  style="width:100%" class="thumbnail">
                             </div>
-                            <?php
-                    $getNumberVote = $bdd->query('SELECT COUNT( Vote ) as nVote FROM Interest WHERE IDEvent ='.$happenings['IDEvent'].' AND Participate=0 AND Vote=1' );
 
-                    $nombreVote=$getNumberVote->fetch();
+                            <?php
+                                $getNumberVote = $bdd->query('SELECT COUNT( Vote ) as nVote FROM Interest WHERE IDEvent ='.$happenings['IDEvent'].' AND Participate=0 AND Vote=1' );
+                                $nombreVote=$getNumberVote->fetch();
                             ?>
 
-                            <div><p>Nombre de vote: <?= $nombreVote['nVote'] ?>
-                                </p>
-
+                            <div><p>Nombre de vote: <?= $nombreVote['nVote'] ?></p>
                             </div>
                         </div>
-
                         <div class="eventDescription"><?php echo $happenings['Description'];?>
                         </div>
-
-
-
                     </div>
                 </fieldset>
             </div>
