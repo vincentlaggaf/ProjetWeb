@@ -10,6 +10,7 @@ require 'shop/fillShop.php';
     <head>
         <title> Boutique </title>
         <meta charset="UTF-8">
+         <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style.css">
         <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style-shop.css">
     </head>
 
