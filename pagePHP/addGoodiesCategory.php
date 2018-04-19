@@ -17,6 +17,7 @@ require 'GoodiesCategory/BDDGoodiesCategory.php';
     <head>
         <title> Ajout de catégorie </title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style.css">
         <link rel="stylesheet" href="\ProjetWeb\feuilleCSS\style-addGoodiesCategory.css">
     </head>
 
