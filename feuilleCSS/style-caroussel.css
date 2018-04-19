@@ -1,5 +1,19 @@
 /*CSS du caroussel*/
 
+#corps {
+     justify-content: center;
+}
+/* Slideshow container */
+.theCarousel {
+/*   align-content: flex-end;*/
+    margin-left: 10%;
+    width: 80%;
+    height: auto;
+/*    position: relative;*/
+/*  margin: auto;*/
+}
+
+
 #pass, .text {
     text-align: center;
 }
