@@ -71,7 +71,7 @@ catch (Exception $e)
 
                     $monthOfTheEvent=explode("-",$happening['EventDate']);
 
-                    if ($currentMonth==$monthOfTheEvent[1]){
+                    if ($currentMonth==$monthOfTheEvent[1] AND( strtotime($happening['EventDate']) >strtotime("now"))){
                         $idToLookFor=$happening['IDEvent'];
                         $getPhoto=$bdd->prepare("SELECT Url FROM Photo WHERE IDEvent =:IDEvent");
                         $getPhoto->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_STR);
