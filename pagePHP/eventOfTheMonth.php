@@ -71,7 +71,7 @@ catch (Exception $e)
 
                     $monthOfTheEvent=explode("-",$happening['EventDate']);
 
-                    if ($currentMonth==$monthOfTheEvent[1]){
+                    if ($currentMonth==$monthOfTheEvent[1] AND( strtotime($happening['EventDate']) >strtotime("now"))){
                         $idToLookFor=$happening['IDEvent'];
                         $getPhoto=$bdd->prepare("SELECT Url FROM Photo WHERE IDEvent =:IDEvent");
                         $getPhoto->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_STR);
@@ -79,7 +79,7 @@ catch (Exception $e)
                         $urlPhoto=$getPhoto->fetch();
 
             ?>
-            <form class="addNewEvent" action="scriptInscriptionEvent.php" method="post" >
+
                 <fieldset class="event">
                     <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> "><strong><?php echo $happening['NameEvent'];?></strong></a></legend>
                     <div class="eventBloc">
@@ -104,23 +104,35 @@ catch (Exception $e)
 
                         <?php
 
-                        if (isset($_SESSION['Role']) AND ($_SESSION['Role']=='BDEMember' OR $_SESSION['Role']=='Student')) {
+                        if (isset($_SESSION['Role'])){
+                            if($_SESSION['Role']!='inactif')
+                          {
 
-                        ?>
-                        <div class="inscriptionButton">
+                        ?><form>
+                        <div class="inscriptionDiv">
                             <input type="hidden" name="NameEvent" value="<?php echo $happening['NameEvent']?>;">
                             <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
-                            <input type="submit" value="Je m'inscris !" name="test"/>
+                            <input type="submit" value="Je m'inscris !" name="test" class="inscriptionButton" title="Je m'inscris"/>
                         </div>
-
                         <?php }
                         ?>
+                        <?php if ($_SESSION['Role']=='CESIMember'){
 
+                        ?>
+                        </form>
+                        <form action="report.php" method="post" class="reportForm">
+                            <div class="reportDiv">
+                            <img src="\projetWeb\imagePNG\report.png" alt="Signaler" title="Signaler" class="report" />
+                            <input type=submit value="Signaler" class="reportButton" title="Signaler l'événement"/>
+                                </div>
+                        </form>
+
+                         <?php }
+                        }?>
                     </div>
 
-                </fieldset>
-            </form>
-            <?php }
+                </fieldset><?php
+           }
 
                     $numberOfEvent++;}}
             $getHappening->closeCursor();

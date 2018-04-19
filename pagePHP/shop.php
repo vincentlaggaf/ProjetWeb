@@ -80,7 +80,7 @@ require 'shop/fillShop.php';
                     }
                     ?>
                 </article>
-            </section>
+        </section>
         </div>
 
 <!--        The sidebar for the several sorts-->
@@ -137,6 +137,7 @@ require 'shop/fillShop.php';
                 }
                 ?>
             </div>
+            <a href="download.php">testetstetstt</a>
         </div>
 
         <?php include 'footer.php';  ?>

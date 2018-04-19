@@ -71,6 +71,7 @@ input[type=text], input[type=password] {
 .addNewEvent
 {
     margin: 1%;
+    border: 1px solid black;
 }
 
 .titleAndPhoto{
@@ -90,7 +91,8 @@ input[type=text], input[type=password] {
     margin-bottom: 0.2%;
     margin-left: 1%;
     margin-right: 2%;
-    width: 75%
+    width: 75%;
+
 }
 
 
@@ -103,7 +105,7 @@ input[type=text], input[type=password] {
 }
 .eventName
 {
-  color:    #CF000F;
+    color:    #CF000F;
 }
 .photo
 {
@@ -136,15 +138,38 @@ input[type=text], input[type=password] {
 .linkToEvent{
     color:  #CF000F;
 }
+.reportButton{
+    align-self: center;
+}
+.report
+{
+    width: 18%;
+    height: 72%;
+}
+.inscriptionDiv
+{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+}
+.inscriptionButton
+{
+    align-self: center;
+}
+.reportDiv
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end
+
+}
 
 @media screen and (max-width:720px){
 
     .eventBloc{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-}
-
-
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
