@@ -130,7 +130,7 @@ function displayGoodies($answer){
 
             <div class="info_goodies info_goodie_description">Description :<br/><?php echo $data['Description']; ?></div>
             <?php
-             if(isset($_SESSION['Role']) AND $_SESSION['Role'] == "Inactif")
+             if(isset($_SESSION['Role']) AND $_SESSION['Role'] != "Inactif")
              {
                 ?>
                 <form action="\projetWeb\pagePHP\shop.php" method="post">
