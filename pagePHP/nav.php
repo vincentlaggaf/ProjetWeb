@@ -41,9 +41,12 @@
 
 
 <div class="dropdown">
+    <input type="image" onclick="dropdownFunction()" class="dropbtn" src="/projetWeb/imagePNG/menuIcon.png" alt="menuIcon"/>
+<!--
     <button onclick="dropdownFunction()" class="dropbtn">
         <img src="/projetWeb/imagePNG/menuIcon.png" alt="menuIcon">
     </button>
+-->
     <div id="myDropdown" class="dropdown-content">
         <a href="home.php">Accueil</a>
         <a href="shop.php">Boutique</a>

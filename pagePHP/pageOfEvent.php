@@ -105,13 +105,22 @@ if(isset($_GET['name'])){
                 <img class="modal-content" id="imgModal">
                 <!-- Modal Caption (Image Text) -->
                 <div class="commentaire" id="commentaires">
-                    <h1>Aimer la photo : </h1>
                     <?php
-        if(isset($_SESSION['Id'])){
+        if(!isset($_SESSION['Id']))
+        {
                     ?>
-                    <button id="btn">J'aime</button>
-                    <?php }
+                    <p> Connectez-vous pour pouvoir aimer et commenter! </p>
+                    <?php
+        }
+
+        else if(isset($_SESSION['Id']))
+        {
                     ?>
+                    <h1>Aimer la photo : </h1>
+
+                    <!-- <button id="btn">J'aime</button>-->
+                    <input id="btn" type="image" src="/projetWeb/imagePNG/like.png" />
+
                     <div>
                         <h1>Commentaires :</h1>
                         <!--
@@ -133,7 +142,16 @@ if(isset($_GET['name'])){
                             <!--<button type="reset" value="Reset" id="submit"> envoyer </button>-->
                         </form>
                     </div>
-                    <div><p id="comments"> Les commentaires : </p></div>
+
+                    <?php
+        }
+                    ?>
+
+
+                    <div>
+                        <h1>Commentaires :</h1>
+                        <p id="comments"> </p>
+                    </div>
                 </div>
             </div>
 
@@ -208,8 +226,8 @@ if(isset($_GET['name'])){
                     }
 
                     submit.onclick = function(){
-                    var commentaire = document.getElementById('monCommentaire').value;
-//                        alert (commentaire);
+                        var commentaire = document.getElementById('monCommentaire').value;
+                        //                        alert (commentaire);
                         $.ajax({
                             url: 'commentEventPhoto.php',
                             type : 'POST',
@@ -226,7 +244,7 @@ if(isset($_GET['name'])){
                                 alert ("erreur");
                             },
                             complete : function(resultat, statut){
-//                                alert ("ca marche");
+                                //                                alert ("ca marche");
                             }
                         });
                     }
