@@ -112,7 +112,10 @@ catch (Exception $e)
                             <input type="hidden" name="IDEvent" value="<?php echo $happening['IDEvent'];?>"/>
                             <input type="submit" value="Je m'inscris !" name="test"/>
                         </div>
-
+                        <form action="report.php" method="post">
+                            <img src="\projetWeb\imagePNG\report.png" alt="Signaler" title="Signaler" class="report" />
+                            <input type=submit value="Signaler" />
+                        </form>
                         <?php }
                         ?>
 

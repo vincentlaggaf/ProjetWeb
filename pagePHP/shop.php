@@ -80,7 +80,7 @@ require 'shop/fillShop.php';
                     }
                     ?>
                 </article>
-            </section>
+        </section>
         </div>
 
 <!--        The sidebar for the several sorts-->

@@ -103,7 +103,7 @@ input[type=text], input[type=password] {
 }
 .eventName
 {
-  color:    #CF000F;
+    color:    #CF000F;
 }
 .photo
 {
@@ -137,15 +137,17 @@ input[type=text], input[type=password] {
     color:  #CF000F;
 }
 
+.report
+{
+    width: 3%;
+    height: 3%;
+}
+
 @media screen and (max-width:720px){
 
     .eventBloc{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-
-}
-
-
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
