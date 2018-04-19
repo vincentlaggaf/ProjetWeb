@@ -20,6 +20,7 @@ require 'shop/fillShop.php';
 <!--        div wich contains all the goodies sold in the shop-->
         <div id="shopDiv">
             <section>
+                <h1>Boutique</h1>
                 <?php
                 $role = roleCheck();
 

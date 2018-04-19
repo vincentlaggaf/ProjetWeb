@@ -37,6 +37,11 @@ section
     text-align: center;
 }
 
+h1
+{
+    font-size: 4em;
+}
+
 #categoryDisplay
 {
 
@@ -93,6 +98,11 @@ button:hover
     #categoryDisplay
     {
         flex-direction: column;
+    }
+
+    h1
+    {
+        font-size: 1.5em;
     }
 
     .nameGoodiesCategory
