@@ -123,20 +123,7 @@ if(isset($_GET['name'])){
                     <input id="btn" type="image" src="/projetWeb/imagePNG/like.png" />
 
                     <div>
-                        <h1>Commentaires :</h1>
-                        <!--
-<form action="">
-<input type="text" name="comment">
-<button type="submit" class="btn">Envoyer</button>
-</form>
--->
-                        <!--
-<form method="POST" action="commentEventPhoto.php" id="form" >
-<input type="text" name="comment" id="monCommentaire">
-<input type="submit" value="Submit" id="submit">
-
-</form>
--->
+                        <h1>Commentez :</h1>
                         <form action="commentEventPhoto.php" method="post">
                             <input type="text" id="monCommentaire"/>
                             <button type="reset" value="reset" id="submit"> envoyer </button>
@@ -144,10 +131,8 @@ if(isset($_GET['name'])){
                         </form>
                     </div>
 
-                    <?php
-        }
+                    <?php }
                     ?>
-
 
                     <div>
                         <h1>Commentaires :</h1>
@@ -159,13 +144,10 @@ if(isset($_GET['name'])){
 
             <div>
                 <h4> télécharger la liste des membres de l'activité : </h4>
-                <!--
-<form action="getParticipantsList.php" method="post">
-<input
--->
-                <button onclick="getList()" > télécharger </button>
-                <!--                <input onclick="getList()" id="downloadBtn" type="image" src="/projetWeb/imagePNG/download.png"/>-->
-                <!--                </form>-->
+                <form action="getList.php" method="post" >
+                    <input type="hidden" name="eventID" value="<?php echo $InfoEvent['IDEvent'];?>">
+                    <button type="submit" > télécharger </button>
+                </form>
 
             </div>
 
@@ -177,87 +159,7 @@ if(isset($_GET['name'])){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            function getList(){
-                alert("o&def");
-
-                <?php
-    $getIDParticipant=$bdd->prepare('SELECT IDUser FROM Interest WHERE IDEvent=9;');
-    //    $getIDParticipant->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
-    $getIDParticipant->execute();
-
-    //    while ($IDParticipant=$getIDParticipant->fetch()){
-    //        $getNameParticipant=$bdd->prepare('SELECT LastName, FirstName FROM Users WHERE IDUser= :IDUser;');
-    //        $getNameParticipant->bindValue(':IDUser',$IDParticipant['IDUser'],PDO::PARAM_INT);
-    //        $getNameParticipant->execute();
-    //        $listParticipants=$getNameParticipant->fetchAll(PDO::FETCH_ASSOC);
-
-    $IDParticipant = $getIDParticipant->fetchAll();
-    //
-    //    $columnNames = array();
-    //    if(!empty($IDParticipant)){
-    //        $firstRow = $IDParticipant[0];
-    //        foreach($firstRow as $colName => $val){
-    //            $columnNames[] = $colName;
-    //        }
-    //    }
-
-    header('Content-Description: File Transfer');
-        header('Content-Type: application/excel');
-//    header('Content-Type: application/csv');
-    header("Content-Disposition: attachment; filename=test.csv");
-//    header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-
-    $fp = fopen('php://output', 'w');
-//    ob_clean(); // clean slate
-
-    //    fputcsv($fp, $columnNames);
-
-    foreach ($IDParticipant as $IDParticipant) {
-        fputcsv($fp, $IDParticipant);
-    }
-
-//    ob_flush();
-    fclose($fp);
-    //        $getNameParticipant->closeCursor();
-    //    }
-//    die();
-//    $getIDParticipant->closeCursor();
-    $test = "ljazldezhfm";
-                ?>
-                alert(<?php echo $test ?>);
-            }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            var img = document.getElementsByClassName('myImg');
+                var img = document.getElementsByClassName('myImg');
             for(i=0; i<img.length; i++)
             {
                 img[i].addEventListener('click',function(e){
