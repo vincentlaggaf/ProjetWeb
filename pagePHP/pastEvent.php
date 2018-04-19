@@ -63,7 +63,7 @@ catch (Exception $e)
                     <?php } ?>
                 </div>
             </fieldset>
-            </form>
+
 
         <?php }
                 $eventNumber++;

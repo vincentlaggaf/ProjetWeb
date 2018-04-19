@@ -27,6 +27,7 @@ catch (Exception $e)
         <?php include('nav.php');?>
 
         <section id="corps">
+            <h1>Evénement du mois</h1>
        <?php if (isset($_SESSION['Role']) AND $_SESSION['Role']=='BDEMember'){
                 ?>
                 <div class="addNewEvent">

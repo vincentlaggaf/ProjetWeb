@@ -216,7 +216,8 @@ if(isset($_GET['name'])){
                     });
 
 
-                    btn.onclick = function(){
+
+                    btn.onclick = function (){
                         $.ajax({
                             url: 'likePhotoEvent.php',// La ressource ciblée
                             type : 'POST', // Le type de la requête HTTP.
@@ -251,6 +252,7 @@ if(isset($_GET['name'])){
 
                             success : function(data){
                                 alert(data);
+                                getComment();
                             },
                             error : function(resultat, statut, erreur){
                                 alert ("erreur");
