@@ -140,10 +140,22 @@ if(isset($_GET['name'])){
                 </div>
             </div>
 
-            <?php } ?>
+            <?php
+
+        $getInfoEvent->closeCursor();
+        $getPhotoEvent->closeCursor();
+        $getDone->closeCursor();
+        $getPhotos->closeCursor();
+
+
+
+    }
+
+
+            ?>
 
             <?php
-            if(($_SESSION['Role'] == 'CESIMember')||($_SESSION['Role'] == 'BDEMember')){
+    if((isset($_SESSION['Role']))AND (($_SESSION['Role'] == 'CESIMember')||($_SESSION['Role'] == 'BDEMember'))){
             ?>
 
             <div>
@@ -258,13 +270,11 @@ if(isset($_GET['name'])){
     </body>
 </html>
 <?php
-
-
-    // $nbOfPhoto=0;
-    $getInfoEvent->closeCursor();
-    $getPhotoEvent->closeCursor();
-    $getDone->closeCursor();
-    $getPhotos->closeCursor();
+    //
+    //    $getInfoEvent->closeCursor();
+    //    $getPhotoEvent->closeCursor();
+    //    $getDone->closeCursor();
+    //    $getPhotos->closeCursor();
 
 }
 else {
