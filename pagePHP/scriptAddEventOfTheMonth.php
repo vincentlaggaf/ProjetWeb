@@ -84,10 +84,10 @@ else
                     {
                         $nameOfPhotoFromBdd=explode('/',$getUrl['Url']);
                         //echo $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)];
-                        $numberPhoto=explode('-', $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)]);
+                        $newNumberPhoto=explode('-', $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)]);
                         //echo $numberPhoto[0];
-                        $newNumberPhoto=$numberPhoto[0]+1;
-                        $urlPhoto='../imagePNG/events/'.$newNumberPhoto.'-'.basename($namePhoto);
+                        $numberPhoto=$numberPhoto[0]+1;
+                        $urlPhoto='../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto);
 
                     }
                     else
@@ -95,7 +95,7 @@ else
                         $sent=1;
                     }
                 }
-                move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.$newNumberPhoto.'-'.basename($namePhoto));
+                move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto));
             }
 
             $saveUrl=$bdd->prepare("INSERT INTO Photo (Url,IDEvent)VALUES (:url,:IDEvent) ");

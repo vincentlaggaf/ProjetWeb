@@ -30,7 +30,7 @@ catch (Exception $e)
             $numberOfEvent=0;
             $eventNumber=1;
             while( $happened=$getHappened->fetch()){
-                if (strtotime($happened['EventDate']) < strtotime("now")){
+                if (strtotime($happened['EventDate']) < strtotime("now") AND $happened['Validate'] == 1){
                     $idToLookFor=$happened['IDEvent'];
                     $getPhoto=$bdd->prepare("SELECT Url FROM Photo WHERE IDEvent =:IDEvent");
                     $getPhoto->bindValue(':IDEvent',$idToLookFor,PDO::PARAM_STR);
