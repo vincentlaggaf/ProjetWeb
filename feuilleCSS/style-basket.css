@@ -1,23 +1,3 @@
-/*
-justify-content: center;
-align-content: center;
-align-items: center;
-align-self: center;
-*/
-
-html {
-    background-color: #CF000F;
-}
-
-body {
-    background-color: #CF000F;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
-    margin: 0px;
-    padding: 0px;
-    color: #22313F;
-}
-
 #basketDiv
 {
     display: flex;
