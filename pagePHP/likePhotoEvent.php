@@ -10,7 +10,7 @@ catch (Exception $e)
 }
 
 if(isset($_POST['IDphotoClicked'])){
-    //    echo $_POST['IDphotoClicked'];
+
     $getLikes=$bdd->prepare('SELECT * FROM Likes WHERE IDPhoto =:IDPhoto');
     $getLikes->bindValue(':IDPhoto',$_POST['IDphotoClicked'],PDO::PARAM_INT);
     $getLikes->execute();

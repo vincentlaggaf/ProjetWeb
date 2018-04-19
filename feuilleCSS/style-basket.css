@@ -32,11 +32,17 @@ section {
 
     background-color: #FFF;
     padding: 2%;
-    margin-top: 3%;
+    padding-top: 0px;
+    margin-top: 0px;
     width: 80%;
     border: 2px black groove;
 
     text-align: center;
+}
+
+h1
+{
+    font-size: 4em;
 }
 
 #price
@@ -97,7 +103,7 @@ section {
 
 .choice
 {
-    width: 150%;
+    width: 150px;
     padding: 3%;
     margin: 3% 0;
     font-size: 1.2em;
@@ -119,11 +125,39 @@ button:hover
     opacity: 0.8;
 }
 
-@media screen and (max-width: 750px)
+@media screen and (max-width: 900px)
 {
-    section
+    h1
     {
-        justify-content: center;
+        font-size: 1.5em;
+    }
+
+    .basket_information
+    {
+        flex-direction: column;
+    }
+
+    .info_goodies
+    {
+        padding: 1%;
+        margin: 2%;
+        border: 1px black groove;
+        width: 80%;
+    }
+
+    .choice
+    {
+        width: 100px;
+        font-size: 0.8em;
+    }
+
+    #price
+    {
+        border: 5px black double;
+        width: 20%;
+        min-width: 190px;
+        font-size: 1.2em;
+        align-self: center;
     }
 
     input[type=text]{

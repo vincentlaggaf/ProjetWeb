@@ -24,6 +24,7 @@ require 'GoodiesCategory/BDDGoodiesCategory.php';
         <?php include 'nav.php'; ?>
         <div id="addGoodiesCategoryDiv">
             <section>
+                <h1>Ajout de catégorie</h1>
                 <?php
                 if(isset($_POST['newCategory']) AND checkCategory($_POST['newCategory']))
                 {

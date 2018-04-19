@@ -28,12 +28,18 @@ section
 
     background-color: #FFF;
     padding: 2%;
+    padding-top: 0px;
     margin: auto;
-    margin-top: 3%;
+    margin-top: 0px;
     width: 60%;
     border: 2px black groove;
 
     text-align: center;
+}
+
+h1
+{
+    font-size: 4em;
 }
 
 #popularGoodies
@@ -178,6 +184,11 @@ input
     section
     {
         justify-content: center;
+    }
+
+    h1
+    {
+        font-size: 1.5em;
     }
 
     input[type=text]{

@@ -8,13 +8,12 @@ catch (Exception $e)
 {
     die ('Erreur : ' . $e->getMessage());
 }
-?>
+require 'BDDConnection.php';
+require 'addEventPicture/scriptAddEventPicture.php';
 
-<?php
 
 
 if(isset($_GET['name'])){
-
 
     $eventName=$_GET['name'];
 
@@ -22,6 +21,11 @@ if(isset($_GET['name'])){
     $getInfoEvent->bindValue(':nameEvent',$eventName,PDO::PARAM_STR);
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
+
+    if(isset($_POST['validation']))
+    {
+        getFile($InfoEvent['IDEvent']);
+    }
 
     $getPhotoEvent=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
     $getPhotoEvent->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
@@ -33,6 +37,8 @@ if(isset($_GET['name'])){
     $getDone->execute();
     $IsItPassed=$getDone->fetch();
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +48,9 @@ if(isset($_GET['name'])){
         <title> <?php echo $_GET['name'];?> </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="\projetWeb\feuilleCSS\style-eventOfTheMonth.css">
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-pastEventCommentPhoto.css">
+        <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-pastEvent.css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Devonshire" rel="stylesheet">
 
     </head>
     <?php include ('nav.php'); ?>
@@ -62,19 +67,30 @@ if(isset($_GET['name'])){
                 <legend class="eventName"><strong>
                     <?php echo $InfoEvent['NameEvent']?>
                     </strong></legend>
+
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
                         <?php if(isset($urlPhoto['Url'])){ ?>
-                        <div class="titleAndPhoto">
-                            <div class="photo">
-                                <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
-                            </div>
+                        <div class="photo">
+                            <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
                         </div>
-                        <?php } ?>
+                        <?php }
+
+                        ?>
+
                         <div class="eventDescription"><?php echo $InfoEvent['Description'];?></div>
                     </div>
                 </div>
+
             </fieldset>
+            <div class="photo">
+                <p id="warningPhoto">Attention le fichier doit faire au maximum 10 Mo!</p>
+                <form action="pageOfEvent.php?name=<?php echo $eventName; ?>" method="post" enctype="multipart/form-data">
+                    <input type="file" name="eventPicture"/>
+                    <input type="submit" value="Valider" name="validation">
+                </form>
+            </div>
+            <br/><br/>
 
 
 
@@ -82,24 +98,19 @@ if(isset($_GET['name'])){
 
 
             <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now"))
-    { ?>
+                        { ?>
 
             <div class="eventPhotos">
                 <?php
-        $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
-        $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
-        $getPhotos->execute();
+                            $getPhotos=$bdd->prepare('SELECT * FROM Photo WHERE IDEvent =:IDEvent');
+                            $getPhotos->bindValue(':IDEvent',$InfoEvent['IDEvent'],PDO::PARAM_INT);
+                            $getPhotos->execute();
                 ?>
                 <?php while($photos=$getPhotos->fetch()){
                 ?>
                 <img class="myImg" value="<?php echo $photos['IDPhoto'];?>" src="<?php echo $photos['Url'];?>" alt="oui">
                 <?php } ?>
             </div>
-
-
-
-
-
 
 
             <!-- The Modal -->
@@ -110,54 +121,83 @@ if(isset($_GET['name'])){
                 <img class="modal-content" id="imgModal">
                 <!-- Modal Caption (Image Text) -->
                 <div class="commentaire" id="commentaires">
+                    <?php
+                            if((!isset($_SESSION['Id']))||($_SESSION['Role'] == 'Inactif'))
+                            {
+                    ?>
+                    <p> Connectez-vous pour pouvoir aimer et commenter! </p>
+                    <?php
+                            }
+
+                            else if(isset($_SESSION['Id']))
+                            {
+                    ?>
+
                     <h1>Aimer la photo : </h1>
 
-
-                     <?php
-            if(isset($_SESSION['Id'])){
-            ?>
-            <button id="btn">J'aime</button>
-            <?php }
-            ?>
-                    <form action="">
-                        <h1>Commentaires :</h1>
-                        <input type="text" name="comment">
-                        <button type="submit" class="btn">Envoyer</button>
-                    </form>
+                    <!-- <button id="btn">J'aime</button>-->
+                    <input id="btn" type="image" src="/projetWeb/imagePNG/like.png" />
 
                     <div>
+                        <h1>Commentez :</h1>
+                        <form action="commentEventPhoto.php" method="post">
+                            <input type="text" id="monCommentaire"/>
+                            <button type="reset" value="reset" id="submit"> envoyer </button>
+                            <!--<button type="reset" value="Reset" id="submit"> envoyer </button>-->
+                        </form>
+                    </div>
 
-                        <p id="comments"> Les commentaires : </p>
+                    <?php }
+                    ?>
 
+                    <div>
+                        <h1>Commentaires :</h1>
+                        <p id="comments"></p>
                     </div>
                 </div>
             </div>
 
+            <?php
+
+                            $getInfoEvent->closeCursor();
+                            $getPhotoEvent->closeCursor();
+                            $getDone->closeCursor();
+                            $getPhotos->closeCursor();
 
 
 
+                        }
 
 
+            ?>
 
+            <?php
+    if((isset($_SESSION['Role']))AND (($_SESSION['Role'] == 'CESIMember')||($_SESSION['Role'] == 'BDEMember'))){
+            ?>
 
-
+            <div>
+                <h4> télécharger la liste des membres de l'activité : </h4>
+                <form action="getList.php" method="post" >
+                    <input type="hidden" name="eventID" value="<?php echo $InfoEvent['IDEvent'];?>">
+                    <button type="submit" > télécharger </button>
+                </form>
+            </div>
 
             <?php } ?>
+
+
+
+
         </section>
         <?php include('footer.php');?>
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-
-
-
-
-
-
-
         <script>
+
             var img = document.getElementsByClassName('myImg');
-            for(i=0; i<img.length; i++){
+            for(i=0; i<img.length; i++)
+            {
                 img[i].addEventListener('click',function(e){
 
                     var modal = document.getElementById('myModal');
@@ -175,31 +215,6 @@ if(isset($_GET['name'])){
                         modal.style.display = "none";
                     }
 
-                    btn.onclick = function(){
-                        $.ajax({
-                            url: 'likePhotoEvent.php',// La ressource ciblée
-                            type : 'POST', // Le type de la requête HTTP.
-                            data :'IDphotoClicked=' + modalidPhoto,
-
-                            // On désire recevoir du HTML},
-                            success : function(data){
-                                alert (data);
-                            },
-
-                            error : function(resultat, statut, erreur){
-//                                 alert ("erreur");
-                            },
-                            complete : function(resultat, statut){
-//                                alert ("ca marche");
-                            }
-                        });
-
-                    }
-
-                    //                    var likeBtn = document.getElementById('btn').addEventListener('click',function(e){
-                    //                        alert (modalidPhoto);
-                    //                        modalidPhoto = null;
-                    //                    });
                     $.ajax({
                         url: 'alertAjax.php',// La ressource ciblée
                         type : 'POST', // Le type de la requête HTTP.
@@ -217,29 +232,68 @@ if(isset($_GET['name'])){
                         }
                     });
 
+
+
+                    btn.onclick = function (){
+                        $.ajax({
+                            url: 'likePhotoEvent.php',// La ressource ciblée
+                            type : 'POST', // Le type de la requête HTTP.
+                            data :'IDphotoClicked=' + modalidPhoto,
+
+                            // On désire recevoir du HTML},
+                            success : function(data){
+                                alert (data);
+                            },
+
+                            error : function(resultat, statut, erreur){
+                                //                                 alert ("erreur");
+                            },
+                            complete : function(resultat, statut){
+                                //                                alert ("ca marche");
+                            }
+                        });
+
+                    }
+
+                    submit.onclick = function(){
+                        var commentaire = document.getElementById('monCommentaire').value;
+                        //                        alert (commentaire);
+                        $.ajax({
+                            url: 'commentEventPhoto.php',
+                            type : 'POST',
+                            data :
+                            {
+                                "IDphotoClicked": modalidPhoto,
+                                "comment": commentaire,
+                            },
+
+                            success : function(data){
+                                alert(data);
+                                getComment();
+                            },
+                            error : function(resultat, statut, erreur){
+                                alert ("erreur");
+                            },
+                            complete : function(resultat, statut){
+                                //                                alert ("ca marche");
+                            }
+                        });
+                    }
+
+
+
                 });
-
-
             }
-
-
-
-
-            //            function likePhoto() {
-            //                alert(modal);
-            //            }
 
         </script>
     </body>
 </html>
 <?php
-
-
-    // $nbOfPhoto=0;
-    $getInfoEvent->closeCursor();
-    $getPhotoEvent->closeCursor();
-    $getDone->closeCursor();
-    $getPhotos->closeCursor();
+    //
+    //    $getInfoEvent->closeCursor();
+    //    $getPhotoEvent->closeCursor();
+    //    $getDone->closeCursor();
+    //    $getPhotos->closeCursor();
 
 }
 else {

@@ -11,6 +11,14 @@ function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $total
     sendMail("bde.exia.pau@gmail.com", $text);
 }
 
+
+
+function writeReport($contentId, $contentName, $contentCategory, $lastName, $firstName){
+    $text = "Le contenu suivant a été signalé par ".$firstName .$lastName ." : \n\n Id correspondant :".$contentId ."\n\n Nom du contenu : ".$contentName;
+
+    sendMail("bde.exia.pau@gmail.com",$text);
+
+}
 //send a mail to the BDE member with all the informations filled above
 function sendMail($destination, $text){
     ini_set( 'display_errors', 1 );
@@ -29,4 +37,6 @@ function sendMail($destination, $text){
 
     mail($to, $subject, $message, $headers);
 }
+
+
 ?>

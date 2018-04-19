@@ -80,14 +80,15 @@ else
                     $checkUrl->bindValue(':UrlNewPhoto',$urlPhoto,PDO::PARAM_STR);
                     $checkUrl->execute();
                     $getUrl=$checkUrl->fetch();
+                    $numberPhoto = 0;
                     if($urlPhoto==$getUrl['Url'])
                     {
                         $nameOfPhotoFromBdd=explode('/',$getUrl['Url']);
-                        //echo $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)];
+                        //echo $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)];$happened
                         $numberPhoto=explode('-', $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)]);
                         //echo $numberPhoto[0];
-                        $newNumberPhoto=$numberPhoto[0]+1;
-                        $urlPhoto='../imagePNG/events/'.$newNumberPhoto.'-'.basename($namePhoto);
+                        $numberPhoto=$numberPhoto[0]+1;
+                        $urlPhoto='../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto);
 
                     }
                     else
@@ -95,7 +96,7 @@ else
                         $sent=1;
                     }
                 }
-                move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.$newNumberPhoto.'-'.basename($namePhoto));
+                move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto));
             }
 
             $saveUrl=$bdd->prepare("INSERT INTO Photo (Url,IDEvent)VALUES (:url,:IDEvent) ");

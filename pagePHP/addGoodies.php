@@ -24,6 +24,7 @@ require 'addGoodies/scriptAddGoodies.php';
         <?php  include('nav.php');?>
         <div id=addGoodieDiv>
             <section>
+                <h1>Ajout d'article</h1>
                 <?php
                 try
                 {
@@ -74,7 +75,7 @@ require 'addGoodies/scriptAddGoodies.php';
 
                         </div>
 
-                        <textarea rows="10" cols="51" placeholder="Description de l'article" name="goodieDescription" class="inputText"></textarea>
+                        <textarea placeholder="Description de l'article" name="goodieDescription" class="inputText"></textarea>
 
 
                         <select name="goodieCategory"e id="goodieCategory">

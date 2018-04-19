@@ -1,25 +1,36 @@
 <?php
-try
-{
-    $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-}
-catch (Exception $e)
-{
-    die ('Erreur : ' . $e->getMessage());
-}
+require 'BDDConnection.php';
 
+
+
+
+function getName($IDuser){
+    $bdd=getBdd();
+
+
+}
 
 if(isset($_POST['IDphotoClicked'])){
-
-    $getComments=$bdd->prepare('SELECT CommentContent FROM Comments WHERE IDPhoto =:IDPhoto');
+    $bdd=getBdd();
+    $getComments=$bdd->prepare('SELECT CommentContent,IDUser FROM Comments WHERE IDPhoto =:IDPhoto');
     $getComments->bindValue(':IDPhoto',$_POST['IDphotoClicked'],PDO::PARAM_INT);
     $getComments->execute();
       while($comments=$getComments->fetch())
         {?>
-                        <fieldset class="comment">
-                            <?php echo $comments['CommentContent'];?>
-                        </fieldset>
-                        <?php
+
+                <fieldset class="comment">
+                      <legend class="commentAuthor"><strong><?php
+                        $getUserName=$bdd->prepare('SELECT LastName ,FirstName FROM Users WHERE IDUser=:IDUser');
+                        $getUserName->bindValue(':IDUser',$comments['IDUser'],PDO::PARAM_INT);
+                        $getUserName->execute();
+                        $userName=$getUserName->fetch();
+                        echo $userName['LastName'].' '.$userName['FirstName'];
+
+
+         ;?></strong></legend>
+                         <?php echo $comments['CommentContent'];?>
+                    </fieldset>
+                     <?php
         }
 }
 

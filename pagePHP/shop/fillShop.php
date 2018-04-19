@@ -129,24 +129,27 @@ function displayGoodies($answer){
         <div class="goodies_information_part">
 
             <div class="info_goodies info_goodie_description">Description :<br/><?php echo $data['Description']; ?></div>
-
-            <form action="\projetWeb\pagePHP\shop.php" method="post">
-                <input type="hidden" name="buy" value="<?php echo $data['NameGoodies']; ?>">
-                <input type="number" name="quantity" min="1" value="1" class="inputNumber">
-                <input type="submit" value="Acheter">
-            </form>
-
             <?php
+             if(isset($_SESSION['Role']) AND $_SESSION['Role'] != "Inactif")
+             {
+                ?>
+                <form action="\projetWeb\pagePHP\shop.php" method="post">
+                    <input type="hidden" name="buy" value="<?php echo $data['NameGoodies']; ?>">
+                    <input type="number" name="quantity" min="1" value="1" class="inputNumber">
+                    <input type="submit" value="Acheter">
+                </form>
+             <?php
+             }
              if(roleCheck() == "BDEMember")
              {
-                    ?>
-                    <form action="\projetWeb\pagePHP\shop.php" method="post">
-                        <input type="hidden" name="delete" value="<?php echo $data['NameGoodies']; ?>">
-                        <input type="submit" value="Supprimer">
-                    </form>
-                    <?php
+             ?>
+                <form action="\projetWeb\pagePHP\shop.php" method="post">
+                    <input type="hidden" name="delete" value="<?php echo $data['NameGoodies']; ?>">
+                    <input type="submit" value="Supprimer">
+                </form>
+             <?php
              }
-            ?>
+             ?>
         </div>
     </div>
 </div>
