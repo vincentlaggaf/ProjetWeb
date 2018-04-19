@@ -155,9 +155,9 @@ if(isset($_GET['name'])){
                 </div>
             </div>
 
-            <?php } ?>
-        </section>
-        <?php include('footer.php');?>
+            <?php  ?>
+
+
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
@@ -253,21 +253,29 @@ if(isset($_GET['name'])){
 
                 });
             }
+            <?php
+        $getInfoEvent->closeCursor();
+        $getPhotoEvent->closeCursor();
+        $getDone->closeCursor();
+        $getPhotos->closeCursor();
+    }?>
+
 
         </script>
+            </section>
+       <?php include('footer.php');?>
     </body>
+
 </html>
+
 <?php
 
 
-    // $nbOfPhoto=0;
-    $getInfoEvent->closeCursor();
-    $getPhotoEvent->closeCursor();
-    $getDone->closeCursor();
-    $getPhotos->closeCursor();
+        // $nbOfPhoto=0;
 
-}
-else {
-    header('Location:pastEvent.php');
-    exit();
-}?>
+
+    }
+    else {
+        header('Location:pastEvent.php');
+        exit();
+    }?>
