@@ -8,7 +8,7 @@ function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $total
     }
 
     $text = $text."\nPour un prix total de ".$totalPrice."€\n\nCette personne a pour adresse mail : ".$destinationEmail;
-    sendMail("bde.exia.pau@gmail.com", $text);
+    sendMail("bde.exia.pau@gmail.com", $text, "Commande");
 }
 
 
@@ -16,11 +16,11 @@ function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $total
 function writeReport($contentId, $contentName, $contentCategory, $lastName, $firstName){
     $text = "Le contenu suivant a été signalé par ".$firstName .$lastName ." : \n\n Id correspondant :".$contentId ."\n\n Nom du contenu : ".$contentName."\n\n Il s'agit de : ".$contentCategory;
 
-    sendMail("bde.exia.pau@gmail.com",$text);
+    sendMail("bde.exia.pau@gmail.com",$text, "Contenu signalé");
 
 }
 //send a mail to the BDE member with all the informations filled above
-function sendMail($destination, $text){
+function sendMail($destination, $text, $title){
     ini_set( 'display_errors', 1 );
 
     error_reporting( E_ALL );
@@ -29,7 +29,7 @@ function sendMail($destination, $text){
 
     $to = $destination;
 
-    $subject = "Vérification PHP mail";
+    $subject = $title;
 
     $message = $text;
 

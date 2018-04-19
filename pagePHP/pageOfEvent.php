@@ -272,10 +272,10 @@ if(isset($_GET['name'])){
                         },
 
                         error : function(resultat, statut, erreur){
-                            // alert ("erreur");
+
                         },
                         complete : function(resultat, statut){
-                            //alert ("ca marche");
+
                         }
                     });
 
@@ -289,14 +289,15 @@ if(isset($_GET['name'])){
 
                             // On désire recevoir du HTML},
                             success : function(data){
-                                alert (data);
+
                             },
 
                             error : function(resultat, statut, erreur){
-                                                                 alert ("erreur");
+                                //
                             },
                             complete : function(resultat, statut){
-                                                                alert ("ca marche");
+                                //
+
                             }
                         });
 
@@ -306,7 +307,7 @@ if(isset($_GET['name'])){
 
                     submit.onclick = function(){
                         var commentaire = document.getElementById('monCommentaire').value;
-                        //                        alert (commentaire);
+
                         $.ajax({
                             url: 'commentEventPhoto.php',
                             type : 'POST',
@@ -317,14 +318,16 @@ if(isset($_GET['name'])){
                             },
 
                             success : function(data){
-//                                alert(data);
+
+
                                 getComment();
                             },
                             error : function(resultat, statut, erreur){
-//                                alert ("erreur");
+
+
                             },
                             complete : function(resultat, statut){
-                                //                                alert ("ca marche");
+
                             }
                         });
                     }
@@ -335,9 +338,7 @@ if(isset($_GET['name'])){
                         var category = document.getElementById('category').value;
                         var IDUser = <?php echo $_SESSION['Id']; ?>;
                         var contentId = modalidPhoto;
-                        alert (category+IDUser+contentId);
-                        //                        alert (<?php echo $_SESSION['Id']; ?>);
-                        //                        alert (category);
+
                         $.ajax({
                             url: 'report.php',
                             type : 'POST',
@@ -349,13 +350,15 @@ if(isset($_GET['name'])){
                             },
 
                             success : function(data){
-//                                alert(data);
+
+
                             },
                             error : function(resultat, statut, erreur){
-//                                alert ("erreur");
+
                             },
                             complete : function(resultat, statut){
-//                                alert ("ca marche");
+
+
                             }
                         });
                     }

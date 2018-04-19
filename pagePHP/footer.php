@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/projetWeb/feuilleCSS/style-footer.css">
     </head>
 
+
     <body>
         <footer id="bas">
 

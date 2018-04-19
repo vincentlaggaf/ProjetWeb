@@ -22,10 +22,10 @@ function getPhotoInfos($idReturned){
 
 function getCommentInfos($idReturned){
     $bdd=getBdd();
-    getInfoComment=$bdd->prepare('SELECT * FROM Comments WHERE IDComment =:IDComment');
-    getInfoComment->bindValue(':IDComment',$idReturned,PDO::PARAM_INT);
-    getInfoComment->execute();
-    return $infoComment=getInfoComment->fetch();
+    $getInfoComment=$bdd->prepare('SELECT * FROM Comments WHERE IDComment =:IDComment');
+    $getInfoComment->bindValue(':IDComment',$idReturned,PDO::PARAM_INT);
+    $getInfoComment->execute();
+    return $infoComment=$getInfoComment->fetch();
 }
 
 
