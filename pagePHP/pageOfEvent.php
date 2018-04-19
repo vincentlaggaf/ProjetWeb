@@ -15,7 +15,6 @@ catch (Exception $e)
 
 if(isset($_GET['name'])){
 
-
     $eventName=$_GET['name'];
 
     $getInfoEvent=$bdd->prepare('SELECT * FROM Happenings WHERE NameEvent= :nameEvent');
@@ -106,7 +105,7 @@ if(isset($_GET['name'])){
                 <!-- Modal Caption (Image Text) -->
                 <div class="commentaire" id="commentaires">
                     <?php
-        if(!isset($_SESSION['Id']))
+        if((!isset($_SESSION['Id']))||($_SESSION['Role'] == 'Inactif'))
         {
                     ?>
                     <p> Connectez-vous pour pouvoir aimer et commenter! </p>
@@ -141,6 +140,11 @@ if(isset($_GET['name'])){
                 </div>
             </div>
 
+            <?php } ?>
+
+            <?php
+            if(($_SESSION['Role'] == 'CESIMember')||($_SESSION['Role'] == 'BDEMember')){
+            ?>
 
             <div>
                 <h4> télécharger la liste des membres de l'activité : </h4>
@@ -148,10 +152,13 @@ if(isset($_GET['name'])){
                     <input type="hidden" name="eventID" value="<?php echo $InfoEvent['IDEvent'];?>">
                     <button type="submit" > télécharger </button>
                 </form>
-
             </div>
 
             <?php } ?>
+
+
+
+
         </section>
         <?php include('footer.php');?>
 
@@ -159,7 +166,7 @@ if(isset($_GET['name'])){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
         <script>
 
-                var img = document.getElementsByClassName('myImg');
+            var img = document.getElementsByClassName('myImg');
             for(i=0; i<img.length; i++)
             {
                 img[i].addEventListener('click',function(e){
