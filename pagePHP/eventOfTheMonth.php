@@ -100,6 +100,8 @@ catch (Exception $e)
                         <form action="report.php" method="post" class="reportForm">
                             <div class="reportDiv">
                             <img src="\projetWeb\imagePNG\report.png" alt="Signaler" title="Signaler" class="report" />
+                            <input type=hidden value="<?php echo $happening['IDEvent'] ?>"name="contentId">
+                            <input type=hidden value="event" name="category">
                             <input type=submit value="Signaler" class="reportButton" title="Signaler l'événement"/>
                                 </div>
                         </form>

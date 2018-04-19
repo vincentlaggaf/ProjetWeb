@@ -1,16 +1,35 @@
 <?php
 require 'sendMail\sendMail.php';
 require 'BDDConnection.php';
-$bdd=getBdd();
+require 'getInfoReport.php';
 
-if (isset($_POST['category'])){
 
-    switch($_POST['category'])
+if (isset($_POST['category']) AND isset($_POST['contentId'])){
+
+    switch($_POST['category']){
+
+        case 'photo':
+            $photo= getPhotoInfos($_POST['contentId']);
+            break;
+
+        case'event' :
+            $happening= getHappeningInfos($_POST['contentId']);
+            echo $happening['NameEvent'];
+            break;
+
+        case 'comment':
+            $comment= getCommentInfos($_POST['contentId']);
+
+            break;
+
+    }
 
 
 }
+else{
 
+}
 
-$bdd->prepare('SELECT :contentName FROM :contentCategory WHERE ')
+//header('Location:home.php');
 
 ?>
