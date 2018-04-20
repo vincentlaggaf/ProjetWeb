@@ -9,33 +9,33 @@ catch (Exception $e)
     die ('Erreur : ' . $e->getMessage());
 }
 
-
+//get the variable sent by the post method from the form
 $IDEvent= $_POST['IDEvent'];
 $NameEvent=$_POST['NameEvent'];
 $EventPath=str_replace(';','',$NameEvent);
 
 
-
+//check if the variables are correctly set
 if(isset($_POST['IDEvent'])AND isset($_POST['NameEvent'])){
 
 
     if(isset($_SESSION['Id']) AND isset($IDEvent)){
 
+        //Check if the user is already participating to the event
         $IDUser=$_SESSION['Id'];
         $check=$bdd->prepare("SELECT IDUser FROM Interest WHERE IDEvent= :IDEvent AND IDUser= :IDUser");
         $check->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
         $check->bindValue(':IDUser',$IDUser,PDO::PARAM_INT);
         $check->execute();
         $IDUserFromBDD=$check->fetch();
-        echo $IDUser;
 
-        // echo $IDUserFromBDD['IDUser'];
-
+        //If he is
         if($IDUser==$IDUserFromBDD['IDUser'])
         {
             echo "<script>alert('Vous êtes déjà inscrit à l\'évènement !');
                 window.location.replace('eventOfTheMonth.php');</script>";
         }
+        //If he is not
         else {
             $addUserToEvent=$bdd->prepare("INSERT INTO Interest (IDUser,Participate,IDEvent) VALUES(:IDUser,1,:IDEvent)");
             $addUserToEvent->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
@@ -47,27 +47,7 @@ if(isset($_POST['IDEvent'])AND isset($_POST['NameEvent'])){
     else{
         echo "<script>alert('Vous n\'êtes pas connectés !');</script>";
         echo '<script> document.location.replace(/projetWeb/pagePHP/eventOfTheMonth.php);</script>';
-        //        header('Location: /projetWeb/pagePHP/eventOfTheMonth.php');
-        //    exit();
 
-        //    include ('modalInscription.php');
-        //    document.getElementById('id01').style.display='block';
-        // include('modalLogin.php');
-
-        //
-        //    include ('modalInscription.php');
-        //    document.getElementById('id01').style.display='block';
-
-        //include('modalLogin.php');
-
-        //echo '<script> document.location.replace(window.history.back());</script>';
-        //    echo "<script>alert('Vous n\'êtes pas connectés !');</script>";
-        //echo "<script>alert(document.referer);</script>";
-
-        //include ('modalInscription.php');
-        //     "<script> document.getElementById('id01').style.display='block';</script>";
-        //"<script> document.getElementById('id01').style.display='block';</script>"
-        //  header('Location:http://localhost/projetWeb/pagePHP/eventOfTheMonth.php');
 
     }
 }else{

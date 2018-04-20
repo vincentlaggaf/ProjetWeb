@@ -1,4 +1,6 @@
 <?php
+// function that takes as a parameter the ID of the event reported
+// this function gets all infos about it from the Happening table and return the result to make it usable
 function getHappeningInfos($idReturned){
     $bdd=getBdd();
     $getInfoEvent=$bdd->prepare('SELECT * FROM Happenings WHERE IDEvent =:IDEvent');

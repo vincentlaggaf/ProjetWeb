@@ -5,17 +5,15 @@ require 'sendMail/sendMail.php';
 require 'BDDConnection.php';
 require 'getInfoReport.php';
 
-//echo $_POST['category'];
-//echo $_POST['contentId'];
-//echo $_POST['IDUser'];
 
+
+//two variables that indicate which type of content has been reported along with its ID
 if (isset($_POST['category']) AND isset($_POST['contentId'])){
-
+    //regarding the category we call different fonctions
     switch($_POST['category']){
 
         case 'photo':
             $photo= getPhotoInfos($_POST['contentId']);
-
             writeReport($photo['IDPhoto'], $photo['Url'], $_POST['category'], $_SESSION['LastName'], $_SESSION['FirstName']);
             break;
 

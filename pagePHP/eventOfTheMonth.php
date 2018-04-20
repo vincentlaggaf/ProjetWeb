@@ -28,7 +28,11 @@ catch (Exception $e)
 
         <section id="corps">
             <h1>Evénement du mois</h1>
-       <?php if (isset($_SESSION['Role']) AND $_SESSION['Role']=='BDEMember'){
+
+       <?php
+
+            //Check if the user is a BDEMember,if so display the button to add a new event
+            if (isset($_SESSION['Role']) AND $_SESSION['Role']=='BDEMember'){
                 ?>
                 <div class="addNewEvent">
                 <form action="addNewEventOfMonth.php" >
@@ -39,15 +43,18 @@ catch (Exception $e)
                 <?php } ?>
 
             <?php
+            //Get all the infos from the DB regarding events
             $getHappening=$bdd->query('SELECT * FROM Happenings');
             $numberOfEvent=0;
             $currentMonth=date("m");
 
+
             while( $happening=$getHappening->fetch() ){
+                //While the index validate of the event is equal to "1" display different infos in a common style
                 if($happening['Validate']==1){
 
                     $monthOfTheEvent=explode("-",$happening['EventDate']);
-
+                    //Compare the current month with the month of the event and if the event is going to happen or has happened already
                     if ($currentMonth==$monthOfTheEvent[1] AND( strtotime($happening['EventDate']) >strtotime("now"))){
                         $idToLookFor=$happening['IDEvent'];
                         $getPhoto=$bdd->prepare("SELECT Url FROM Photo WHERE IDEvent =:IDEvent");
@@ -56,7 +63,7 @@ catch (Exception $e)
                         $urlPhoto=$getPhoto->fetch();
 
             ?>
-
+                <!-- Part of the page that contains the infos of the event,each field will be filled with an echo of the infos from the DB -->
                 <fieldset class="event">
                     <legend class="eventNumber"><a class="linkToEvent" href="pageOfEvent.php?name=<?php echo $happening['NameEvent'];?> "><strong><?php echo $happening['NameEvent'];?></strong></a></legend>
                     <div class="eventBloc">
@@ -80,7 +87,7 @@ catch (Exception $e)
                         </div>
 
                         <?php
-
+                        //If the user is log in and is not inactive display the inscription button
                         if (isset($_SESSION['Role'])){
                             if($_SESSION['Role']!='inactif')
                           {
@@ -93,7 +100,9 @@ catch (Exception $e)
                         </div>
                         <?php }
                         ?>
-                        <?php if ($_SESSION['Role']=='CESIMember'){
+                        <?php
+                            //If the user is log in as a CESIMember display the report button
+                            if ($_SESSION['Role']=='CESIMember'){
 
                         ?>
                         </form>

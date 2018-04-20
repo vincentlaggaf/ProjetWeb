@@ -11,13 +11,12 @@ if(isset($_GET['name']))
 
     $eventName=$_GET['name'];
 
-
     $getInfoEvent=$bdd->prepare('SELECT * FROM Happenings WHERE NameEvent= :nameEvent');
     $getInfoEvent->bindValue(':nameEvent',$eventName,PDO::PARAM_STR);
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
 
-    if(isset($_POST['validation']))
+    if(isset($_POST['validation'])AND $_POST['validation']==1)
     {
         getFile($InfoEvent['IDEvent']);
     }

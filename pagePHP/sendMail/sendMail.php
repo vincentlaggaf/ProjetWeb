@@ -12,7 +12,7 @@ function fillOrderMail($basket, $destinationEmail, $firstName, $lastName, $total
 }
 
 
-
+//fill a string with information about the content that has been reported by the cesi member
 function writeReport($contentId, $contentName, $contentCategory, $lastName, $firstName){
     $text = "Le contenu suivant a été signalé par ".$firstName .$lastName ." : \n\n Id correspondant :".$contentId ."\n\n Nom du contenu : ".$contentName."\n\n Il s'agit de : ".$contentCategory;
 

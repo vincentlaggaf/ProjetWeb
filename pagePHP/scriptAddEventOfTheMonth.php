@@ -23,8 +23,8 @@ $create=$check->fetch();
 
 
 
-// Requête préparée pour empêcher les injections SQL
 
+//If an event with the same name already exists
 if($eventName==$create['NameEvent'])
 {
     echo "Cet évènement existe déjà";
@@ -32,6 +32,7 @@ if($eventName==$create['NameEvent'])
 
 else
 {
+    //Insert all the relative infos about the event in the table
     $requete = $bdd->prepare("INSERT INTO Happenings (Validate,NameEvent,Free,Recurrent, Description,IDUser,NameEventCategory,EventDate) VALUES( 1,:eventName,:eventFreeOrNot,:eventRecurrentOrNot,:eventDescription,:idUser,:nameEventCategory,:dateOfTheEvent)");
 
 
@@ -45,9 +46,10 @@ else
     $requete->execute();
 
 
-
+    //Check if a file is attached to it
     if(isset($_FILES['photoOfTheEvent']) AND $_FILES['photoOfTheEvent']['error']==0)
     {
+        //check its size
         if($_FILES['photoOfTheEvent']['size']<=10000000)
         {
             $infosPhoto = pathinfo($_FILES['photoOfTheEvent']['name']);
@@ -59,12 +61,14 @@ else
 
             $extensionPhoto = $infosPhoto['extension'];
             $extensionsAllowed = array('jpg', 'jpeg', 'png','PNG','JPG','JPEG');
+            //check if the file is a photo
             if (in_array($extensionPhoto, $extensionsAllowed))
             {
+                //Get the ID of the event from above
                 $getId=$bdd->prepare("SELECT IDEvent FROM Happenings WHERE NameEvent= :eventName");
                 $getId->bindValue(':eventName',$eventName,PDO::PARAM_STR);
                 $getId->execute();
-                $id=$getId->fetch();//Déplacer cette partie : $id=requete->fetch();
+                $id=$getId->fetch();
                 $idToLookFor=$id['IDEvent'];
                 echo $idToLookFor;
                 $urlPhoto='../imagePNG/events/'.'1-'.basename($namePhoto);
@@ -75,30 +79,34 @@ else
 
                 while($sent==0)
                 {
-
+                    //Check if a photo with the same name is already existing
                     $checkUrl=$bdd->prepare("SELECT Url FROM Photo WHERE Url=:UrlNewPhoto");
                     $checkUrl->bindValue(':UrlNewPhoto',$urlPhoto,PDO::PARAM_STR);
                     $checkUrl->execute();
                     $getUrl=$checkUrl->fetch();
                     $numberPhoto = 0;
+                    //if so explode the url to get the name and add a variable that will be incremented
                     if($urlPhoto==$getUrl['Url'])
                     {
                         $nameOfPhotoFromBdd=explode('/',$getUrl['Url']);
-                        //echo $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)];$happened
+
                         $numberPhoto=explode('-', $nameOfPhotoFromBdd[(count($nameOfPhotoFromBdd)-1)]);
-                        //echo $numberPhoto[0];
+
                         $numberPhoto=$numberPhoto[0]+1;
                         $urlPhoto='../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto);
 
                     }
+                    //else set the sent variable to 1 allowing the photo to be inserted in the DB
                     else
                     {
                         $sent=1;
                     }
                 }
+                //move the file in the folder of the events
                 move_uploaded_file($_FILES['photoOfTheEvent']['tmp_name'],'../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto));
             }
 
+            //insert the infos in the DB
             $saveUrl=$bdd->prepare("INSERT INTO Photo (Url,IDEvent)VALUES (:url,:IDEvent) ");
             $saveUrl->bindValue(':url',$urlPhoto,PDO::PARAM_STR);
             echo $idToLookFor;
