@@ -60,7 +60,7 @@ if(isset($_GET['name']))
                 <!-- content of the event -->
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
-                        <?php if(isset($urlPhoto['Url'])){?>
+                        <?php if(isset($photoEvent['Url'])){?>
                         <div class="photo">
                             <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
                         </div>
@@ -214,7 +214,9 @@ if(isset($_GET['name']))
                             url: 'likePhotoEvent.php',// La ressource ciblée
                             type : 'POST', // Le type de la requête HTTP.
                             data :'IDphotoClicked=' + modalidPhoto,
-                            success : function(data){},
+                            success : function(data){
+                                alert (data);
+                            },
                             error : function(resultat, statut, erreur){},
                             complete : function(resultat, statut){}
                         });

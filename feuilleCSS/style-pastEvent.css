@@ -138,6 +138,21 @@ input[type=text], input[type=password] {
 
 
 }
+        #addEventButton{
+    width: 50%;
+    font-size: 0.7em;
+    }
+    .eventDescription{
+        font-size: 0.7em;
+    }
+    .linkToEvent{
+    font-size: 0.7em;
+    }
+    h1
+    {
+        font-size: 0.7em;
+    }
+
 
 
 }
