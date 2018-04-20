@@ -12,7 +12,6 @@ catch (Exception $e)
 }
 $Login = $_POST['Login'];
 $UserPassword = $_POST['UserPassword'];
-echo $Login . $UserPassword;
 
 $reponse = $bdd-> prepare("SELECT Login, UserPassword, Role, IDUser, FirstName, LastName, Mail FROM Users WHERE Login= :Login AND UserPassword= :UserPassword;");
 $reponse->bindValue(':Login', $Login, PDO::PARAM_STR);

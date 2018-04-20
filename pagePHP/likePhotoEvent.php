@@ -26,6 +26,7 @@ if(isset($_POST['IDphotoClicked'])){
             $Like->bindValue(':IDUser', $_SESSION['Id'], PDO::PARAM_INT);
             $Like->execute();
             $Like->closeCursor();
+            echo "Vous aimez!";
         }
         //the inverse happens if it is already to 1 (pass to 0)
         else if ($likes['LikeOrNot']==1){
@@ -33,6 +34,7 @@ if(isset($_POST['IDphotoClicked'])){
             $LikeNot->bindValue(':IDUser', $_SESSION['Id'], PDO::PARAM_INT);
             $LikeNot->execute();
             $LikeNot->closeCursor();
+            echo "Vous n'aimez plus!";
         }
         else{
             echo "erreur 1";
@@ -46,6 +48,7 @@ if(isset($_POST['IDphotoClicked'])){
         $addLike->bindValue(':IDPhoto', $_POST['IDphotoClicked'], PDO::PARAM_INT);
         $addLike->execute();
         $addLike->closeCursor();
+        echo "Vous aimez!";
     }
     $likes->closeCursor();
 }

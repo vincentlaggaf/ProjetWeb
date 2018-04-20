@@ -214,7 +214,9 @@ if(isset($_GET['name']))
                             url: 'likePhotoEvent.php',// La ressource ciblée
                             type : 'POST', // Le type de la requête HTTP.
                             data :'IDphotoClicked=' + modalidPhoto,
-                            success : function(data){},
+                            success : function(data){
+                                alert (data);
+                            },
                             error : function(resultat, statut, erreur){},
                             complete : function(resultat, statut){}
                         });
