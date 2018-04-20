@@ -45,6 +45,6 @@ if(isset($_POST['IDphotoClicked'])){
         $addLike->closeCursor();
         echo "Vous aimez!";
     }
-    $likes->closeCursor();
+
 }
 ?>
