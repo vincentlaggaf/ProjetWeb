@@ -1,12 +1,8 @@
 <?php
 session_start();
-try{
-    $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-}
-catch (Exception $e)
-{
-    die ('Erreur : ' . $e->getMessage());
-}
+require 'BDDConnection.php';
+
+$bdd = getBDD();
 
 $eventName = $_POST['eventName'];
 $idUser=$_SESSION['Id'];
@@ -60,7 +56,7 @@ else
 
 
             $extensionPhoto = $infosPhoto['extension'];
-            $extensionsAllowed = array('jpg', 'jpeg', 'png','PNG','JPG','JPEG');
+            $extensionsAllowed = array('jpg', 'jpeg', 'png','PNG','JPG','JPEG','gif');
             //check if the file is a photo
             if (in_array($extensionPhoto, $extensionsAllowed))
             {
@@ -73,6 +69,7 @@ else
                 echo $idToLookFor;
                 $urlPhoto='../imagePNG/events/'.'1-'.basename($namePhoto);
                 $sent=0;
+                $numberPhoto = 0;
 
 
 
@@ -84,7 +81,7 @@ else
                     $checkUrl->bindValue(':UrlNewPhoto',$urlPhoto,PDO::PARAM_STR);
                     $checkUrl->execute();
                     $getUrl=$checkUrl->fetch();
-                    $numberPhoto = 0;
+
                     //if so explode the url to get the name and add a variable that will be incremented
                     if($urlPhoto==$getUrl['Url'])
                     {
@@ -100,6 +97,8 @@ else
                     else
                     {
                         $sent=1;
+                        $urlPhoto='../imagePNG/events/'.$numberPhoto.'-'.basename($namePhoto);
+
                     }
                 }
                 //move the file in the folder of the events

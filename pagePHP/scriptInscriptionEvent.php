@@ -23,16 +23,21 @@ if(isset($_POST['IDEvent'])AND isset($_POST['NameEvent'])){
 
         //Check if the user is already participating to the event
         $IDUser=$_SESSION['Id'];
-        $check=$bdd->prepare("SELECT IDUser FROM Interest WHERE IDEvent= :IDEvent AND IDUser= :IDUser");
+        $check=$bdd->prepare("SELECT * FROM Interest WHERE IDEvent= :IDEvent AND IDUser= :IDUser");
         $check->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
         $check->bindValue(':IDUser',$IDUser,PDO::PARAM_INT);
         $check->execute();
         $IDUserFromBDD=$check->fetch();
 
         //If he is
-        if($IDUser==$IDUserFromBDD['IDUser'])
+        if($IDUser==$IDUserFromBDD['IDUser'] )
         {
-            echo "<script>alert('Vous êtes déjà inscrit à l\'évènement !');
+            $removeUserFromEvent=$bdd->prepare("DELETE FROM Interest  WHERE IDUser=:IDUser AND IDEvent = :IDEvent;");
+            $removeUserFromEvent->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
+            $removeUserFromEvent->bindValue(':IDUser',$IDUser,PDO::PARAM_INT);
+            $removeUserFromEvent->execute();
+           // header ('Location:http://localhost/projetWeb/pagePhp/eventOfTheMonth.php');
+            echo "<script>alert('Vous n êtes plus inscrit !');
                 window.location.replace('eventOfTheMonth.php');</script>";
         }
         //If he is not
@@ -41,7 +46,9 @@ if(isset($_POST['IDEvent'])AND isset($_POST['NameEvent'])){
             $addUserToEvent->bindValue(':IDEvent',$IDEvent,PDO::PARAM_INT);
             $addUserToEvent->bindValue(':IDUser',$IDUser,PDO::PARAM_INT);
             $addUserToEvent->execute();
-            header('Location:http://localhost/projetWeb/pagePHP/pageOfEvent.php?name='.$EventPath);
+            echo "<script>alert('Vous venez de vous inscrire !');
+                window.location.replace('eventOfTheMonth.php');</script>";
+            //header('Location:http://localhost/projetWeb/pagePHP/pageOfEvent.php?name='.$EventPath);
         }
     }
     else{

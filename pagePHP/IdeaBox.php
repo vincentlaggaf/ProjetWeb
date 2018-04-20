@@ -2,15 +2,9 @@
 session_start();
 
 //initialize the connection with the database
-try
-{
-    $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+require 'BDDConnection.php';
 
-}
-catch (Exception $e)
-{
-    die ('Erreur : ' . $e->getMessage());
-}
+$bdd = getBDD();
 
 
 

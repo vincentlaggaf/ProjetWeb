@@ -2,14 +2,9 @@
 session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-try
-{
-    $bdd = new PDO('mysql:host=178.62.4.64;dbname=BDDWeb;charset=utf8', 'Administrateur', 'maxime1', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
-}
-catch (Exception $e)
-{
-    die ('Erreur : ' . $e->getMessage());
-}
+require 'BDDConnection.php';
+
+$bdd = getBDD();
 
 // insert the comment according to the id of the photo
 if(isset($_POST['IDphotoClicked'])){

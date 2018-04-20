@@ -1,12 +1,7 @@
 <?php
-try
-{
-    $bdd = new PDO('mysql:host=178.62.4.64:3306;dbname=BDDWeb', 'Administrateur', 'maxime1');
-}
-catch (Exception $e)
-{
-    die('Erreur : ' . $e->getMessage());
-}
+require 'BDDConnection.php';
+
+$bdd = getBDD();
 
 $Login = $_POST['Login'];
 $UserPassword = $_POST['UserPassword'];

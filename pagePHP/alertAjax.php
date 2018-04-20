@@ -1,6 +1,6 @@
 <?php
 require 'BDDConnection.php';
-
+session_start();
 function getName($IDuser){
     $bdd=getBdd();
 }
@@ -28,9 +28,12 @@ if(isset($_POST['IDphotoClicked'])){
             ?>
         </strong>
     </legend>
-    <?php echo $comments['CommentContent'];?>
-    <!--  We  create a report comment button that will send the datas -->
-    <!--  (Id user, is comment, etc) to report.php-->
+    <?php echo $comments['CommentContent'];
+    // We  create a report comment button that will send the datas
+    //(Id user, is comment, etc) to report.php
+    if((isset($_SESSION['Role']))AND (($_SESSION['Role'] == 'CESIMember'))){
+        ?>
+
     <form action="report.php" method="post">
         <input type="hidden" name="category" value="comment"/>
         <input type="hidden" name="IDUser" value="<?php echo $comments['IDUser'];?>"/>
@@ -42,6 +45,7 @@ if(isset($_POST['IDphotoClicked'])){
 
 
 <?php
+    }
     }
 }
 ?>

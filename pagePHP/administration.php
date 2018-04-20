@@ -11,14 +11,9 @@
                 <th>Modifier</th>
             </tr>
             <?php
-            try
-            {
-                $bdd = new PDO('mysql:host=178.62.4.64:3306;dbname=BDDWeb', 'Administrateur', 'maxime1');
-            }
-            catch (Exception $e)
-            {
-                die('Erreur : ' . $e->getMessage());
-            }
+           require 'BDDConnection.php';
+
+            $bdd = getBDD();
             $reponse = $bdd-> prepare("SELECT LastName, FirstName, Role FROM Users;");
             $reponse->execute();
             while($donnees = $reponse->fetch()) {

@@ -16,7 +16,7 @@ if(isset($_GET['name']))
     $getInfoEvent->execute();
     $InfoEvent=$getInfoEvent->fetch();
 
-    if(isset($_POST['validation'])AND $_POST['validation']==1)
+    if(isset($_POST['validation']))
     {
         getFile($InfoEvent['IDEvent']);
     }
@@ -70,6 +70,14 @@ if(isset($_GET['name']))
                 </div>
             </fieldset>
 
+
+
+            <!-- If the event is done we display this part of the code -->
+            <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now")){
+                    if ((isset($_SESSION['Id'])) AND ($_SESSION['Role'] != 'Inactif')){
+            ?>
+
+
             <!-- Add photo to the event -->
             <div class="photo">
                 <p id="warningPhoto">Attention le fichier doit faire au maximum 10 Mo!</p>
@@ -79,9 +87,7 @@ if(isset($_GET['name']))
                 </form>
             </div><br/><br/>
 
-            <!-- If the event is done we display this part of the code -->
-            <?php if (strtotime($IsItPassed['EventDate']) < strtotime("now")){ ?>
-
+            <?php }?>
             <!-- Div filles with the photos -->
             <div class="eventPhotos">
                 <?php
