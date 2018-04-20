@@ -79,7 +79,7 @@ if(isset($_GET['name']))
 
 
             <!-- Add photo to the event -->
-            <div class="photo">
+            <div class="photo" id="file">
                 <p id="warningPhoto">Attention le fichier doit faire au maximum 10 Mo!</p>
                 <form action="pageOfEvent.php?name=<?php echo $eventName; ?>" method="post" enctype="multipart/form-data">
                     <input type="file" name="eventPicture"/>
