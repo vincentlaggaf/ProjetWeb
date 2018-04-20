@@ -28,7 +28,7 @@ if(isset($_POST['IDphotoClicked'])){
             ?>
         </strong>
     </legend>
-    <?php echo $comments['CommentContent'];
+    <?php  echo $comments['CommentContent'];
     // We  create a report comment button that will send the datas
     //(Id user, is comment, etc) to report.php
     if((isset($_SESSION['Role']))AND (($_SESSION['Role'] == 'CESIMember'))){
@@ -40,12 +40,15 @@ if(isset($_POST['IDphotoClicked'])){
         <input type="hidden" name="contentId" value="<?php echo $comments['IDComment'];?>"/>
         <button type="submit" value="submit"> signaler </button>
     </form>
-</fieldset>
+
 
 
 
 <?php
     }
+       ?>
+    </fieldset>
+<?php
     }
 }
 ?>
