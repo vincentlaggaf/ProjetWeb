@@ -212,7 +212,9 @@ if(isset($_GET['name']))
                         complete : function(resultat, statut){}
                     });
 
-
+                    <?php
+                    if(isset($_SESSION['Id'])){
+                    ?>
                     // Function that is called when you clic on the like button
                     // It sends the datas (photo ID) to likePhotoEvent.php
                     btn.onclick = function (){
@@ -245,25 +247,28 @@ if(isset($_GET['name']))
                         });
                     }
 
+                        // Function that is called when you clic on the report button
+                        // It sends the datas (photo and its ID) to report.php
 
-                    // Function that is called when you clic on the report button
-                    // It sends the datas (photo and its ID) to report.php
-                    signaler.onclick = function() {
-                        var category = document.getElementById('category').value;
-                        var IDUser = <?php echo $_SESSION['Id']; ?>;
-                        var contentId = modalidPhoto;
-                        $.ajax({
-                            url: 'report.php',
-                            type : 'POST',
-                            data :
-                            {"contentId": contentId,
-                             "category": category,
-                             "IDUser": IDUser,},
-                            success : function(data){},
-                            error : function(resultat, statut, erreur){},
-                            complete : function(resultat, statut){}
-                        });
+                        signaler.onclick = function() {
+                            var category = document.getElementById('category').value;
+                            var IDUser = <?php echo $_SESSION['Id']; ?> ;
+                            var contentId = modalidPhoto;
+                            $.ajax({
+                                url: 'report.php',
+                                type : 'POST',
+                                data :
+                                {"contentId": contentId,
+                                 "category": category,
+                                 "IDUser": IDUser,},
+                                success : function(data){},
+                                error : function(resultat, statut, erreur){},
+                                complete : function(resultat, statut){}
+                            });
+                        }
+                    <?php
                     }
+                    ?>
                 });
             }
         </script>
