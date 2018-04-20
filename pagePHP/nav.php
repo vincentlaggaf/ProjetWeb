@@ -58,9 +58,9 @@
     <div id="myDropdown" class="dropdown-content">
         <a href="home.php">Accueil</a>
         <a href="shop.php">Boutique</a>
-        <a href="#">Boite à idées</a>
+        <a href="IdeaBox.php">Boite à idées</a>
         <a href="eventOfTheMonth.php">Évènement du mois</a>
-        <a href="#">Évènements passés</a>
+        <a href="pastEvent.php">Évènements passés</a>
         <?php if(isset($_SESSION['Login'])){ ?>
         <a href="/projetWeb/pagePHP/destroySession.php" class="bouton">Déconnexion</a>
         <?php } else {
