@@ -60,7 +60,7 @@ if(isset($_GET['name']))
                 <!-- content of the event -->
                 <div id="eventAndParticipants">
                     <div class="eventBloc">
-                        <?php if(isset($urlPhoto['Url'])){?>
+                        <?php if(isset($photoEvent['Url'])){?>
                         <div class="photo">
                             <img src="<?php echo $photoEvent['Url'] ;?>"alt="" class="thumbnail">
                         </div>
